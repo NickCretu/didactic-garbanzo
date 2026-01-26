@@ -69,7 +69,7 @@ const navItems = [
   <!-- Mobile Navigation Overlay -->
   <div id="mobile-menu" class="mobile-menu-overlay hidden">
     <div class="mobile-menu-content">
-      <nav class="flex flex-col items-center justify-center h-full gap-2">
+      <nav class="flex flex-col">
         {navItems.map((item) => (
           <a
             href={item.href}
@@ -79,6 +79,15 @@ const navItems = [
           </a>
         ))}
       </nav>
+      <!-- Tap to close area -->
+      <button id="mobile-menu-close-area" class="flex-1 w-full flex items-start justify-center pt-8" aria-label="Close menu">
+        <span class="text-sm text-muted flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+          {lang === 'ru' ? 'Нажмите, чтобы закрыть' : lang === 'ro' ? 'Apăsați pentru a închide' : 'Tap to close'}
+        </span>
+      </button>
     </div>
   </div>
 </header>
@@ -134,6 +143,15 @@ const navItems = [
   const mobileMenu = document.getElementById('mobile-menu');
   const menuIcon = menuBtn?.querySelector('.menu-icon');
   const closeIcon = menuBtn?.querySelector('.close-icon');
+  const closeArea = document.getElementById('mobile-menu-close-area');
+  
+  function closeMenu() {
+    mobileMenu?.classList.add('hidden');
+    menuIcon?.classList.remove('hidden');
+    closeIcon?.classList.add('hidden');
+    menuBtn?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
   
   menuBtn?.addEventListener('click', () => {
     const isOpen = mobileMenu?.classList.toggle('hidden');
@@ -147,11 +165,9 @@ const navItems = [
   
   // Close menu when clicking a link
   mobileMenu?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.add('hidden');
-      menuIcon?.classList.remove('hidden');
-      closeIcon?.classList.add('hidden');
-      document.body.style.overflow = '';
-    });
+    link.addEventListener('click', closeMenu);
   });
+  
+  // Close menu when clicking the close area
+  closeArea?.addEventListener('click', closeMenu);
 </script>
