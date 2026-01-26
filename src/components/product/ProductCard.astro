@@ -56,7 +56,7 @@ const telegramLink = getTelegramOrderLink(lang, {
 ---
 
 <article
-  class="product-card group flex flex-col"
+  class="product-card group flex flex-col overflow-hidden"
   data-strength={product.strengthCategory}
   data-flavor={product.flavorCategory}
 >
@@ -79,9 +79,9 @@ const telegramLink = getTelegramOrderLink(lang, {
   </a>
   
   <!-- Product Info -->
-  <div class="flex-1 flex flex-col">
-    <span class="text-caption text-muted mb-1">{product.brand}</span>
-    <h3 class="text-body font-medium text-primary mb-2">
+  <div class="flex-1 flex flex-col min-w-0">
+    <span class="text-caption text-muted mb-1 truncate">{product.brand}</span>
+    <h3 class="text-sm font-medium text-primary mb-2 line-clamp-2">
       <a
         href={getLocalizedPath(`/product/${product.slug}`, lang)}
         class="hover:text-accent transition-colors"
@@ -91,17 +91,17 @@ const telegramLink = getTelegramOrderLink(lang, {
     </h3>
     
     <!-- Tags -->
-    <div class="flex flex-wrap gap-2 mb-3">
-      <span class="px-2 py-0.5 bg-white text-caption text-muted rounded-full">
+    <div class="flex flex-wrap gap-1 mb-3">
+      <span class="px-2 py-0.5 bg-white text-xs text-muted rounded-full truncate max-w-full">
         {strengthLabels[product.strengthCategory]}
       </span>
-      <span class="px-2 py-0.5 bg-white text-caption text-muted rounded-full">
+      <span class="px-2 py-0.5 bg-white text-xs text-muted rounded-full truncate max-w-full">
         {flavorLabels[product.flavorCategory]}
       </span>
     </div>
     
     <!-- Price -->
-    <p class="text-title font-semibold text-primary mb-4">
+    <p class="text-base font-semibold text-primary mb-3">
       {product.price} {product.currency}
     </p>
     

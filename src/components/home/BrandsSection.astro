@@ -8,9 +8,6 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-const base = import.meta.env.BASE_URL || '/';
-const baseClean = base.endsWith('/') ? base.slice(0, -1) : base;
-
 // Brand logos - we'll use SVG logos created inline for consistency
 const brands = [
   { name: 'VELO', color: '#00A0E3' },
@@ -21,26 +18,17 @@ const brands = [
 ];
 ---
 
-<section class="py-8 md:py-12 bg-surface">
+<section class="py-10 md:py-14 bg-surface overflow-hidden">
   <div class="container">
     <p class="text-center text-caption text-muted mb-6">{t.brands.title}</p>
-    
-    <!-- Mobile: horizontal scroll, Desktop: centered flex -->
-    <div class="brands-scroll md:hidden">
-      <div class="brands-track">
-        {brands.map((brand) => (
-          <div class="brand-item">
-            <span class="text-lg font-bold whitespace-nowrap" style={`color: ${brand.color}`}>{brand.name}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-    
-    <!-- Desktop only -->
-    <div class="hidden md:flex items-center justify-center gap-12 lg:gap-16">
-      {brands.map((brand) => (
-        <div class="opacity-60 hover:opacity-100 transition-opacity">
-          <span class="text-2xl font-bold" style={`color: ${brand.color}`}>{brand.name}</span>
+  </div>
+  
+  <!-- Scrolling brands marquee -->
+  <div class="brands-marquee">
+    <div class="brands-track">
+      {[...brands, ...brands, ...brands].map((brand) => (
+        <div class="brand-item">
+          <span class="brand-text" style={`color: ${brand.color}`}>{brand.name}</span>
         </div>
       ))}
     </div>
@@ -48,27 +36,50 @@ const brands = [
 </section>
 
 <style>
-  .brands-scroll {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    margin: 0 -1.5rem;
-    padding: 0 1.5rem;
-  }
-  
-  .brands-scroll::-webkit-scrollbar {
-    display: none;
+  .brands-marquee {
+    width: 100%;
+    overflow: hidden;
   }
   
   .brands-track {
     display: flex;
-    gap: 2rem;
-    padding: 0.5rem 0;
+    gap: 3rem;
+    animation: scroll-brands 25s linear infinite;
     width: max-content;
   }
   
   .brand-item {
+    flex-shrink: 0;
     opacity: 0.7;
+    transition: opacity 0.3s;
+  }
+  
+  .brand-item:hover {
+    opacity: 1;
+  }
+  
+  .brand-text {
+    font-size: 1.75rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  
+  @media (min-width: 768px) {
+    .brands-track {
+      gap: 5rem;
+    }
+    
+    .brand-text {
+      font-size: 2.25rem;
+    }
+  }
+  
+  @keyframes scroll-brands {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-33.333%);
+    }
   }
 </style>

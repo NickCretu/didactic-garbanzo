@@ -26,57 +26,43 @@ const flavorOptions = [
 ];
 ---
 
-<div class="product-filter flex flex-wrap gap-4 mb-8" role="group" aria-label="Product filters">
-  <!-- Strength Filter -->
-  <div class="filter-group">
-    <label for="strength-filter" class="sr-only">{t.catalog.filterStrength}</label>
-    <div class="flex items-center gap-2">
-      <span class="text-caption text-muted">{t.catalog.filterStrength}:</span>
-      <div class="inline-flex flex-wrap gap-1" role="radiogroup" id="strength-filter">
-        {strengthOptions.map((option) => (
-          <button
-            type="button"
-            class="filter-btn px-3 py-1.5 text-caption rounded-full transition-all data-[active=true]:bg-accent data-[active=true]:text-white bg-surface text-muted hover:bg-gray-200"
-            data-filter="strength"
-            data-value={option.value}
-            data-active={option.value === 'all' ? 'true' : 'false'}
-            role="radio"
-            aria-checked={option.value === 'all' ? 'true' : 'false'}
-          >
-            {option.label}
-          </button>
-        ))}
-      </div>
-    </div>
+<div class="product-filter flex items-center justify-center gap-3 mb-6" role="group" aria-label="Product filters">
+  <!-- Strength Filter Dropdown -->
+  <div class="relative">
+    <select 
+      id="strength-filter" 
+      class="filter-select appearance-none bg-surface border-0 rounded-full px-4 py-2 pr-8 text-sm text-muted cursor-pointer hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-accent"
+      data-filter="strength"
+    >
+      {strengthOptions.map((option) => (
+        <option value={option.value}>{t.catalog.filterStrength}: {option.label}</option>
+      ))}
+    </select>
+    <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
   </div>
   
-  <!-- Flavor Filter -->
-  <div class="filter-group">
-    <label for="flavor-filter" class="sr-only">{t.catalog.filterFlavor}</label>
-    <div class="flex items-center gap-2">
-      <span class="text-caption text-muted">{t.catalog.filterFlavor}:</span>
-      <div class="inline-flex flex-wrap gap-1" role="radiogroup" id="flavor-filter">
-        {flavorOptions.map((option) => (
-          <button
-            type="button"
-            class="filter-btn px-3 py-1.5 text-caption rounded-full transition-all data-[active=true]:bg-accent data-[active=true]:text-white bg-surface text-muted hover:bg-gray-200"
-            data-filter="flavor"
-            data-value={option.value}
-            data-active={option.value === 'all' ? 'true' : 'false'}
-            role="radio"
-            aria-checked={option.value === 'all' ? 'true' : 'false'}
-          >
-            {option.label}
-          </button>
-        ))}
-      </div>
-    </div>
+  <!-- Flavor Filter Dropdown -->
+  <div class="relative">
+    <select 
+      id="flavor-filter" 
+      class="filter-select appearance-none bg-surface border-0 rounded-full px-4 py-2 pr-8 text-sm text-muted cursor-pointer hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-accent"
+      data-filter="flavor"
+    >
+      {flavorOptions.map((option) => (
+        <option value={option.value}>{t.catalog.filterFlavor}: {option.label}</option>
+      ))}
+    </select>
+    <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
   </div>
 </div>
 
 <script>
   function initFilters() {
-    const filterBtns = document.querySelectorAll('.filter-btn');
+    const filterSelects = document.querySelectorAll('.filter-select');
     const productCards = document.querySelectorAll('.product-card');
     const noProductsMsg = document.getElementById('no-products-msg');
     
@@ -109,19 +95,11 @@ const flavorOptions = [
       }
     }
     
-    filterBtns.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const filterType = btn.getAttribute('data-filter') as 'strength' | 'flavor';
-        const filterValue = btn.getAttribute('data-value') || 'all';
-        
-        // Update active state for buttons in this group
-        document.querySelectorAll(`[data-filter="${filterType}"]`).forEach((b) => {
-          b.setAttribute('data-active', 'false');
-          b.setAttribute('aria-checked', 'false');
-        });
-        
-        btn.setAttribute('data-active', 'true');
-        btn.setAttribute('aria-checked', 'true');
+    filterSelects.forEach((select) => {
+      select.addEventListener('change', (e) => {
+        const target = e.target as HTMLSelectElement;
+        const filterType = target.getAttribute('data-filter') as 'strength' | 'flavor';
+        const filterValue = target.value;
         
         // Update filter state
         activeFilters[filterType] = filterValue;
