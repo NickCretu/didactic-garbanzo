@@ -46,7 +46,22 @@ if (limit) {
     
     {showFilter && <ProductFilter lang={lang} />}
     
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+    <!-- Mobile: Horizontal carousel -->
+    <div class="products-carousel md:hidden">
+      <div class="products-track" id="products-track">
+        {products.map((product) => (
+          <div class="product-slide">
+            <ProductCard lang={lang} product={product.data} />
+          </div>
+        ))}
+      </div>
+      
+      <!-- Carousel dots -->
+      <div class="carousel-dots" id="carousel-dots"></div>
+    </div>
+    
+    <!-- Desktop: Grid layout -->
+    <div class="hidden md:grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
       {products.map((product) => (
         <ProductCard lang={lang} product={product.data} />
       ))}
@@ -61,3 +76,99 @@ if (limit) {
     </p>
   </div>
 </section>
+
+<style>
+  .products-carousel {
+    margin: 0 -1.5rem;
+    padding: 0;
+    position: relative;
+  }
+  
+  .products-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 0.5rem 1.5rem;
+    gap: 1rem;
+  }
+  
+  .products-track::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .product-slide {
+    flex: 0 0 75%;
+    max-width: 280px;
+    scroll-snap-align: center;
+  }
+  
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 0;
+  }
+  
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #e5e5e5;
+    transition: all 0.2s;
+  }
+  
+  .carousel-dot.active {
+    background: #0066CC;
+    width: 24px;
+    border-radius: 4px;
+  }
+</style>
+
+<script>
+  function initCarousel() {
+    const track = document.getElementById('products-track');
+    const dotsContainer = document.getElementById('carousel-dots');
+    
+    if (!track || !dotsContainer) return;
+    
+    const slides = track.querySelectorAll('.product-slide');
+    const totalSlides = slides.length;
+    
+    // Create dots
+    dotsContainer.innerHTML = '';
+    for (let i = 0; i < Math.min(totalSlides, 10); i++) {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+      dot.addEventListener('click', () => {
+        slides[i]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      });
+      dotsContainer.appendChild(dot);
+    }
+    
+    // Update dots on scroll
+    const dots = dotsContainer.querySelectorAll('.carousel-dot');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = Array.from(slides).indexOf(entry.target as Element);
+          dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+          });
+        }
+      });
+    }, {
+      root: track,
+      threshold: 0.5
+    });
+    
+    slides.forEach((slide) => observer.observe(slide));
+  }
+  
+  initCarousel();
+  document.addEventListener('astro:page-load', initCarousel);
+</script>

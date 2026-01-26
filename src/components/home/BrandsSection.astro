@@ -21,21 +21,54 @@ const brands = [
 ];
 ---
 
-<section class="py-12 bg-surface">
+<section class="py-8 md:py-12 bg-surface">
   <div class="container">
-    <p class="text-center text-caption text-muted mb-8">{t.brands.title}</p>
+    <p class="text-center text-caption text-muted mb-6">{t.brands.title}</p>
     
-    <div class="flex flex-wrap items-center justify-center gap-8 md:gap-16">
+    <!-- Mobile: horizontal scroll, Desktop: centered flex -->
+    <div class="brands-scroll md:hidden">
+      <div class="brands-track">
+        {brands.map((brand) => (
+          <div class="brand-item">
+            <span class="text-lg font-bold whitespace-nowrap" style={`color: ${brand.color}`}>{brand.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    <!-- Desktop only -->
+    <div class="hidden md:flex items-center justify-center gap-12 lg:gap-16">
       {brands.map((brand) => (
         <div class="opacity-60 hover:opacity-100 transition-opacity">
-          <img 
-            src={`${baseClean}/images/brands/${brand.name.toLowerCase().replace(' ', '-')}.svg`}
-            alt={brand.name}
-            class="h-8 md:h-10 w-auto"
-            onerror={`this.parentElement.innerHTML='<span class="text-xl md:text-2xl font-bold" style="color: ${brand.color}">${brand.name}</span>'`}
-          />
+          <span class="text-2xl font-bold" style={`color: ${brand.color}`}>{brand.name}</span>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .brands-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    margin: 0 -1.5rem;
+    padding: 0 1.5rem;
+  }
+  
+  .brands-scroll::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .brands-track {
+    display: flex;
+    gap: 2rem;
+    padding: 0.5rem 0;
+    width: max-content;
+  }
+  
+  .brand-item {
+    opacity: 0.7;
+  }
+</style>

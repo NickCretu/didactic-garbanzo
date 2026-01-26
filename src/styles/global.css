@@ -32,10 +32,13 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
   body {
     @apply bg-background text-primary font-sans;
+    overflow-x: hidden;
+    position: relative;
   }
 
   /* Focus styles for accessibility */
