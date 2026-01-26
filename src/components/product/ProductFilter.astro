@@ -8,21 +8,25 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
+// Short labels for compact display
+const strengthLabel = lang === 'ru' ? 'Крепость' : lang === 'ro' ? 'Tărie' : 'Strength';
+const flavorLabel = lang === 'ru' ? 'Вкус' : lang === 'ro' ? 'Aromă' : 'Flavor';
+
 const strengthOptions = [
-  { value: 'all', label: t.catalog.filterAll },
-  { value: 'low', label: t.strengths.low },
-  { value: 'medium', label: t.strengths.medium },
-  { value: 'strong', label: t.strengths.strong },
-  { value: 'extra', label: t.strengths.extra },
+  { value: 'all', label: `${strengthLabel}: ${t.catalog.filterAll}` },
+  { value: 'low', label: `${strengthLabel}: ${t.strengths.low}` },
+  { value: 'medium', label: `${strengthLabel}: ${t.strengths.medium}` },
+  { value: 'strong', label: `${strengthLabel}: ${t.strengths.strong}` },
+  { value: 'extra', label: `${strengthLabel}: ${t.strengths.extra}` },
 ];
 
 const flavorOptions = [
-  { value: 'all', label: t.catalog.filterAll },
-  { value: 'mint', label: t.flavors.mint },
-  { value: 'citrus', label: t.flavors.citrus },
-  { value: 'berry', label: t.flavors.berry },
-  { value: 'coffee', label: t.flavors.coffee },
-  { value: 'tropical', label: t.flavors.tropical },
+  { value: 'all', label: `${flavorLabel}: ${t.catalog.filterAll}` },
+  { value: 'mint', label: `${flavorLabel}: ${t.flavors.mint}` },
+  { value: 'citrus', label: `${flavorLabel}: ${t.flavors.citrus}` },
+  { value: 'berry', label: `${flavorLabel}: ${t.flavors.berry}` },
+  { value: 'coffee', label: `${flavorLabel}: ${t.flavors.coffee}` },
+  { value: 'tropical', label: `${flavorLabel}: ${t.flavors.tropical}` },
 ];
 ---
 
@@ -31,14 +35,14 @@ const flavorOptions = [
   <div class="relative">
     <select 
       id="strength-filter" 
-      class="filter-select appearance-none bg-surface border-0 rounded-full px-4 py-3 pr-9 text-sm font-medium text-primary cursor-pointer hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-accent min-h-[44px]"
+      class="filter-select appearance-none bg-surface border-0 rounded-full px-3 py-2.5 pr-8 text-xs font-medium text-primary cursor-pointer hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-accent min-h-[44px]"
       data-filter="strength"
     >
       {strengthOptions.map((option) => (
         <option value={option.value}>{option.label}</option>
       ))}
     </select>
-    <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg class="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
     </svg>
   </div>
@@ -47,14 +51,14 @@ const flavorOptions = [
   <div class="relative">
     <select 
       id="flavor-filter" 
-      class="filter-select appearance-none bg-surface border-0 rounded-full px-4 py-3 pr-9 text-sm font-medium text-primary cursor-pointer hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-accent min-h-[44px]"
+      class="filter-select appearance-none bg-surface border-0 rounded-full px-3 py-2.5 pr-8 text-xs font-medium text-primary cursor-pointer hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-accent min-h-[44px]"
       data-filter="flavor"
     >
       {flavorOptions.map((option) => (
         <option value={option.value}>{option.label}</option>
       ))}
     </select>
-    <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg class="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
     </svg>
   </div>
