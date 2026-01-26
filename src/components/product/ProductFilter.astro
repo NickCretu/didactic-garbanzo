@@ -26,35 +26,35 @@ const flavorOptions = [
 ];
 ---
 
-<div class="product-filter flex items-center justify-center gap-3 mb-6" role="group" aria-label="Product filters">
+<div class="product-filter flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-6 px-4" role="group" aria-label="Product filters">
   <!-- Strength Filter Dropdown -->
-  <div class="relative">
+  <div class="relative flex-shrink-0">
     <select 
       id="strength-filter" 
-      class="filter-select appearance-none bg-surface border-0 rounded-full px-4 py-2 pr-8 text-sm text-muted cursor-pointer hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-accent"
+      class="filter-select appearance-none bg-surface border-0 rounded-full px-3 sm:px-4 py-2 pr-7 sm:pr-8 text-xs sm:text-sm text-muted cursor-pointer hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-accent"
       data-filter="strength"
     >
       {strengthOptions.map((option) => (
         <option value={option.value}>{t.catalog.filterStrength}: {option.label}</option>
       ))}
     </select>
-    <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg class="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 w-3 sm:w-4 h-3 sm:h-4 text-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
     </svg>
   </div>
   
   <!-- Flavor Filter Dropdown -->
-  <div class="relative">
+  <div class="relative flex-shrink-0">
     <select 
       id="flavor-filter" 
-      class="filter-select appearance-none bg-surface border-0 rounded-full px-4 py-2 pr-8 text-sm text-muted cursor-pointer hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-accent"
+      class="filter-select appearance-none bg-surface border-0 rounded-full px-3 sm:px-4 py-2 pr-7 sm:pr-8 text-xs sm:text-sm text-muted cursor-pointer hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-accent"
       data-filter="flavor"
     >
       {flavorOptions.map((option) => (
         <option value={option.value}>{t.catalog.filterFlavor}: {option.label}</option>
       ))}
     </select>
-    <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg class="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 w-3 sm:w-4 h-3 sm:h-4 text-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
     </svg>
   </div>
@@ -64,7 +64,9 @@ const flavorOptions = [
   function initFilters() {
     const filterSelects = document.querySelectorAll('.filter-select');
     const productCards = document.querySelectorAll('.product-card');
+    const productSlides = document.querySelectorAll('.product-slide');
     const noProductsMsg = document.getElementById('no-products-msg');
+    const productsTrack = document.getElementById('products-track');
     
     let activeFilters = {
       strength: 'all',
@@ -73,21 +75,40 @@ const flavorOptions = [
     
     function updateProducts() {
       let visibleCount = 0;
+      let firstVisibleSlide: Element | null = null;
       
-      productCards.forEach((card) => {
+      // Filter both desktop cards and mobile slides
+      productCards.forEach((card, index) => {
         const cardStrength = card.getAttribute('data-strength');
         const cardFlavor = card.getAttribute('data-flavor');
         
         const matchesStrength = activeFilters.strength === 'all' || cardStrength === activeFilters.strength;
         const matchesFlavor = activeFilters.flavor === 'all' || cardFlavor === activeFilters.flavor;
         
-        if (matchesStrength && matchesFlavor) {
+        const isVisible = matchesStrength && matchesFlavor;
+        
+        if (isVisible) {
           (card as HTMLElement).style.display = '';
           visibleCount++;
+          
+          // Track first visible slide for mobile
+          if (!firstVisibleSlide && productSlides[index]) {
+            firstVisibleSlide = productSlides[index];
+          }
         } else {
           (card as HTMLElement).style.display = 'none';
         }
+        
+        // Also hide/show the corresponding slide wrapper
+        if (productSlides[index]) {
+          (productSlides[index] as HTMLElement).style.display = isVisible ? '' : 'none';
+        }
       });
+      
+      // Scroll carousel to first visible product
+      if (firstVisibleSlide && productsTrack) {
+        productsTrack.scrollTo({ left: 0, behavior: 'smooth' });
+      }
       
       // Show/hide no products message
       if (noProductsMsg) {
