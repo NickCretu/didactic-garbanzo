@@ -2,8 +2,8 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
-  site: 'https://NickCretu.github.io',
-  base: '/didactic-garbanzo',
+  site: 'https://pauch.netlify.app',
+  base: '/',
   integrations: [
     tailwind(),
   ],
