@@ -1,0 +1,26 @@
+{
+  "slug": "zyn-spearmint",
+  "brand": "ZYN",
+  "strength": 6,
+  "strengthCategory": "low",
+  "flavorCategory": "mint",
+  "pouchesPerCan": 24,
+  "price": 99,
+  "currency": "MDL",
+  "image": "/images/products/zyn-spearmint.webp",
+  "featured": false,
+  "translations": {
+    "en": {
+      "name": "ZYN Spearmint",
+      "description": "Classic spearmint flavor with a smooth, mild nicotine delivery. Great for everyday use."
+    },
+    "ru": {
+      "name": "ZYN Мята",
+      "description": "Классический вкус мяты с мягкой доставкой никотина. Отлично подходит для ежедневного использования."
+    },
+    "ro": {
+      "name": "ZYN Spearmint",
+      "description": "Aromă clasică de mentă cu livrare blândă de nicotină. Ideal pentru utilizare zilnică."
+    }
+  }
+}

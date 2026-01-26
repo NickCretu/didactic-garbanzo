@@ -1,0 +1,52 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  class?: string;
+  type?: 'button' | 'submit';
+  disabled?: boolean;
+  external?: boolean;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  class: className = '',
+  type = 'button',
+  disabled = false,
+  external = false,
+} = Astro.props;
+
+const baseClasses = 'inline-flex items-center justify-center font-medium rounded-full transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2';
+
+const variantClasses = {
+  primary: 'bg-accent text-white hover:bg-opacity-90 active:scale-[0.98]',
+  secondary: 'bg-surface text-primary hover:bg-gray-200 active:scale-[0.98]',
+  outline: 'border border-primary text-primary hover:bg-primary hover:text-white active:scale-[0.98]',
+  ghost: 'text-muted hover:text-primary hover:bg-surface',
+};
+
+const sizeClasses = {
+  sm: 'px-4 py-2 text-caption',
+  md: 'px-6 py-3 text-body',
+  lg: 'px-8 py-4 text-body',
+};
+
+const disabledClasses = disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : '';
+
+const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${disabledClasses} ${className}`;
+
+const externalProps = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+---
+
+{href ? (
+  <a href={href} class={classes} {...externalProps}>
+    <slot />
+  </a>
+) : (
+  <button type={type} class={classes} disabled={disabled}>
+    <slot />
+  </button>
+)}

@@ -1,0 +1,26 @@
+{
+  "slug": "pablo-ice-cold",
+  "brand": "Pablo",
+  "strength": 30,
+  "strengthCategory": "extra",
+  "flavorCategory": "mint",
+  "pouchesPerCan": 20,
+  "price": 79,
+  "currency": "MDL",
+  "image": "/images/products/pablo-ice-cold.webp",
+  "featured": false,
+  "translations": {
+    "en": {
+      "name": "Pablo Ice Cold",
+      "description": "Extreme strength with intense mint cooling. For experienced users only."
+    },
+    "ru": {
+      "name": "Pablo Ледяной Холод",
+      "description": "Экстремальная крепость с интенсивным мятным охлаждением. Только для опытных."
+    },
+    "ro": {
+      "name": "Pablo Gheață Rece",
+      "description": "Tărie extremă cu răcire intensă de mentă. Doar pentru utilizatori experimentați."
+    }
+  }
+}

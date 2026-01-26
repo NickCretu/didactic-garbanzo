@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ProductDetail from '@components/product/ProductDetail.astro';
+import { useTranslations } from '@i18n/index';
+
+const lang = 'ro';
+const t = useTranslations(lang);
+
+export async function getStaticPaths() {
+  const products = await getCollection('products');
+  return products.map((product) => ({
+    params: { slug: product.data.slug },
+    props: { product: product.data },
+  }));
+}
+
+const { product } = Astro.props;
+const translation = product.translations[lang];
+---
+
+<BaseLayout
+  title={`${translation.name} - ${t.site.title}`}
+  description={translation.description}
+  image={product.image}
+>
+  <ProductDetail lang={lang} product={product} />
+</BaseLayout>

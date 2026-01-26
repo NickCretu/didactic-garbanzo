@@ -1,0 +1,26 @@
+{
+  "slug": "velo-berry-blast",
+  "brand": "VELO",
+  "strength": 10,
+  "strengthCategory": "medium",
+  "flavorCategory": "berry",
+  "pouchesPerCan": 20,
+  "price": 89,
+  "currency": "MDL",
+  "image": "/images/products/velo-berry-blast.webp",
+  "featured": true,
+  "translations": {
+    "en": {
+      "name": "VELO Berry Blast",
+      "description": "An explosion of mixed berries with a sweet and tangy flavor profile."
+    },
+    "ru": {
+      "name": "VELO Ягодный Взрыв",
+      "description": "Взрыв смешанных ягод со сладким и терпким вкусовым профилем."
+    },
+    "ro": {
+      "name": "VELO Explozie de Fructe",
+      "description": "O explozie de fructe de pădure amestecate cu un profil dulce și acrișor."
+    }
+  }
+}

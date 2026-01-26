@@ -1,0 +1,62 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { useTranslations } from '@i18n/index';
+
+const lang = 'ro';
+const t = useTranslations(lang);
+---
+
+<BaseLayout 
+  title={`${t.footer.privacy} - ${t.site.title}`}
+  description="Politica noastră de confidențialitate explică cum colectăm, utilizăm și protejăm informațiile dvs. personale."
+>
+  <section class="py-12 md:py-20">
+    <div class="container">
+      <div class="max-w-3xl mx-auto prose prose-lg">
+        <h1 class="text-display text-center mb-12">{t.footer.privacy}</h1>
+        
+        <h2>Informațiile pe care le colectăm</h2>
+        <p>Când plasați o comandă prin Telegram, colectăm următoarele informații:</p>
+        <ul>
+          <li>Numele de utilizator Telegram sau numărul de telefon</li>
+          <li>Adresa de livrare</li>
+          <li>Detaliile comenzii (produse, cantități)</li>
+        </ul>
+        
+        <h2>Cum folosim informațiile dvs.</h2>
+        <p>Folosim informațiile dvs. exclusiv pentru:</p>
+        <ul>
+          <li>Procesarea și livrarea comenzilor</li>
+          <li>Comunicarea despre statusul comenzii</li>
+          <li>Oferirea suportului pentru clienți</li>
+        </ul>
+        
+        <h2>Protecția datelor</h2>
+        <p>Nu vindem, schimbăm sau partajăm informațiile dvs. personale cu terțe părți, cu excepția cazurilor necesare pentru finalizarea comenzii (de exemplu, servicii de livrare).</p>
+        
+        <h2>Păstrarea datelor</h2>
+        <p>Păstrăm informațiile despre comenzi pentru o perioadă rezonabilă pentru a gestiona orice probleme sau returnări. Puteți solicita ștergerea datelor dvs. în orice moment.</p>
+        
+        <h2>Contact</h2>
+        <p>Pentru întrebări legate de confidențialitate, contactați-ne prin Telegram.</p>
+        
+        <p class="text-muted text-sm mt-12">Ultima actualizare: Ianuarie 2026</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .prose h2 {
+    @apply text-title font-semibold mt-8 mb-4;
+  }
+  .prose p {
+    @apply text-body text-muted mb-4;
+  }
+  .prose ul {
+    @apply list-disc pl-6 mb-4 text-body text-muted;
+  }
+  .prose li {
+    @apply mb-2;
+  }
+</style>

@@ -1,0 +1,26 @@
+{
+  "slug": "pablo-mango-ice",
+  "brand": "Pablo",
+  "strength": 20,
+  "strengthCategory": "extra",
+  "flavorCategory": "tropical",
+  "pouchesPerCan": 20,
+  "price": 79,
+  "currency": "MDL",
+  "image": "/images/products/pablo-mango-ice.webp",
+  "featured": false,
+  "translations": {
+    "en": {
+      "name": "Pablo Mango Ice",
+      "description": "Sweet mango with cooling ice effect. High strength for those who want more."
+    },
+    "ru": {
+      "name": "Pablo Манго Айс",
+      "description": "Сладкий манго с охлаждающим эффектом. Высокая крепость для тех, кто хочет большего."
+    },
+    "ro": {
+      "name": "Pablo Mango Ice",
+      "description": "Mango dulce cu efect de răcire. Tărie mare pentru cei care vor mai mult."
+    }
+  }
+}

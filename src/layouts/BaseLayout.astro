@@ -1,0 +1,135 @@
+---
+import '../styles/global.css';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+import AgeGate from '@components/layout/AgeGate.astro';
+import TelegramButton from '@components/ui/TelegramButton.astro';
+import { getLangFromUrl, useTranslations, getAlternateUrls, type Language } from '@i18n/index';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalPath?: string;
+  schema?: object;
+}
+
+const { title, description, image, canonicalPath, schema } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url) as Language;
+const t = useTranslations(lang);
+
+const pageTitle = title || t.site.title;
+const pageDescription = description || t.site.description;
+
+const base = import.meta.env.BASE_URL || '/';
+const baseClean = base.endsWith('/') ? base.slice(0, -1) : base;
+const pageImage = image || `${baseClean}/images/og-default.jpg`;
+
+const currentPath = Astro.url.pathname;
+const alternates = getAlternateUrls(currentPath);
+
+// Site URL without trailing slash
+const siteOrigin = Astro.site?.origin || 'https://yourusername.github.io';
+const siteUrl = `${siteOrigin}${baseClean}`;
+
+// Build canonical URL - remove base from currentPath if it starts with base
+let pathForCanonical = currentPath;
+if (baseClean && pathForCanonical.startsWith(baseClean)) {
+  pathForCanonical = pathForCanonical.slice(baseClean.length);
+}
+const canonicalUrl = canonicalPath 
+  ? `${siteUrl}${canonicalPath}`
+  : `${siteUrl}${pathForCanonical}`;
+
+// Default organization schema
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Pouch",
+  "url": siteUrl,
+  "logo": `${siteUrl}/favicon.svg`,
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "availableLanguage": ["English", "Russian", "Romanian"]
+  }
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Pouch",
+  "url": siteUrl,
+  "inLanguage": lang,
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": `${siteUrl}/${lang}/catalog?q={search_term_string}`,
+    "query-input": "required name=search_term_string"
+  }
+};
+
+const combinedSchema = schema 
+  ? [organizationSchema, websiteSchema, schema]
+  : [organizationSchema, websiteSchema];
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Primary Meta Tags -->
+    <title>{pageTitle}</title>
+    <meta name="title" content={pageTitle} />
+    <meta name="description" content={pageDescription} />
+    <meta name="keywords" content={t.site.keywords} />
+    
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalUrl} />
+    
+    <!-- Hreflang -->
+    {alternates.map(({ lang: altLang, url }) => (
+      <link rel="alternate" hreflang={altLang} href={`${siteUrl}${url}`} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}/en/`} />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href={`${baseClean}/favicon.svg`} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={`${siteUrl}${pageImage}`} />
+    <meta property="og:locale" content={lang} />
+    {alternates.filter(a => a.lang !== lang).map(({ lang: altLang }) => (
+      <meta property="og:locale:alternate" content={altLang} />
+    ))}
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={`${siteUrl}${pageImage}`} />
+    
+    <!-- Preconnect for fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(combinedSchema)} />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <AgeGate lang={lang} />
+    <Header lang={lang} />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+    <TelegramButton lang={lang} />
+  </body>
+</html>

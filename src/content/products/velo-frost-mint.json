@@ -1,0 +1,26 @@
+{
+  "slug": "velo-frost-mint",
+  "brand": "VELO",
+  "strength": 8,
+  "strengthCategory": "medium",
+  "flavorCategory": "mint",
+  "pouchesPerCan": 20,
+  "price": 89,
+  "currency": "MDL",
+  "image": "/images/products/velo-frost-mint.webp",
+  "featured": true,
+  "translations": {
+    "en": {
+      "name": "VELO Frost Mint",
+      "description": "A refreshing blend of cool mint with an icy finish. Perfect for an all-day fresh experience."
+    },
+    "ru": {
+      "name": "VELO Морозная Мята",
+      "description": "Освежающая смесь прохладной мяты с ледяным послевкусием. Идеально для свежести на весь день."
+    },
+    "ro": {
+      "name": "VELO Mentă Frost",
+      "description": "Un amestec răcoritor de mentă rece cu un final înghețat. Perfect pentru prospețime toată ziua."
+    }
+  }
+}

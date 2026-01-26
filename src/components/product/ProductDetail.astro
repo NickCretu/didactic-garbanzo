@@ -1,0 +1,212 @@
+---
+import Button from '@components/ui/Button.astro';
+import { useTranslations, getLocalizedPath, getTelegramOrderLink, type Language } from '@i18n/index';
+
+interface Props {
+  lang: Language;
+  product: {
+    slug: string;
+    brand: string;
+    strength: number;
+    strengthCategory: string;
+    flavorCategory: string;
+    pouchesPerCan: number;
+    price: number;
+    currency: string;
+    image: string;
+    translations: {
+      [key: string]: {
+        name: string;
+        description: string;
+      };
+    };
+  };
+}
+
+const { lang, product } = Astro.props;
+const t = useTranslations(lang);
+const translation = product.translations[lang];
+
+const base = import.meta.env.BASE_URL || '/';
+const baseClean = base.endsWith('/') ? base.slice(0, -1) : base;
+
+// Prepend base to image path
+const imageSrc = product.image.startsWith('/') 
+  ? `${baseClean}${product.image}` 
+  : product.image;
+const placeholderSrc = `${baseClean}/images/products/placeholder.svg`;
+
+const strengthLabels: Record<string, string> = {
+  low: t.strengths.low,
+  medium: t.strengths.medium,
+  strong: t.strengths.strong,
+  extra: t.strengths.extra,
+};
+
+const flavorLabels: Record<string, string> = {
+  mint: t.flavors.mint,
+  citrus: t.flavors.citrus,
+  berry: t.flavors.berry,
+  coffee: t.flavors.coffee,
+  tropical: t.flavors.tropical,
+};
+
+const telegramLink = getTelegramOrderLink(lang, {
+  name: translation.name,
+  strength: product.strength,
+});
+
+// Generate product schema
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": translation.name,
+  "description": translation.description,
+  "brand": {
+    "@type": "Brand",
+    "name": product.brand,
+  },
+  "image": product.image,
+  "offers": {
+    "@type": "Offer",
+    "price": product.price,
+    "priceCurrency": product.currency,
+    "availability": "https://schema.org/InStock",
+  },
+  "additionalProperty": [
+    {
+      "@type": "PropertyValue",
+      "name": "Nicotine Strength",
+      "value": `${product.strength}mg`,
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Flavor",
+      "value": flavorLabels[product.flavorCategory],
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Pouches per Can",
+      "value": product.pouchesPerCan,
+    },
+  ],
+};
+
+// Breadcrumb schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": t.nav.home,
+      "item": getLocalizedPath('/', lang),
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": t.nav.catalog,
+      "item": getLocalizedPath('/catalog', lang),
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": translation.name,
+    },
+  ],
+};
+---
+
+<!-- Schemas -->
+<script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+<section class="py-12 md:py-20">
+  <div class="container">
+    <!-- Breadcrumb -->
+    <nav class="mb-8" aria-label="Breadcrumb">
+      <ol class="flex items-center gap-2 text-caption text-muted">
+        <li>
+          <a href={getLocalizedPath('/', lang)} class="hover:text-primary transition-colors">
+            {t.nav.home}
+          </a>
+        </li>
+        <li>/</li>
+        <li>
+          <a href={getLocalizedPath('/catalog', lang)} class="hover:text-primary transition-colors">
+            {t.nav.catalog}
+          </a>
+        </li>
+        <li>/</li>
+        <li class="text-primary font-medium" aria-current="page">
+          {translation.name}
+        </li>
+      </ol>
+    </nav>
+    
+    <div class="grid md:grid-cols-2 gap-12 lg:gap-16">
+      <!-- Product Image -->
+      <div class="relative">
+        <div class="aspect-square bg-surface rounded-3xl overflow-hidden">
+          <img
+            src={imageSrc}
+            alt={translation.name}
+            class="w-full h-full object-contain p-8"
+            onerror={`this.src='${placeholderSrc}'`}
+          />
+        </div>
+        <!-- Strength Badge -->
+        <span class="absolute top-6 right-6 px-4 py-2 bg-white shadow-card text-body font-semibold rounded-full">
+          {product.strength}{t.strengths.mg}
+        </span>
+      </div>
+      
+      <!-- Product Info -->
+      <div class="flex flex-col">
+        <span class="text-caption text-muted mb-2">{product.brand}</span>
+        <h1 class="text-headline font-semibold mb-4">{translation.name}</h1>
+        
+        <p class="text-body text-muted mb-6">{translation.description}</p>
+        
+        <!-- Specs -->
+        <div class="grid grid-cols-2 gap-4 mb-8">
+          <div class="bg-surface rounded-xl p-4">
+            <span class="text-caption text-muted block mb-1">{t.product.strength}</span>
+            <span class="text-body font-medium">{strengthLabels[product.strengthCategory]} ({product.strength}mg)</span>
+          </div>
+          <div class="bg-surface rounded-xl p-4">
+            <span class="text-caption text-muted block mb-1">{t.product.flavor}</span>
+            <span class="text-body font-medium">{flavorLabels[product.flavorCategory]}</span>
+          </div>
+          <div class="bg-surface rounded-xl p-4">
+            <span class="text-caption text-muted block mb-1">{t.product.brand}</span>
+            <span class="text-body font-medium">{product.brand}</span>
+          </div>
+          <div class="bg-surface rounded-xl p-4">
+            <span class="text-caption text-muted block mb-1">{t.product.pouches}</span>
+            <span class="text-body font-medium">{product.pouchesPerCan}</span>
+          </div>
+        </div>
+        
+        <!-- Price -->
+        <p class="text-display font-semibold mb-8">
+          {product.price} {product.currency}
+        </p>
+        
+        <!-- Actions -->
+        <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+          <Button href={telegramLink} variant="primary" size="lg" class="flex-1" external>
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+            </svg>
+            {t.product.orderNow}
+          </Button>
+          <Button href={getLocalizedPath('/catalog', lang)} variant="secondary" size="lg">
+            {t.product.backToCatalog}
+          </Button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

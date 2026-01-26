@@ -1,0 +1,28 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import TrustBand from '@components/home/TrustBand.astro';
+import Hero from '@components/home/Hero.astro';
+import BrandsSection from '@components/home/BrandsSection.astro';
+import CatalogGrid from '@components/home/CatalogGrid.astro';
+import WhyUs from '@components/home/WhyUs.astro';
+import ShippingSection from '@components/home/ShippingSection.astro';
+import AboutSection from '@components/home/AboutSection.astro';
+import StrengthGuide from '@components/home/StrengthGuide.astro';
+import FAQ from '@components/home/FAQ.astro';
+import BlogPreview from '@components/home/BlogPreview.astro';
+
+const lang = 'ro';
+---
+
+<BaseLayout>
+  <TrustBand lang={lang} />
+  <Hero lang={lang} />
+  <BrandsSection lang={lang} />
+  <CatalogGrid lang={lang} showFilter={true} />
+  <WhyUs lang={lang} />
+  <ShippingSection lang={lang} />
+  <AboutSection lang={lang} />
+  <StrengthGuide lang={lang} />
+  <FAQ lang={lang} />
+  <BlogPreview lang={lang} />
+</BaseLayout>

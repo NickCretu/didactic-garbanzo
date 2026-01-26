@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+import ProductCard from '@components/product/ProductCard.astro';
+import ProductFilter from '@components/product/ProductFilter.astro';
+import { useTranslations, type Language } from '@i18n/index';
+
+interface Props {
+  lang: Language;
+  showFilter?: boolean;
+  limit?: number;
+  featured?: boolean;
+}
+
+const { lang, showFilter = true, limit, featured = false } = Astro.props;
+const t = useTranslations(lang);
+
+// Get all products
+let products = await getCollection('products');
+
+// Filter featured if requested
+if (featured) {
+  products = products.filter((p) => p.data.featured);
+}
+
+// Sort by featured status and then by price
+products = products.sort((a, b) => {
+  if (a.data.featured && !b.data.featured) return -1;
+  if (!a.data.featured && b.data.featured) return 1;
+  return a.data.price - b.data.price;
+});
+
+// Apply limit if specified
+if (limit) {
+  products = products.slice(0, limit);
+}
+---
+
+<section class="section" id="catalog">
+  <div class="container">
+    <h2 class="text-headline text-center mb-4">{t.catalog.title}</h2>
+    <p class="text-body text-muted text-center mb-8 max-w-2xl mx-auto">
+      {lang === 'en' && 'Browse our selection of premium nicotine pouches from top brands.'}
+      {lang === 'ru' && 'Просмотрите нашу подборку премиальных никотиновых подушечек от ведущих брендов.'}
+      {lang === 'ro' && 'Răsfoiți selecția noastră de pliculețe premium de la branduri de top.'}
+    </p>
+    
+    {showFilter && <ProductFilter lang={lang} />}
+    
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+      {products.map((product) => (
+        <ProductCard lang={lang} product={product.data} />
+      ))}
+    </div>
+    
+    <!-- No products message -->
+    <p
+      id="no-products-msg"
+      class="hidden text-center text-muted py-12"
+    >
+      {t.catalog.noProducts}
+    </p>
+  </div>
+</section>

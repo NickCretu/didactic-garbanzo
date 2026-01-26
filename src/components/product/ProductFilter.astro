@@ -1,0 +1,140 @@
+---
+import { useTranslations, type Language } from '@i18n/index';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const strengthOptions = [
+  { value: 'all', label: t.catalog.filterAll },
+  { value: 'low', label: t.strengths.low },
+  { value: 'medium', label: t.strengths.medium },
+  { value: 'strong', label: t.strengths.strong },
+  { value: 'extra', label: t.strengths.extra },
+];
+
+const flavorOptions = [
+  { value: 'all', label: t.catalog.filterAll },
+  { value: 'mint', label: t.flavors.mint },
+  { value: 'citrus', label: t.flavors.citrus },
+  { value: 'berry', label: t.flavors.berry },
+  { value: 'coffee', label: t.flavors.coffee },
+  { value: 'tropical', label: t.flavors.tropical },
+];
+---
+
+<div class="product-filter flex flex-wrap gap-4 mb-8" role="group" aria-label="Product filters">
+  <!-- Strength Filter -->
+  <div class="filter-group">
+    <label for="strength-filter" class="sr-only">{t.catalog.filterStrength}</label>
+    <div class="flex items-center gap-2">
+      <span class="text-caption text-muted">{t.catalog.filterStrength}:</span>
+      <div class="inline-flex flex-wrap gap-1" role="radiogroup" id="strength-filter">
+        {strengthOptions.map((option) => (
+          <button
+            type="button"
+            class="filter-btn px-3 py-1.5 text-caption rounded-full transition-all data-[active=true]:bg-accent data-[active=true]:text-white bg-surface text-muted hover:bg-gray-200"
+            data-filter="strength"
+            data-value={option.value}
+            data-active={option.value === 'all' ? 'true' : 'false'}
+            role="radio"
+            aria-checked={option.value === 'all' ? 'true' : 'false'}
+          >
+            {option.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+  
+  <!-- Flavor Filter -->
+  <div class="filter-group">
+    <label for="flavor-filter" class="sr-only">{t.catalog.filterFlavor}</label>
+    <div class="flex items-center gap-2">
+      <span class="text-caption text-muted">{t.catalog.filterFlavor}:</span>
+      <div class="inline-flex flex-wrap gap-1" role="radiogroup" id="flavor-filter">
+        {flavorOptions.map((option) => (
+          <button
+            type="button"
+            class="filter-btn px-3 py-1.5 text-caption rounded-full transition-all data-[active=true]:bg-accent data-[active=true]:text-white bg-surface text-muted hover:bg-gray-200"
+            data-filter="flavor"
+            data-value={option.value}
+            data-active={option.value === 'all' ? 'true' : 'false'}
+            role="radio"
+            aria-checked={option.value === 'all' ? 'true' : 'false'}
+          >
+            {option.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initFilters() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const productCards = document.querySelectorAll('.product-card');
+    const noProductsMsg = document.getElementById('no-products-msg');
+    
+    let activeFilters = {
+      strength: 'all',
+      flavor: 'all',
+    };
+    
+    function updateProducts() {
+      let visibleCount = 0;
+      
+      productCards.forEach((card) => {
+        const cardStrength = card.getAttribute('data-strength');
+        const cardFlavor = card.getAttribute('data-flavor');
+        
+        const matchesStrength = activeFilters.strength === 'all' || cardStrength === activeFilters.strength;
+        const matchesFlavor = activeFilters.flavor === 'all' || cardFlavor === activeFilters.flavor;
+        
+        if (matchesStrength && matchesFlavor) {
+          (card as HTMLElement).style.display = '';
+          visibleCount++;
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+      
+      // Show/hide no products message
+      if (noProductsMsg) {
+        noProductsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
+    }
+    
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filterType = btn.getAttribute('data-filter') as 'strength' | 'flavor';
+        const filterValue = btn.getAttribute('data-value') || 'all';
+        
+        // Update active state for buttons in this group
+        document.querySelectorAll(`[data-filter="${filterType}"]`).forEach((b) => {
+          b.setAttribute('data-active', 'false');
+          b.setAttribute('aria-checked', 'false');
+        });
+        
+        btn.setAttribute('data-active', 'true');
+        btn.setAttribute('aria-checked', 'true');
+        
+        // Update filter state
+        activeFilters[filterType] = filterValue;
+        
+        // Filter products
+        updateProducts();
+      });
+    });
+  }
+  
+  // Initialize on page load
+  initFilters();
+  
+  // Reinitialize on Astro page transitions
+  document.addEventListener('astro:page-load', initFilters);
+</script>

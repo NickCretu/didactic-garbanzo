@@ -1,0 +1,26 @@
+{
+  "slug": "zyn-cool-mint-strong",
+  "brand": "ZYN",
+  "strength": 14,
+  "strengthCategory": "strong",
+  "flavorCategory": "mint",
+  "pouchesPerCan": 24,
+  "price": 99,
+  "currency": "MDL",
+  "image": "/images/products/zyn-cool-mint-strong.webp",
+  "featured": false,
+  "translations": {
+    "en": {
+      "name": "ZYN Cool Mint Strong",
+      "description": "Intense mint freshness with strong nicotine kick. For experienced users seeking more."
+    },
+    "ru": {
+      "name": "ZYN Мята Крепкая",
+      "description": "Интенсивная мятная свежесть с сильным никотиновым ударом. Для опытных пользователей."
+    },
+    "ro": {
+      "name": "ZYN Mentă Puternică",
+      "description": "Prospețime intensă de mentă cu kick puternic de nicotină. Pentru utilizatori experimentați."
+    }
+  }
+}

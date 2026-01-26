@@ -1,0 +1,164 @@
+{
+  "site": {
+    "title": "Pouch - Pliculețe Premium cu Nicotină",
+    "description": "Pliculețe premium cu nicotină cu livrare rapidă. Răsfoiește catalogul și comandă prin Telegram.",
+    "keywords": "pliculețe nicotină, snus, fără tutun, pliculețe mentă, nicotină puternică"
+  },
+  "nav": {
+    "home": "Acasă",
+    "catalog": "Catalog",
+    "shipping": "Livrare și Plată",
+    "about": "Despre Noi",
+    "faq": "Întrebări"
+  },
+  "hero": {
+    "headline": "Pliculețe Premium,\nLivrate Rapid",
+    "subhead": "Pliculețe cu nicotină fără tutun. Doar produse originale. Livrare în 30-60 minute.",
+    "ctaCatalog": "Vezi Catalogul",
+    "ctaTelegram": "Comandă în Telegram"
+  },
+  "catalog": {
+    "title": "Produsele Noastre",
+    "filterAll": "Toate",
+    "filterStrength": "Tărie",
+    "filterFlavor": "Aromă",
+    "orderButton": "Comandă",
+    "detailsButton": "Detalii",
+    "noProducts": "Niciun produs nu corespunde filtrelor"
+  },
+  "strengths": {
+    "low": "Ușoară",
+    "medium": "Medie",
+    "strong": "Puternică",
+    "extra": "Extra Puternică",
+    "mg": "mg"
+  },
+  "flavors": {
+    "mint": "Mentă",
+    "citrus": "Citrice",
+    "berry": "Fructe de pădure",
+    "coffee": "Cafea",
+    "tropical": "Tropical"
+  },
+  "whyUs": {
+    "title": "De Ce Noi",
+    "delivery": {
+      "title": "Livrare Rapidă",
+      "description": "Livrare în 30-60 minute în oraș"
+    },
+    "original": {
+      "title": "100% Original",
+      "description": "Doar produse autentice de la distribuitori oficiali"
+    },
+    "discreet": {
+      "title": "Ambalaj Discret",
+      "description": "Ambalaj simplu fără branding vizibil"
+    }
+  },
+  "strengthGuide": {
+    "title": "Ghid de Tărie",
+    "subtitle": "Găsește tăria perfectă pentru tine",
+    "low": {
+      "title": "Ușoară (4-6mg)",
+      "description": "Perfectă pentru începători"
+    },
+    "medium": {
+      "title": "Medie (8-12mg)",
+      "description": "Experiență echilibrată pentru utilizatori obișnuiți"
+    },
+    "strong": {
+      "title": "Puternică (14-18mg)",
+      "description": "Experiență intensă pentru utilizatori experimentați"
+    },
+    "extra": {
+      "title": "Extra Puternică (20mg+)",
+      "description": "Tărie maximă doar pentru utilizatori avansați"
+    }
+  },
+  "faq": {
+    "title": "Întrebări Frecvente",
+    "items": [
+      {
+        "question": "Ce sunt pliculețele cu nicotină?",
+        "answer": "Este un produs fără tutun care conține nicotină, aditivi alimentari și arome. Nu necesită ardere și nu produce fum sau miros neplăcut."
+      },
+      {
+        "question": "Cum aleg tăria potrivită?",
+        "answer": "Aici găsești un ghid complet: https://telegra.ph/Poshagovaya-instrukciya-ot-vskrytiya-upakovki-do-utilizacii-Sovety-dlya-novichkov-i-chastye-oshibki-Kak-podobrat-pravilno-krepos-12-31"
+      },
+      {
+        "question": "Este legal în Moldova?",
+        "answer": "În prezent, produsul este legal ca produs alternativ cu conținut de nicotină. Respectăm strict restricția de vârstă 18+."
+      },
+      {
+        "question": "Cât de rapidă este livrarea în Chișinău?",
+        "answer": "Livrăm comenzile în 30-60 minute după confirmare prin Telegram (depinde și de zonă și de încărcare). În timpul serii și în sărbători, timpii pot varia ușor."
+      },
+      {
+        "question": "Trebuie să arăt buletinul?",
+        "answer": "Da, curierul poate solicita un document care confirmă că ești major (18+). Nu vindem produse minorilor."
+      },
+      {
+        "question": "Cum plasez o comandă?",
+        "answer": "Apasă butonul «Comandă în Telegram». Managerul nostru te va contacta instantaneu pentru a clarifica detaliile."
+      },
+      {
+        "question": "Aveți ridicare personală?",
+        "answer": "Funcționăm ca magazin online cu livrare rapidă pentru a-ți economisi timpul."
+      }
+    ]
+  },
+  "product": {
+    "strength": "Tărie",
+    "flavor": "Aromă",
+    "pouches": "pliculețe per cutie",
+    "brand": "Brand",
+    "orderNow": "Comandă Acum",
+    "backToCatalog": "Înapoi la Catalog"
+  },
+  "shipping": {
+    "title": "Livrare și Plată",
+    "deliveryTitle": "Livrare",
+    "deliveryText": "Livrăm în 30-60 minute în centrul orașului. Alte zone în 1-2 ore.",
+    "paymentTitle": "Plată",
+    "paymentText": "Numerar la livrare sau transfer bancar. Detaliile de plată sunt furnizate la confirmarea comenzii.",
+    "areasTitle": "Zone de Livrare",
+    "areasText": "Livrăm în toate zonele din oraș."
+  },
+  "about": {
+    "title": "Despre Noi",
+    "text": "Suntem un furnizor de încredere de pliculețe premium cu nicotină. Misiunea noastră este să oferim produse autentice, de înaltă calitate, cu livrare rapidă și discretă.",
+    "authenticityTitle": "Garanție de Autenticitate",
+    "authenticityText": "Toate produsele sunt achiziționate direct de la distribuitori oficiali și vin în ambalaj original."
+  },
+  "footer": {
+    "telegram": "Comandă prin Telegram",
+    "rights": "Toate drepturile rezervate",
+    "privacy": "Politica de Confidențialitate",
+    "terms": "Termeni și Condiții",
+    "agePolicy": "Politica de Vârstă"
+  },
+  "ageGate": {
+    "title": "Verificarea Vârstei",
+    "message": "Trebuie să ai 18 ani sau mai mult pentru a accesa acest site. Produsele cu nicotină sunt destinate doar adulților.",
+    "confirm": "Am 18 ani sau mai mult",
+    "deny": "Am sub 18 ani"
+  },
+  "telegram": {
+    "prefill": "Salut, vreau să comand:\n\nProdus: {product}\nTărie: {strength}mg\nCantitate: ___\n\nZona de livrare: ___"
+  },
+  "blog": {
+    "title": "Blog",
+    "readMore": "Citește mai mult",
+    "backToBlog": "Înapoi la Blog",
+    "latestPosts": "Ultimele Articole"
+  },
+  "trustBand": {
+    "secure": "100% Securizat și Criptat",
+    "support": "Suport rapid pe Telegram",
+    "satisfaction": "99% Clienți Mulțumiți"
+  },
+  "brands": {
+    "title": "Branduri de încredere"
+  }
+}

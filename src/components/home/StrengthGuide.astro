@@ -1,0 +1,81 @@
+---
+import { useTranslations, type Language } from '@i18n/index';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const strengthLevels = [
+  {
+    level: 'low',
+    title: t.strengthGuide.low.title,
+    description: t.strengthGuide.low.description,
+    dots: 1,
+    color: 'bg-emerald-500',
+    lightColor: 'bg-emerald-100',
+  },
+  {
+    level: 'medium',
+    title: t.strengthGuide.medium.title,
+    description: t.strengthGuide.medium.description,
+    dots: 2,
+    color: 'bg-amber-500',
+    lightColor: 'bg-amber-100',
+  },
+  {
+    level: 'strong',
+    title: t.strengthGuide.strong.title,
+    description: t.strengthGuide.strong.description,
+    dots: 3,
+    color: 'bg-orange-500',
+    lightColor: 'bg-orange-100',
+  },
+  {
+    level: 'extra',
+    title: t.strengthGuide.extra.title,
+    description: t.strengthGuide.extra.description,
+    dots: 4,
+    color: 'bg-red-500',
+    lightColor: 'bg-red-100',
+  },
+];
+---
+
+<section class="section" id="strength-guide">
+  <div class="container">
+    <div class="text-center mb-12">
+      <h2 class="text-headline mb-4">{t.strengthGuide.title}</h2>
+      <p class="text-body text-muted max-w-2xl mx-auto">{t.strengthGuide.subtitle}</p>
+    </div>
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+      {strengthLevels.map((level) => (
+        <div class="bg-white rounded-2xl p-6 md:p-8 text-center shadow-card hover:shadow-lg transition-shadow">
+          <!-- Intensity dots -->
+          <div class={`inline-flex items-center justify-center w-16 h-16 ${level.lightColor} rounded-2xl mb-5`}>
+            <div class="flex gap-1">
+              {Array(4).fill(0).map((_, i) => (
+                <div class={`w-2.5 h-2.5 rounded-full ${i < level.dots ? level.color : 'bg-gray-200'}`}></div>
+              ))}
+            </div>
+          </div>
+          
+          <h3 class="text-title font-semibold mb-2">{level.title}</h3>
+          <p class="text-caption text-muted leading-relaxed">{level.description}</p>
+        </div>
+      ))}
+    </div>
+    
+    <!-- Gradient scale bar -->
+    <div class="max-w-md mx-auto mt-10">
+      <div class="h-2 rounded-full bg-gradient-to-r from-emerald-500 via-amber-500 via-orange-500 to-red-500"></div>
+      <div class="flex justify-between mt-2">
+        <span class="text-xs text-muted">Mild</span>
+        <span class="text-xs text-muted">Intense</span>
+      </div>
+    </div>
+  </div>
+</section>

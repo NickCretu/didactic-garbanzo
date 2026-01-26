@@ -1,0 +1,26 @@
+{
+  "slug": "velo-cherry-frost",
+  "brand": "VELO",
+  "strength": 8,
+  "strengthCategory": "medium",
+  "flavorCategory": "berry",
+  "pouchesPerCan": 20,
+  "price": 89,
+  "currency": "MDL",
+  "image": "/images/products/velo-cherry-frost.webp",
+  "featured": false,
+  "translations": {
+    "en": {
+      "name": "VELO Cherry Frost",
+      "description": "Sweet cherry flavor with a cooling menthol finish. Fruity and refreshing."
+    },
+    "ru": {
+      "name": "VELO Вишня Фрост",
+      "description": "Сладкий вишнёвый вкус с охлаждающим ментоловым послевкусием. Фруктовый и освежающий."
+    },
+    "ro": {
+      "name": "VELO Cireșe Frost",
+      "description": "Aromă dulce de cireșe cu un final răcoritor de mentol. Fructat și răcoritor."
+    }
+  }
+}

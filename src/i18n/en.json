@@ -1,0 +1,164 @@
+{
+  "site": {
+    "title": "Pouch - Premium Nicotine Pouches",
+    "description": "Premium nicotine pouches with fast delivery. Browse our catalog and order via Telegram.",
+    "keywords": "nicotine pouches, snus, tobacco-free, mint pouches, strong nicotine"
+  },
+  "nav": {
+    "home": "Home",
+    "catalog": "Catalog",
+    "shipping": "Shipping & Payment",
+    "about": "About Us",
+    "faq": "FAQ"
+  },
+  "hero": {
+    "headline": "Premium Pouches,\nDelivered Fast",
+    "subhead": "Tobacco-free nicotine pouches. Original products only. Delivery in 30-60 minutes.",
+    "ctaCatalog": "Browse Catalog",
+    "ctaTelegram": "Order in Telegram"
+  },
+  "catalog": {
+    "title": "Our Products",
+    "filterAll": "All",
+    "filterStrength": "Strength",
+    "filterFlavor": "Flavor",
+    "orderButton": "Order",
+    "detailsButton": "Details",
+    "noProducts": "No products match your filters"
+  },
+  "strengths": {
+    "low": "Low",
+    "medium": "Medium",
+    "strong": "Strong",
+    "extra": "Extra Strong",
+    "mg": "mg"
+  },
+  "flavors": {
+    "mint": "Mint",
+    "citrus": "Citrus",
+    "berry": "Berry",
+    "coffee": "Coffee",
+    "tropical": "Tropical"
+  },
+  "whyUs": {
+    "title": "Why Choose Us",
+    "delivery": {
+      "title": "Fast Delivery",
+      "description": "30-60 minute delivery within the city"
+    },
+    "original": {
+      "title": "100% Original",
+      "description": "Only authentic products from official distributors"
+    },
+    "discreet": {
+      "title": "Discreet Packaging",
+      "description": "Plain packaging with no visible branding"
+    }
+  },
+  "strengthGuide": {
+    "title": "Strength Guide",
+    "subtitle": "Find your perfect strength level",
+    "low": {
+      "title": "Low (4-6mg)",
+      "description": "Perfect for beginners or light users"
+    },
+    "medium": {
+      "title": "Medium (8-12mg)",
+      "description": "Balanced experience for regular users"
+    },
+    "strong": {
+      "title": "Strong (14-18mg)",
+      "description": "Intense experience for experienced users"
+    },
+    "extra": {
+      "title": "Extra Strong (20mg+)",
+      "description": "Maximum strength for heavy users only"
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "What are nicotine pouches?",
+        "answer": "They are a tobacco-free product containing nicotine, food additives, and flavorings. They don't require burning and produce no smoke or unpleasant odor."
+      },
+      {
+        "question": "How do I choose the right strength?",
+        "answer": "Here is a complete guide: https://telegra.ph/Poshagovaya-instrukciya-ot-vskrytiya-upakovki-do-utilizacii-Sovety-dlya-novichkov-i-chastye-oshibki-Kak-podobrat-pravilno-krepos-12-31"
+      },
+      {
+        "question": "Is this legal in Moldova?",
+        "answer": "Currently, the product is legal as an alternative nicotine-containing product. We strictly adhere to the 18+ age restriction."
+      },
+      {
+        "question": "How fast is delivery in Chisinau?",
+        "answer": "We deliver orders within 30-60 minutes after confirmation via Telegram (also depends on the area and workload). During evening hours and holidays, times may vary slightly."
+      },
+      {
+        "question": "Do I need to show ID?",
+        "answer": "Yes, the courier may request a document confirming you are of legal age (18+). We do not sell products to minors."
+      },
+      {
+        "question": "How do I place an order?",
+        "answer": "Simply click the 'Order in Telegram' button. Our manager will instantly contact you to clarify the details."
+      },
+      {
+        "question": "Do you offer pickup?",
+        "answer": "We operate as an online store with fast delivery to save your time."
+      }
+    ]
+  },
+  "product": {
+    "strength": "Strength",
+    "flavor": "Flavor",
+    "pouches": "pouches per can",
+    "brand": "Brand",
+    "orderNow": "Order Now",
+    "backToCatalog": "Back to Catalog"
+  },
+  "shipping": {
+    "title": "Shipping & Payment",
+    "deliveryTitle": "Delivery",
+    "deliveryText": "We deliver within 30-60 minutes in the city center. Other areas within 1-2 hours.",
+    "paymentTitle": "Payment",
+    "paymentText": "Cash on delivery or bank transfer. Payment details provided upon order confirmation.",
+    "areasTitle": "Delivery Areas",
+    "areasText": "We currently deliver to all areas within the city limits."
+  },
+  "about": {
+    "title": "About Us",
+    "text": "We are a trusted supplier of premium nicotine pouches. Our mission is to provide authentic, high-quality products with fast and discreet delivery.",
+    "authenticityTitle": "Authenticity Guarantee",
+    "authenticityText": "All products are sourced directly from official distributors and come with original packaging."
+  },
+  "footer": {
+    "telegram": "Order via Telegram",
+    "rights": "All rights reserved",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "agePolicy": "Age Policy"
+  },
+  "ageGate": {
+    "title": "Age Verification",
+    "message": "You must be 18 years or older to access this website. Nicotine products are intended for adult use only.",
+    "confirm": "I am 18 or older",
+    "deny": "I am under 18"
+  },
+  "telegram": {
+    "prefill": "Hi, I want to order:\n\nProduct: {product}\nStrength: {strength}mg\nQuantity: ___\n\nDelivery area: ___"
+  },
+  "blog": {
+    "title": "Blog",
+    "readMore": "Read More",
+    "backToBlog": "Back to Blog",
+    "latestPosts": "Latest Articles"
+  },
+  "trustBand": {
+    "secure": "100% Secure & Encrypted",
+    "support": "Fast Telegram Support",
+    "satisfaction": "99% Customer Satisfaction"
+  },
+  "brands": {
+    "title": "Trusted Brands We Carry"
+  }
+}

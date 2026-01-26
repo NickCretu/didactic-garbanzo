@@ -1,0 +1,26 @@
+{
+  "slug": "velo-coffee-strong",
+  "brand": "VELO",
+  "strength": 14,
+  "strengthCategory": "strong",
+  "flavorCategory": "coffee",
+  "pouchesPerCan": 20,
+  "price": 89,
+  "currency": "MDL",
+  "image": "/images/products/velo-coffee-strong.webp",
+  "featured": false,
+  "translations": {
+    "en": {
+      "name": "VELO Coffee Strong",
+      "description": "Rich espresso flavor with bold nicotine satisfaction. Morning energy in a pouch."
+    },
+    "ru": {
+      "name": "VELO Кофе Крепкий",
+      "description": "Насыщенный вкус эспрессо с мощным никотиновым удовлетворением. Утренняя энергия в подушечке."
+    },
+    "ro": {
+      "name": "VELO Cafea Puternică",
+      "description": "Aromă bogată de espresso cu satisfacție de nicotină. Energie de dimineață într-un plic."
+    }
+  }
+}

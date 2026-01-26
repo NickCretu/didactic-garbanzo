@@ -1,0 +1,109 @@
+---
+import { useTranslations, type Language } from '@i18n/index';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<div
+  id="age-gate"
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="age-gate-title"
+>
+  <div class="bg-white rounded-3xl p-8 md:p-12 max-w-md mx-4 shadow-2xl" role="document">
+    <div class="text-center">
+      <!-- Warning Icon -->
+      <div class="w-16 h-16 mx-auto mb-6 bg-surface rounded-full flex items-center justify-center">
+        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+      </div>
+      
+      <h2 id="age-gate-title" class="text-headline mb-4">
+        {t.ageGate.title}
+      </h2>
+      
+      <p class="text-body text-muted mb-8">
+        {t.ageGate.message}
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-3">
+        <button
+          id="age-confirm"
+          class="flex-1 btn-primary py-4"
+          autofocus
+        >
+          {t.ageGate.confirm}
+        </button>
+        <button
+          id="age-deny"
+          class="flex-1 btn-secondary py-4"
+        >
+          {t.ageGate.deny}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const ageGate = document.getElementById('age-gate');
+  const confirmBtn = document.getElementById('age-confirm');
+  const denyBtn = document.getElementById('age-deny');
+  
+  const AGE_VERIFIED_KEY = 'pouch_age_verified';
+  
+  // Check if already verified
+  function checkAgeVerification() {
+    const verified = localStorage.getItem(AGE_VERIFIED_KEY);
+    if (!verified) {
+      ageGate?.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      // Focus the confirm button
+      confirmBtn?.focus();
+    }
+  }
+  
+  // Confirm age
+  confirmBtn?.addEventListener('click', () => {
+    localStorage.setItem(AGE_VERIFIED_KEY, 'true');
+    ageGate?.classList.add('hidden');
+    document.body.style.overflow = '';
+  });
+  
+  // Deny - redirect away
+  denyBtn?.addEventListener('click', () => {
+    window.location.href = 'https://www.google.com';
+  });
+  
+  // Trap focus within modal
+  ageGate?.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab') {
+      const focusableElements = ageGate.querySelectorAll('button');
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+      
+      if (e.shiftKey && document.activeElement === firstElement) {
+        e.preventDefault();
+        (lastElement as HTMLElement).focus();
+      } else if (!e.shiftKey && document.activeElement === lastElement) {
+        e.preventDefault();
+        (firstElement as HTMLElement).focus();
+      }
+    }
+    
+    // Prevent escape from closing
+    if (e.key === 'Escape') {
+      e.preventDefault();
+    }
+  });
+  
+  // Run check on page load
+  checkAgeVerification();
+</script>

@@ -1,0 +1,71 @@
+---
+import { getCollection } from 'astro:content';
+import { useTranslations, getLocalizedPath, type Language } from '@i18n/index';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const base = import.meta.env.BASE_URL || '/';
+const baseClean = base.endsWith('/') ? base.slice(0, -1) : base;
+
+// Get all blog posts sorted by date
+const posts = (await getCollection('blog'))
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 3);
+---
+
+<section class="section" id="blog">
+  <div class="container">
+    <h2 class="text-headline text-center mb-12">{t.blog.latestPosts}</h2>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      {posts.map((post) => {
+        const translation = post.data.translations[lang];
+        const imageSrc = post.data.image 
+          ? `${baseClean}${post.data.image}`
+          : `${baseClean}/images/blog/placeholder.jpg`;
+        
+        return (
+          <article class="group">
+            <a href={getLocalizedPath(`/blog/${post.data.slug}`, lang)} class="block">
+              <div class="aspect-[16/10] bg-surface rounded-2xl overflow-hidden mb-4">
+                <img
+                  src={imageSrc}
+                  alt={translation.title}
+                  class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  onerror={`this.style.display='none'`}
+                />
+              </div>
+              <time class="text-caption text-muted">
+                {new Date(post.data.date).toLocaleDateString(lang, { 
+                  year: 'numeric', 
+                  month: 'long', 
+                  day: 'numeric' 
+                })}
+              </time>
+              <h3 class="text-title font-semibold mt-2 mb-2 group-hover:text-accent transition-colors">
+                {translation.title}
+              </h3>
+              <p class="text-body text-muted line-clamp-2">
+                {translation.excerpt}
+              </p>
+            </a>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

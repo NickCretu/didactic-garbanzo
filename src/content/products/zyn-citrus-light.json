@@ -1,0 +1,26 @@
+{
+  "slug": "zyn-citrus-light",
+  "brand": "ZYN",
+  "strength": 6,
+  "strengthCategory": "low",
+  "flavorCategory": "citrus",
+  "pouchesPerCan": 24,
+  "price": 99,
+  "currency": "MDL",
+  "image": "/images/products/zyn-citrus-light.webp",
+  "featured": true,
+  "translations": {
+    "en": {
+      "name": "ZYN Citrus Light",
+      "description": "Bright citrus notes perfect for beginners. A gentle introduction to nicotine pouches."
+    },
+    "ru": {
+      "name": "ZYN Цитрус Лайт",
+      "description": "Яркие цитрусовые ноты для начинающих. Мягкое знакомство с никотиновыми подушечками."
+    },
+    "ro": {
+      "name": "ZYN Citrice Light",
+      "description": "Note citrice strălucitoare perfecte pentru începători. O introducere blândă în pliculețe."
+    }
+  }
+}

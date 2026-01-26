@@ -1,0 +1,91 @@
+---
+import { languages, getLocalizedPath, type Language } from '@i18n/index';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+
+// Get current path without base and language prefix
+const base = import.meta.env.BASE_URL || '/';
+let currentPath = Astro.url.pathname;
+
+// Remove base path if present
+if (base !== '/' && currentPath.startsWith(base)) {
+  currentPath = currentPath.slice(base.length);
+}
+
+// Remove language prefix
+currentPath = currentPath.replace(/^\/(en|ru|ro)/, '') || '/';
+---
+
+<div class="relative" id="lang-switcher">
+  <button
+    id="lang-btn"
+    class="flex items-center gap-1.5 px-3 py-1.5 text-caption text-muted hover:text-primary rounded-full hover:bg-surface transition-all"
+    aria-label="Change language"
+    aria-expanded="false"
+    aria-haspopup="listbox"
+  >
+    <span class="uppercase font-medium">{lang}</span>
+    <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </button>
+  
+  <div
+    id="lang-dropdown"
+    class="hidden absolute right-0 mt-2 w-36 py-1 bg-white rounded-xl shadow-lg border border-gray-100 z-50"
+    role="listbox"
+    aria-labelledby="lang-btn"
+  >
+    {Object.entries(languages).map(([code, name]) => (
+      <a
+        href={getLocalizedPath(currentPath, code as Language)}
+        class={`block px-4 py-2 text-caption transition-colors ${
+          code === lang 
+            ? 'text-accent bg-surface font-medium' 
+            : 'text-muted hover:text-primary hover:bg-surface'
+        }`}
+        role="option"
+        aria-selected={code === lang}
+      >
+        <span class="uppercase mr-2">{code}</span>
+        {name}
+      </a>
+    ))}
+  </div>
+</div>
+
+<script>
+  const langBtn = document.getElementById('lang-btn');
+  const langDropdown = document.getElementById('lang-dropdown');
+  const langSwitcher = document.getElementById('lang-switcher');
+  const chevron = langBtn?.querySelector('svg');
+  
+  langBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = langDropdown?.classList.toggle('hidden');
+    langBtn.setAttribute('aria-expanded', (!isOpen).toString());
+    chevron?.classList.toggle('rotate-180');
+  });
+  
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!langSwitcher?.contains(e.target as Node)) {
+      langDropdown?.classList.add('hidden');
+      langBtn?.setAttribute('aria-expanded', 'false');
+      chevron?.classList.remove('rotate-180');
+    }
+  });
+  
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      langDropdown?.classList.add('hidden');
+      langBtn?.setAttribute('aria-expanded', 'false');
+      chevron?.classList.remove('rotate-180');
+    }
+  });
+</script>

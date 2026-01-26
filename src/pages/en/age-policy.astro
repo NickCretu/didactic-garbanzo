@@ -1,0 +1,66 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { useTranslations } from '@i18n/index';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<BaseLayout 
+  title={`${t.footer.agePolicy} - ${t.site.title}`}
+  description="Our age policy requires all customers to be 18 years or older."
+>
+  <section class="py-12 md:py-20">
+    <div class="container">
+      <div class="max-w-3xl mx-auto prose prose-lg">
+        <h1 class="text-display text-center mb-12">{t.footer.agePolicy}</h1>
+        
+        <div class="bg-surface rounded-2xl p-8 mb-8">
+          <p class="text-body font-medium text-center">
+            You must be 18 years of age or older to access this website and purchase nicotine products.
+          </p>
+        </div>
+        
+        <h2>Age Verification</h2>
+        <p>When you first visit our website, you will be asked to confirm that you are 18 years of age or older. This is a legal requirement for the sale of nicotine products.</p>
+        
+        <h2>ID Verification</h2>
+        <p>We reserve the right to request valid photo identification upon delivery to verify your age. Acceptable forms of ID include:</p>
+        <ul>
+          <li>Passport</li>
+          <li>National ID card</li>
+          <li>Driver's license</li>
+        </ul>
+        
+        <h2>Refusal of Sale</h2>
+        <p>If you cannot provide valid identification proving you are 18 or older, we reserve the right to refuse the sale and cancel your order.</p>
+        
+        <h2>Health Warning</h2>
+        <p>Nicotine is an addictive substance. These products are intended for adult use only and are not suitable for:</p>
+        <ul>
+          <li>Persons under 18 years of age</li>
+          <li>Pregnant or nursing women</li>
+          <li>Persons with heart conditions or high blood pressure</li>
+          <li>Non-smokers or persons not already using nicotine</li>
+        </ul>
+        
+        <p class="text-muted text-sm mt-12">Last updated: January 2026</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .prose h2 {
+    @apply text-title font-semibold mt-8 mb-4;
+  }
+  .prose p {
+    @apply text-body text-muted mb-4;
+  }
+  .prose ul {
+    @apply list-disc pl-6 mb-4 text-body text-muted;
+  }
+  .prose li {
+    @apply mb-2;
+  }
+</style>

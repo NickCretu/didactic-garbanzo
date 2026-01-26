@@ -1,0 +1,26 @@
+{
+  "slug": "velo-tropical-twist",
+  "brand": "VELO",
+  "strength": 10,
+  "strengthCategory": "medium",
+  "flavorCategory": "tropical",
+  "pouchesPerCan": 20,
+  "price": 89,
+  "currency": "MDL",
+  "image": "/images/products/velo-tropical-twist.webp",
+  "featured": true,
+  "translations": {
+    "en": {
+      "name": "VELO Tropical Twist",
+      "description": "Exotic blend of mango, passion fruit, and pineapple. A vacation in every pouch."
+    },
+    "ru": {
+      "name": "VELO Тропический Твист",
+      "description": "Экзотическая смесь манго, маракуйи и ананаса. Отпуск в каждой подушечке."
+    },
+    "ro": {
+      "name": "VELO Tropical Twist",
+      "description": "Amestec exotic de mango, fructul pasiunii și ananas. O vacanță în fiecare plic."
+    }
+  }
+}

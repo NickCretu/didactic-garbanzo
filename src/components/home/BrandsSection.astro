@@ -1,0 +1,41 @@
+---
+import { useTranslations, type Language } from '@i18n/index';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const base = import.meta.env.BASE_URL || '/';
+const baseClean = base.endsWith('/') ? base.slice(0, -1) : base;
+
+// Brand logos - we'll use SVG logos created inline for consistency
+const brands = [
+  { name: 'VELO', color: '#00A0E3' },
+  { name: 'ZYN', color: '#1E3A5F' },
+  { name: 'Pablo', color: '#E31837' },
+  { name: 'LYFT', color: '#00B5AD' },
+  { name: 'Nordic Spirit', color: '#2D5A27' },
+];
+---
+
+<section class="py-12 bg-surface">
+  <div class="container">
+    <p class="text-center text-caption text-muted mb-8">{t.brands.title}</p>
+    
+    <div class="flex flex-wrap items-center justify-center gap-8 md:gap-16">
+      {brands.map((brand) => (
+        <div class="opacity-60 hover:opacity-100 transition-opacity">
+          <img 
+            src={`${baseClean}/images/brands/${brand.name.toLowerCase().replace(' ', '-')}.svg`}
+            alt={brand.name}
+            class="h-8 md:h-10 w-auto"
+            onerror={`this.parentElement.innerHTML='<span class="text-xl md:text-2xl font-bold" style="color: ${brand.color}">${brand.name}</span>'`}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

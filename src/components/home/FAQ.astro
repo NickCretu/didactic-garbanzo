@@ -1,0 +1,38 @@
+---
+import Accordion from '@components/ui/Accordion.astro';
+import { useTranslations, type Language } from '@i18n/index';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// Generate FAQ schema
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": t.faq.items.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer,
+    },
+  })),
+};
+---
+
+<section class="section bg-surface" id="faq">
+  <div class="container">
+    <h2 class="text-headline text-center mb-12">{t.faq.title}</h2>
+    
+    <div class="max-w-2xl mx-auto">
+      <Accordion items={t.faq.items} />
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Schema -->
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />

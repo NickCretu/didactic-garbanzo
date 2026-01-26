@@ -1,0 +1,78 @@
+---
+import { useTranslations, type Language } from '@i18n/index';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const trustItems = [
+  { text: t.trustBand.secure },
+  { text: t.trustBand.support },
+  { text: t.trustBand.satisfaction },
+];
+---
+
+<div class="bg-primary text-white py-2.5 overflow-hidden">
+  <div class="trust-band-scroll">
+    <div class="trust-band-content">
+      {[...trustItems, ...trustItems].map((item) => (
+        <div class="trust-item">
+          <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+          </svg>
+          <span class="whitespace-nowrap">{item.text}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .trust-band-scroll {
+    display: flex;
+    width: 100%;
+  }
+  
+  .trust-band-content {
+    display: flex;
+    gap: 2rem;
+    animation: scroll-left 20s linear infinite;
+  }
+  
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+  }
+  
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  /* On desktop, center items without animation */
+  @media (min-width: 768px) {
+    .trust-band-scroll {
+      justify-content: center;
+    }
+    
+    .trust-band-content {
+      animation: none;
+      gap: 3rem;
+    }
+    
+    /* Hide duplicate items on desktop */
+    .trust-item:nth-child(n+4) {
+      display: none;
+    }
+  }
+</style>

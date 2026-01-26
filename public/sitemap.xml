@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- English Pages -->
+  <url>
+    <loc>https://yourusername.github.io/pouchwebsite_2/en/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://yourusername.github.io/pouchwebsite_2/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://yourusername.github.io/pouchwebsite_2/ru/"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://yourusername.github.io/pouchwebsite_2/ro/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://yourusername.github.io/pouchwebsite_2/en/catalog/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://yourusername.github.io/pouchwebsite_2/en/shipping/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yourusername.github.io/pouchwebsite_2/en/about/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://yourusername.github.io/pouchwebsite_2/en/faq/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Russian Pages -->
+  <url>
+    <loc>https://yourusername.github.io/pouchwebsite_2/ru/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://yourusername.github.io/pouchwebsite_2/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://yourusername.github.io/pouchwebsite_2/ru/"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://yourusername.github.io/pouchwebsite_2/ro/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://yourusername.github.io/pouchwebsite_2/ru/catalog/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://yourusername.github.io/pouchwebsite_2/ru/shipping/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yourusername.github.io/pouchwebsite_2/ru/about/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://yourusername.github.io/pouchwebsite_2/ru/faq/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Romanian Pages -->
+  <url>
+    <loc>https://yourusername.github.io/pouchwebsite_2/ro/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://yourusername.github.io/pouchwebsite_2/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://yourusername.github.io/pouchwebsite_2/ru/"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://yourusername.github.io/pouchwebsite_2/ro/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://yourusername.github.io/pouchwebsite_2/ro/catalog/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://yourusername.github.io/pouchwebsite_2/ro/shipping/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yourusername.github.io/pouchwebsite_2/ro/about/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://yourusername.github.io/pouchwebsite_2/ro/faq/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Product Pages (example - add more as needed) -->
+  <url>
+    <loc>https://yourusername.github.io/pouchwebsite_2/en/product/velo-frost-mint/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://yourusername.github.io/pouchwebsite_2/en/product/velo-berry-blast/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://yourusername.github.io/pouchwebsite_2/en/product/zyn-citrus-light/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>

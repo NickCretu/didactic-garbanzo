@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yourusername.github.io/pouchwebsite_2/sitemap.xml
+
+# Block build artifacts
+Disallow: /_astro/
