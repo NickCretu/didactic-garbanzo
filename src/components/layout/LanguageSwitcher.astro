@@ -3,9 +3,10 @@ import { languages, getLocalizedPath, type Language } from '@i18n/index';
 
 interface Props {
   lang: Language;
+  alternates?: Array<{ lang: Language; url: string }>;
 }
 
-const { lang } = Astro.props;
+const { lang, alternates } = Astro.props;
 
 // Get current path without base and language prefix
 const base = import.meta.env.BASE_URL || '/';
@@ -18,6 +19,20 @@ if (base !== '/' && currentPath.startsWith(base)) {
 
 // Remove language prefix
 currentPath = currentPath.replace(/^\/(en|ru|ro)/, '') || '/';
+
+// Build URL map from alternates if provided
+const urlMap: Record<Language, string> = alternates 
+  ? Object.fromEntries(alternates.map(a => [a.lang, a.url])) as Record<Language, string>
+  : {} as Record<Language, string>;
+
+// Helper to get URL for a language
+function getUrlForLang(targetLang: Language): string {
+  if (urlMap[targetLang]) {
+    const baseClean = base.endsWith('/') ? base.slice(0, -1) : base;
+    return `${baseClean}${urlMap[targetLang]}`;
+  }
+  return getLocalizedPath(currentPath, targetLang);
+}
 ---
 
 <div class="relative" id="lang-switcher">
@@ -42,7 +57,7 @@ currentPath = currentPath.replace(/^\/(en|ru|ro)/, '') || '/';
   >
     {Object.entries(languages).map(([code, name]) => (
       <a
-        href={getLocalizedPath(currentPath, code as Language)}
+        href={getUrlForLang(code as Language)}
         class={`block px-4 py-2 text-caption transition-colors ${
           code === lang 
             ? 'text-accent bg-surface font-medium' 

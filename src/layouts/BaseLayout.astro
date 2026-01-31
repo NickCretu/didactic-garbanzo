@@ -12,9 +12,10 @@ interface Props {
   image?: string;
   canonicalPath?: string;
   schema?: object;
+  alternates?: Array<{ lang: Language; url: string }>;
 }
 
-const { title, description, image, canonicalPath, schema } = Astro.props;
+const { title, description, image, canonicalPath, schema, alternates: customAlternates } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url) as Language;
 const t = useTranslations(lang);
@@ -27,7 +28,7 @@ const baseClean = base.endsWith('/') ? base.slice(0, -1) : base;
 const pageImage = image || `${baseClean}/images/og-default.jpg`;
 
 const currentPath = Astro.url.pathname;
-const alternates = getAlternateUrls(currentPath);
+const alternates = customAlternates || getAlternateUrls(currentPath);
 
 // Site URL without trailing slash
 const siteOrigin = Astro.site?.origin || 'https://yourusername.github.io';
@@ -125,7 +126,7 @@ const combinedSchema = schema
   </head>
   <body class="min-h-screen flex flex-col">
     <AgeGate lang={lang} />
-    <Header lang={lang} />
+    <Header lang={lang} alternates={alternates} />
     <main class="flex-1">
       <slot />
     </main>
