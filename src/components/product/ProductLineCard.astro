@@ -53,17 +53,11 @@ const flavorLabels: Record<string, string> = {
   tropical: t.flavors.tropical,
 };
 
-// Determine price display
-const hasPriceRange = productLine.minPrice !== productLine.maxPrice;
-const priceText = hasPriceRange 
-  ? `${lang === 'ru' ? 'от' : lang === 'ro' ? 'de la' : 'from'} ${productLine.minPrice}`
-  : `${productLine.minPrice}`;
-
 // Product line title without flavor
 const title = `${productLine.brand} ${strengthLabels[productLine.strengthCategory]}`;
 
-// Telegram bot username
-const telegramUsername = 'pouchmd';
+// Fixed Telegram order link (per PRD)
+const telegramOrderLink = 'https://t.me/m/8ebhN3f-MDMy';
 ---
 
 <article
@@ -90,26 +84,20 @@ const telegramUsername = 'pouchmd';
   <!-- Product Info -->
   <div class="flex-1 flex flex-col min-w-0">
     <span class="text-caption text-muted mb-1">{productLine.brand}</span>
-    <h3 class="text-sm font-semibold text-primary mb-2">{title}</h3>
+    <h3 class="text-sm font-semibold text-primary mb-3">{title}</h3>
     
-    <!-- Price -->
-    <p class="text-base font-semibold text-primary mb-3">
-      {priceText} {productLine.currency}
-    </p>
-    
-    <!-- Flavor Selection -->
+    <!-- Flavor Selection (optional) -->
     <div class="mb-4">
       <p class="text-xs text-muted mb-2">
-        {lang === 'ru' ? 'Выберите вкус:' : lang === 'ro' ? 'Alegeți aroma:' : 'Select flavor:'}
+        {lang === 'ru' ? 'Выберите вкус (опционально):' : lang === 'ro' ? 'Alegeți aroma (opțional):' : 'Select flavor (optional):'}
       </p>
       <div class="flavor-chips flex flex-wrap gap-1.5">
-        {productLine.flavors.map((flavor, index) => (
+        {productLine.flavors.map((flavor) => (
           <button
             type="button"
             class="flavor-chip px-2.5 py-1 text-xs rounded-full bg-white border border-gray-200 text-muted hover:border-accent hover:text-accent transition-all"
             data-flavor={flavor.flavorCategory}
             data-slug={flavor.slug}
-            data-price={flavor.price}
             data-flavor-name={flavor.flavorName}
           >
             {flavorLabels[flavor.flavorCategory]}
@@ -120,19 +108,17 @@ const telegramUsername = 'pouchmd';
     
     <!-- Actions -->
     <div class="mt-auto flex flex-col gap-2">
-      <button
-        type="button"
-        class="order-btn flex items-center justify-center gap-2 px-4 py-2.5 bg-accent text-white text-sm font-medium rounded-full hover:bg-opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-        data-brand={productLine.brand}
-        data-strength={productLine.strength}
-        data-telegram={telegramUsername}
-        disabled
+      <a
+        href={telegramOrderLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="order-btn flex items-center justify-center gap-2 px-4 py-2.5 bg-accent text-white text-sm font-medium rounded-full hover:bg-opacity-90 transition-all"
       >
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
         </svg>
         {t.catalog.orderButton}
-      </button>
+      </a>
       <a
         href={getLocalizedPath(`/product/${productLine.flavors[0]?.slug || ''}`, lang)}
         class="details-btn text-center px-4 py-2 text-sm font-medium text-muted hover:text-primary transition-colors"
@@ -155,74 +141,34 @@ const telegramUsername = 'pouchmd';
     
     cards.forEach((card) => {
       const flavorChips = card.querySelectorAll('.flavor-chip');
-      const orderBtn = card.querySelector('.order-btn') as HTMLButtonElement;
       const detailsBtn = card.querySelector('.details-btn') as HTMLAnchorElement;
-      const priceDisplay = card.querySelector('.text-base.font-semibold') as HTMLElement;
-      
-      let selectedFlavor: { 
-        category: string; 
-        slug: string; 
-        price: number;
-        name: string;
-      } | null = null;
+      const originalDetailsHref = detailsBtn?.getAttribute('href') || '';
       
       flavorChips.forEach((chip) => {
         chip.addEventListener('click', () => {
-          // Remove selection from all chips
+          const isCurrentlySelected = chip.classList.contains('selected');
+          
+          // Remove selection from all chips first
           flavorChips.forEach(c => c.classList.remove('selected'));
           
-          // Select this chip
-          chip.classList.add('selected');
-          
-          // Store selected flavor data
-          selectedFlavor = {
-            category: chip.getAttribute('data-flavor') || '',
-            slug: chip.getAttribute('data-slug') || '',
-            price: parseInt(chip.getAttribute('data-price') || '0'),
-            name: chip.getAttribute('data-flavor-name') || ''
-          };
-          
-          // Update price display
-          if (priceDisplay && selectedFlavor.price) {
-            const currency = card.querySelector('[data-line-id]')?.getAttribute('data-currency') || 'MDL';
-            priceDisplay.textContent = `${selectedFlavor.price} MDL`;
-          }
-          
-          // Enable order button
-          if (orderBtn) {
-            orderBtn.disabled = false;
-          }
-          
-          // Update details link
-          if (detailsBtn && selectedFlavor.slug) {
-            const currentHref = detailsBtn.getAttribute('href') || '';
-            const basePath = currentHref.substring(0, currentHref.lastIndexOf('/product/') + 9);
-            detailsBtn.setAttribute('href', basePath + selectedFlavor.slug);
+          if (isCurrentlySelected) {
+            // Toggle off - deselect the chip
+            // Reset details link to first flavor
+            if (detailsBtn) {
+              detailsBtn.setAttribute('href', originalDetailsHref);
+            }
+          } else {
+            // Select this chip
+            chip.classList.add('selected');
+            
+            // Update details link to selected flavor
+            const slug = chip.getAttribute('data-slug') || '';
+            if (detailsBtn && slug) {
+              const basePath = originalDetailsHref.substring(0, originalDetailsHref.lastIndexOf('/product/') + 9);
+              detailsBtn.setAttribute('href', basePath + slug);
+            }
           }
         });
-      });
-      
-      // Order button click handler
-      orderBtn?.addEventListener('click', () => {
-        if (!selectedFlavor) {
-          // Flash the flavor chips to indicate selection needed
-          const chipsContainer = card.querySelector('.flavor-chips');
-          chipsContainer?.classList.add('animate-pulse');
-          setTimeout(() => chipsContainer?.classList.remove('animate-pulse'), 1000);
-          return;
-        }
-        
-        const brand = orderBtn.getAttribute('data-brand');
-        const strength = orderBtn.getAttribute('data-strength');
-        const telegram = orderBtn.getAttribute('data-telegram');
-        
-        // Create Telegram deep link with prefilled message
-        const message = encodeURIComponent(
-          `Hi, I want to order:\n\nProduct: ${brand} ${selectedFlavor.name}\nStrength: ${strength}mg\nQuantity: 1\n\nDelivery area: ___`
-        );
-        
-        const telegramUrl = `https://t.me/${telegram}?text=${message}`;
-        window.open(telegramUrl, '_blank');
       });
     });
   }

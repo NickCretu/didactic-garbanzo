@@ -10,6 +10,14 @@ interface Props {
 }
 
 const { items, class: className = '' } = Astro.props;
+
+// Function to convert URLs in text to clickable links
+function linkify(text: string): string {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  return text.replace(urlRegex, (url) => {
+    return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline break-all">${url}</a>`;
+  });
+}
 ---
 
 <div class={`accordion space-y-3 ${className}`} role="region">
@@ -37,8 +45,7 @@ const { items, class: className = '' } = Astro.props;
         aria-labelledby={`accordion-trigger-${index}`}
         role="region"
       >
-        <div class="px-4 md:px-5 pb-4 md:pb-5 text-sm md:text-base text-muted">
-          {item.answer}
+        <div class="px-4 md:px-5 pb-4 md:pb-5 text-sm md:text-base text-muted" set:html={linkify(item.answer)}>
         </div>
       </div>
     </div>

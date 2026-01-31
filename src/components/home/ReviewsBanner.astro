@@ -1,0 +1,67 @@
+---
+import { type Language } from '@i18n/index';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+
+// Reviews Telegram channel link (per PRD)
+const reviewsLink = 'https://t.me/PauchRecenzii';
+
+// Localized content
+const content = {
+  en: {
+    title: 'Customer Reviews',
+    description: 'See what our customers say about Pauch products',
+    cta: 'Open Reviews',
+    note: 'Community feedback on Telegram',
+  },
+  ru: {
+    title: 'Отзывы покупателей',
+    description: 'Узнайте, что говорят наши клиенты о продукции Pauch',
+    cta: 'Открыть отзывы',
+    note: 'Отзывы сообщества в Telegram',
+  },
+  ro: {
+    title: 'Recenzii clienți',
+    description: 'Vedeți ce spun clienții noștri despre produsele Pauch',
+    cta: 'Deschide recenzii',
+    note: 'Feedback comunitate pe Telegram',
+  },
+};
+
+const t = content[lang];
+---
+
+<section class="py-8 md:py-12">
+  <div class="container">
+    <div class="bg-gradient-to-r from-accent/5 to-accent/10 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <!-- Content -->
+      <div class="text-center md:text-left">
+        <div class="flex items-center justify-center md:justify-start gap-2 mb-2">
+          <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+          <h3 class="text-lg font-semibold text-primary">{t.title}</h3>
+        </div>
+        <p class="text-muted text-sm md:text-base mb-2">{t.description}</p>
+        <p class="text-xs text-muted/70">{t.note}</p>
+      </div>
+      
+      <!-- CTA Button -->
+      <a
+        href={reviewsLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-2 px-6 py-3 bg-accent text-white font-medium rounded-full hover:bg-accent/90 transition-all whitespace-nowrap"
+      >
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+        </svg>
+        {t.cta}
+      </a>
+    </div>
+  </div>
+</section>
