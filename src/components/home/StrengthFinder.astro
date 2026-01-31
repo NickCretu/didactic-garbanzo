@@ -1,0 +1,438 @@
+---
+import { useTranslations, getLocalizedPath, type Language } from '@i18n/index';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// Strength tier colors matching StrengthGuide
+const strengthColors = {
+  low: { bg: 'bg-emerald-500', light: 'bg-emerald-100', text: 'text-emerald-600' },
+  medium: { bg: 'bg-amber-500', light: 'bg-amber-100', text: 'text-amber-600' },
+  strong: { bg: 'bg-orange-500', light: 'bg-orange-100', text: 'text-orange-600' },
+  extra: { bg: 'bg-red-500', light: 'bg-red-100', text: 'text-red-600' },
+};
+
+// Collection URLs for strength tiers
+const strengthUrls = {
+  low: getLocalizedPath('/catalog?strength=low', lang),
+  medium: getLocalizedPath('/catalog?strength=medium', lang),
+  strong: getLocalizedPath('/catalog?strength=strong', lang),
+  extra: getLocalizedPath('/catalog?strength=extra', lang),
+};
+
+const strengthGuideUrl = '#strength-guide';
+---
+
+<section class="section bg-surface" id="strength-finder">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="text-center mb-10">
+      <h2 class="text-headline mb-3">{t.strengthFinder.title}</h2>
+      <p class="text-body text-muted max-w-xl mx-auto">{t.strengthFinder.subtitle}</p>
+    </div>
+    
+    <!-- Quiz Card -->
+    <div class="max-w-2xl mx-auto">
+      <div 
+        class="strength-finder-card bg-white rounded-3xl shadow-card overflow-hidden"
+        data-lang={lang}
+        data-urls={JSON.stringify(strengthUrls)}
+        data-translations={JSON.stringify(t.strengthFinder)}
+      >
+        <!-- Progress Bar -->
+        <div class="progress-bar h-1.5 bg-gray-100">
+          <div class="progress-fill h-full bg-accent transition-all duration-300" style="width: 0%"></div>
+        </div>
+        
+        <!-- Quiz Content -->
+        <div class="p-6 md:p-10">
+          <!-- Question View -->
+          <div class="question-view">
+            <!-- Step Indicator -->
+            <div class="flex items-center justify-between mb-8">
+              <span class="step-indicator text-sm font-medium text-muted"></span>
+              <button 
+                type="button"
+                class="restart-btn text-sm text-muted hover:text-accent transition-colors flex items-center gap-1.5 opacity-0 pointer-events-none"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                </svg>
+                <span>{t.strengthFinder.restart}</span>
+              </button>
+            </div>
+            
+            <!-- Question Text -->
+            <h3 class="question-text text-lg md:text-xl font-semibold text-primary mb-6 min-h-[3.5rem]"></h3>
+            
+            <!-- Answer Options -->
+            <div class="answer-options space-y-3 mb-8"></div>
+            
+            <!-- Navigation -->
+            <div class="flex items-center justify-between">
+              <button 
+                type="button"
+                class="back-btn flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-muted hover:text-primary transition-colors opacity-0 pointer-events-none"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+                {t.strengthFinder.back}
+              </button>
+              
+              <button 
+                type="button"
+                class="next-btn flex items-center gap-2 px-6 py-2.5 bg-accent text-white text-sm font-medium rounded-full hover:bg-opacity-90 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                disabled
+              >
+                {t.strengthFinder.next}
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Result View (hidden initially) -->
+          <div class="result-view hidden">
+            <!-- Result Header -->
+            <div class="text-center mb-8">
+              <div class="result-icon inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-4">
+                <div class="result-dots flex gap-1.5">
+                  <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                  <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                  <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                  <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                </div>
+              </div>
+              <p class="text-sm text-muted mb-2">{t.strengthFinder.yourRecommendation}</p>
+              <h3 class="result-strength text-2xl md:text-3xl font-bold text-primary"></h3>
+            </div>
+            
+            <!-- Explanation -->
+            <div class="result-explanation bg-gray-50 rounded-2xl p-5 mb-6">
+              <h4 class="text-sm font-semibold text-primary mb-2">{t.strengthFinder.whyThisFits}</h4>
+              <p class="explanation-text text-sm text-muted leading-relaxed"></p>
+            </div>
+            
+            <!-- Caution Note (shown for non-nicotine users) -->
+            <div class="caution-note hidden bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
+              <div class="flex gap-3">
+                <svg class="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>
+                <p class="caution-text text-sm text-amber-800"></p>
+              </div>
+            </div>
+            
+            <!-- CTAs -->
+            <div class="space-y-3">
+              <a 
+                href="#"
+                class="result-cta-primary flex items-center justify-center gap-2 w-full px-6 py-3.5 bg-accent text-white font-medium rounded-full hover:bg-opacity-90 transition-all"
+              >
+                <span>{t.strengthFinder.seeOptions}</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                </svg>
+              </a>
+              
+              <a 
+                href={strengthGuideUrl}
+                class="flex items-center justify-center gap-2 w-full px-6 py-3 text-muted font-medium hover:text-primary transition-colors"
+              >
+                {t.strengthFinder.compareStrengths}
+              </a>
+            </div>
+            
+            <!-- Restart from result -->
+            <div class="text-center mt-6 pt-6 border-t border-gray-100">
+              <button 
+                type="button"
+                class="result-restart-btn text-sm text-muted hover:text-accent transition-colors flex items-center gap-1.5 mx-auto"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                </svg>
+                <span>{t.strengthFinder.tryAgain}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Disclaimer -->
+        <div class="px-6 md:px-10 pb-6 md:pb-8">
+          <p class="text-xs text-muted/70 text-center leading-relaxed">
+            {t.strengthFinder.disclaimer}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  interface Question {
+    id: string;
+    text: string;
+    options: { id: string; label: string; value: number }[];
+  }
+
+  interface Translations {
+    title: string;
+    subtitle: string;
+    step: string;
+    back: string;
+    next: string;
+    getResult: string;
+    restart: string;
+    yourRecommendation: string;
+    whyThisFits: string;
+    seeOptions: string;
+    compareStrengths: string;
+    tryAgain: string;
+    disclaimer: string;
+    questions: Question[];
+    results: {
+      low: { title: string; explanation: string };
+      medium: { title: string; explanation: string };
+      strong: { title: string; explanation: string };
+      extra: { title: string; explanation: string };
+    };
+    caution: string;
+  }
+
+  function initStrengthFinder() {
+    const cards = document.querySelectorAll('.strength-finder-card');
+    
+    cards.forEach((card) => {
+      const translations: Translations = JSON.parse(card.getAttribute('data-translations') || '{}');
+      const urls = JSON.parse(card.getAttribute('data-urls') || '{}');
+      const questions = translations.questions || [];
+      
+      if (questions.length === 0) return;
+      
+      // State
+      let currentStep = 0;
+      const answers: Record<string, number> = {};
+      
+      // DOM elements
+      const progressFill = card.querySelector('.progress-fill') as HTMLElement;
+      const stepIndicator = card.querySelector('.step-indicator') as HTMLElement;
+      const questionText = card.querySelector('.question-text') as HTMLElement;
+      const answerOptions = card.querySelector('.answer-options') as HTMLElement;
+      const backBtn = card.querySelector('.back-btn') as HTMLButtonElement;
+      const nextBtn = card.querySelector('.next-btn') as HTMLButtonElement;
+      const restartBtn = card.querySelector('.restart-btn') as HTMLButtonElement;
+      const questionView = card.querySelector('.question-view') as HTMLElement;
+      const resultView = card.querySelector('.result-view') as HTMLElement;
+      const resultStrength = card.querySelector('.result-strength') as HTMLElement;
+      const resultIcon = card.querySelector('.result-icon') as HTMLElement;
+      const resultDots = card.querySelectorAll('.result-dots > div');
+      const explanationText = card.querySelector('.explanation-text') as HTMLElement;
+      const cautionNote = card.querySelector('.caution-note') as HTMLElement;
+      const cautionText = card.querySelector('.caution-text') as HTMLElement;
+      const resultCtaPrimary = card.querySelector('.result-cta-primary') as HTMLAnchorElement;
+      const resultRestartBtn = card.querySelector('.result-restart-btn') as HTMLButtonElement;
+      
+      // Strength tier colors
+      const tierColors: Record<string, { bg: string; light: string; fill: string }> = {
+        low: { bg: 'bg-emerald-500', light: 'bg-emerald-100', fill: 'bg-emerald-500' },
+        medium: { bg: 'bg-amber-500', light: 'bg-amber-100', fill: 'bg-amber-500' },
+        strong: { bg: 'bg-orange-500', light: 'bg-orange-100', fill: 'bg-orange-500' },
+        extra: { bg: 'bg-red-500', light: 'bg-red-100', fill: 'bg-red-500' },
+      };
+      
+      const tierDots: Record<string, number> = { low: 1, medium: 2, strong: 3, extra: 4 };
+      
+      function renderQuestion() {
+        const question = questions[currentStep];
+        const totalSteps = questions.length;
+        const progress = ((currentStep) / totalSteps) * 100;
+        
+        // Update progress
+        progressFill.style.width = `${progress}%`;
+        stepIndicator.textContent = translations.step.replace('{current}', String(currentStep + 1)).replace('{total}', String(totalSteps));
+        
+        // Update question
+        questionText.textContent = question.text;
+        
+        // Render options
+        answerOptions.innerHTML = '';
+        question.options.forEach((option) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = `answer-option w-full px-5 py-4 text-left text-sm md:text-base font-medium rounded-xl border-2 transition-all ${
+            answers[question.id] === option.value
+              ? 'border-accent bg-accent/5 text-accent'
+              : 'border-gray-200 text-primary hover:border-accent/50 hover:bg-gray-50'
+          }`;
+          btn.textContent = option.label;
+          btn.dataset.value = String(option.value);
+          
+          btn.addEventListener('click', () => {
+            // Toggle selection
+            if (answers[question.id] === option.value) {
+              delete answers[question.id];
+            } else {
+              answers[question.id] = option.value;
+            }
+            renderQuestion();
+          });
+          
+          answerOptions.appendChild(btn);
+        });
+        
+        // Update navigation
+        if (currentStep > 0) {
+          backBtn.classList.remove('opacity-0', 'pointer-events-none');
+          restartBtn.classList.remove('opacity-0', 'pointer-events-none');
+        } else {
+          backBtn.classList.add('opacity-0', 'pointer-events-none');
+          restartBtn.classList.add('opacity-0', 'pointer-events-none');
+        }
+        
+        // Update next button
+        const hasAnswer = answers[question.id] !== undefined;
+        nextBtn.disabled = !hasAnswer;
+        
+        // Change next button text on last question
+        if (currentStep === totalSteps - 1) {
+          nextBtn.innerHTML = `
+            ${translations.getResult}
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+          `;
+        } else {
+          nextBtn.innerHTML = `
+            ${translations.next}
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          `;
+        }
+      }
+      
+      function calculateResult(): string {
+        // Calculate total score
+        let totalScore = 0;
+        let answerCount = 0;
+        
+        for (const key in answers) {
+          totalScore += answers[key];
+          answerCount++;
+        }
+        
+        // Check if user has no nicotine experience (question 1, value 0)
+        const noNicotineExperience = answers['experience'] === 0;
+        
+        // If no nicotine experience, always recommend low
+        if (noNicotineExperience) {
+          return 'low';
+        }
+        
+        // Average score (0-3 scale)
+        const avgScore = answerCount > 0 ? totalScore / answerCount : 0;
+        
+        // Map to strength tier
+        if (avgScore < 1) return 'low';
+        if (avgScore < 1.8) return 'medium';
+        if (avgScore < 2.5) return 'strong';
+        return 'extra';
+      }
+      
+      function showResult() {
+        const tier = calculateResult();
+        const result = translations.results[tier as keyof typeof translations.results];
+        const colors = tierColors[tier];
+        const dots = tierDots[tier];
+        const noNicotineExperience = answers['experience'] === 0;
+        
+        // Update progress to 100%
+        progressFill.style.width = '100%';
+        
+        // Switch views
+        questionView.classList.add('hidden');
+        resultView.classList.remove('hidden');
+        
+        // Update result display
+        resultStrength.textContent = result.title;
+        explanationText.textContent = result.explanation;
+        
+        // Update icon colors
+        resultIcon.className = `result-icon inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-4 ${colors.light}`;
+        resultDots.forEach((dot, i) => {
+          dot.className = `w-3 h-3 rounded-full ${i < dots ? colors.fill : 'bg-gray-200'}`;
+        });
+        
+        // Update CTA link
+        resultCtaPrimary.href = urls[tier] || '#';
+        
+        // Show caution for non-nicotine users
+        if (noNicotineExperience) {
+          cautionNote.classList.remove('hidden');
+          cautionText.textContent = translations.caution;
+        } else {
+          cautionNote.classList.add('hidden');
+        }
+      }
+      
+      function restart() {
+        currentStep = 0;
+        for (const key in answers) {
+          delete answers[key];
+        }
+        
+        questionView.classList.remove('hidden');
+        resultView.classList.add('hidden');
+        
+        renderQuestion();
+      }
+      
+      // Event listeners
+      backBtn.addEventListener('click', () => {
+        if (currentStep > 0) {
+          currentStep--;
+          renderQuestion();
+        }
+      });
+      
+      nextBtn.addEventListener('click', () => {
+        if (currentStep < questions.length - 1) {
+          currentStep++;
+          renderQuestion();
+        } else {
+          showResult();
+        }
+      });
+      
+      restartBtn.addEventListener('click', restart);
+      resultRestartBtn.addEventListener('click', restart);
+      
+      // Initialize
+      renderQuestion();
+    });
+  }
+  
+  initStrengthFinder();
+  document.addEventListener('astro:page-load', initStrengthFinder);
+</script>
+
+<style>
+  .strength-finder-card {
+    transition: transform 0.2s ease;
+  }
+  
+  .answer-option {
+    transition: all 0.15s ease;
+  }
+  
+  .answer-option:active {
+    transform: scale(0.98);
+  }
+</style>

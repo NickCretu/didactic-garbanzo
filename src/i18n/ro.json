@@ -160,5 +160,91 @@
   },
   "brands": {
     "title": "Branduri de încredere"
+  },
+  "strengthFinder": {
+    "title": "Găsește tăria potrivită",
+    "subtitle": "Răspunde la câteva întrebări pentru o recomandare personalizată",
+    "step": "Pasul {current} din {total}",
+    "back": "Înapoi",
+    "next": "Continuă",
+    "getResult": "Obține rezultatul",
+    "restart": "Începe din nou",
+    "yourRecommendation": "Tăria recomandată",
+    "whyThisFits": "De ce ți se potrivește",
+    "seeOptions": "Vezi opțiuni cu această tărie",
+    "compareStrengths": "Compară toate tăriile",
+    "tryAgain": "Încearcă din nou cu alte răspunsuri",
+    "disclaimer": "Acesta este doar un ghid general, nu un sfat medical. Reacțiile la nicotină variază. Dacă nu ești sigur, începe cu o tărie mai mică.",
+    "caution": "Deoarece nu folosești nicotină în prezent, îți recomandăm să începi cu cea mai mică tărie disponibilă. Nicotina poate crea dependență. Gândește-te dacă acest lucru este potrivit pentru tine.",
+    "questions": [
+      {
+        "id": "experience",
+        "text": "Care este experiența ta actuală cu nicotina?",
+        "options": [
+          { "id": "none", "label": "Nu folosesc nicotină în prezent", "value": 0 },
+          { "id": "light", "label": "Fumător ușor sau vaper ocazional", "value": 1 },
+          { "id": "regular", "label": "Fumător regulat sau vaper zilnic", "value": 2 },
+          { "id": "heavy", "label": "Fumător intens (15+ țigări/zi)", "value": 3 }
+        ]
+      },
+      {
+        "id": "cravings",
+        "text": "Cum ai descrie poftele tale tipice?",
+        "options": [
+          { "id": "mild", "label": "Ușoare — ușor de ignorat sau amânat", "value": 0 },
+          { "id": "moderate", "label": "Moderate — perceptibile dar gestionabile", "value": 1 },
+          { "id": "strong", "label": "Puternice — greu de ignorat mult timp", "value": 2 },
+          { "id": "intense", "label": "Intense — am nevoie de ușurare rapidă", "value": 3 }
+        ]
+      },
+      {
+        "id": "frequency",
+        "text": "Cât de des ai vrea să folosești nicotină pe parcursul zilei?",
+        "options": [
+          { "id": "rarely", "label": "De câteva ori (2-4 pe zi)", "value": 0 },
+          { "id": "sometimes", "label": "De mai multe ori (5-8 pe zi)", "value": 1 },
+          { "id": "often", "label": "Frecvent (9-12 pe zi)", "value": 2 },
+          { "id": "very_often", "label": "Foarte des (12+ pe zi)", "value": 3 }
+        ]
+      },
+      {
+        "id": "sensitivity",
+        "text": "Cât de sensibil ești la nicotină sau stimulente precum cafeina?",
+        "options": [
+          { "id": "very", "label": "Foarte sensibil — cantități mici mă afectează puternic", "value": 0 },
+          { "id": "somewhat", "label": "Destul de sensibil — observ ușor efectele", "value": 1 },
+          { "id": "average", "label": "Mediu — răspuns tipic", "value": 2 },
+          { "id": "tolerant", "label": "Toleranță mare — am nevoie de mai mult pentru efect", "value": 3 }
+        ]
+      },
+      {
+        "id": "preference",
+        "text": "Ce tip de experiență cauți?",
+        "options": [
+          { "id": "gentle", "label": "Blândă și subtilă", "value": 0 },
+          { "id": "balanced", "label": "Echilibrată și perceptibilă", "value": 1 },
+          { "id": "strong", "label": "Puternică și satisfăcătoare", "value": 2 },
+          { "id": "intense", "label": "Intensă și puternică", "value": 3 }
+        ]
+      }
+    ],
+    "results": {
+      "low": {
+        "title": "Ușoară (4-6mg)",
+        "explanation": "Pe baza răspunsurilor tale, o tărie ușoară este un punct de plecare bun. Acest nivel oferă o experiență blândă cu nicotină, ideală pentru adaptare înainte de ajustare."
+      },
+      "medium": {
+        "title": "Medie (8-12mg)",
+        "explanation": "O tărie medie ar trebui să se potrivească bine nevoilor tale. Acest nivel oferă un efect echilibrat și perceptibil, fără a fi copleșitor — potrivit pentru majoritatea utilizatorilor."
+      },
+      "strong": {
+        "title": "Puternică (14-18mg)",
+        "explanation": "Pe baza experienței și preferințelor tale, o tărie puternică ar trebui să te satisfacă. Acest nivel oferă un efect pronunțat pentru utilizatorii experimentați."
+      },
+      "extra": {
+        "title": "Extra Puternică (20mg+)",
+        "explanation": "Răspunsurile tale sugerează că ai experiență și toleranță semnificativă la nicotină. Pliculețele extra puternice oferă intensitate maximă — recomandate doar pentru utilizatori experimentați."
+      }
+    }
   }
 }

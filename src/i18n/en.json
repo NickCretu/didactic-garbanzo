@@ -160,5 +160,91 @@
   },
   "brands": {
     "title": "Trusted Brands We Carry"
+  },
+  "strengthFinder": {
+    "title": "Find Your Strength",
+    "subtitle": "Answer a few questions to get a personalized starting recommendation",
+    "step": "Step {current} of {total}",
+    "back": "Back",
+    "next": "Continue",
+    "getResult": "Get Result",
+    "restart": "Start over",
+    "yourRecommendation": "Your recommended strength",
+    "whyThisFits": "Why this fits you",
+    "seeOptions": "See options in this strength",
+    "compareStrengths": "Compare all strengths",
+    "tryAgain": "Try again with different answers",
+    "disclaimer": "This tool provides general guidance only and is not medical advice. Individual responses to nicotine vary. If unsure, start with a lower strength.",
+    "caution": "Since you don't currently use nicotine, we recommend starting with the lowest strength available. Nicotine can cause dependence. Consider whether this is right for you.",
+    "questions": [
+      {
+        "id": "experience",
+        "text": "What is your current nicotine use?",
+        "options": [
+          { "id": "none", "label": "I don't currently use nicotine", "value": 0 },
+          { "id": "light", "label": "Light smoker or occasional vaper", "value": 1 },
+          { "id": "regular", "label": "Regular smoker or daily vaper", "value": 2 },
+          { "id": "heavy", "label": "Heavy smoker (15+ cigarettes/day)", "value": 3 }
+        ]
+      },
+      {
+        "id": "cravings",
+        "text": "How would you describe your typical cravings?",
+        "options": [
+          { "id": "mild", "label": "Mild — easy to ignore or delay", "value": 0 },
+          { "id": "moderate", "label": "Moderate — noticeable but manageable", "value": 1 },
+          { "id": "strong", "label": "Strong — hard to ignore for long", "value": 2 },
+          { "id": "intense", "label": "Intense — need relief quickly", "value": 3 }
+        ]
+      },
+      {
+        "id": "frequency",
+        "text": "How often would you like to use nicotine throughout the day?",
+        "options": [
+          { "id": "rarely", "label": "A few times (2-4 per day)", "value": 0 },
+          { "id": "sometimes", "label": "Several times (5-8 per day)", "value": 1 },
+          { "id": "often", "label": "Frequently (9-12 per day)", "value": 2 },
+          { "id": "very_often", "label": "Very often (12+ per day)", "value": 3 }
+        ]
+      },
+      {
+        "id": "sensitivity",
+        "text": "How sensitive are you to nicotine or stimulants like caffeine?",
+        "options": [
+          { "id": "very", "label": "Very sensitive — small amounts affect me strongly", "value": 0 },
+          { "id": "somewhat", "label": "Somewhat sensitive — I notice effects easily", "value": 1 },
+          { "id": "average", "label": "Average — typical response", "value": 2 },
+          { "id": "tolerant", "label": "High tolerance — I need more to feel effects", "value": 3 }
+        ]
+      },
+      {
+        "id": "preference",
+        "text": "What kind of experience are you looking for?",
+        "options": [
+          { "id": "gentle", "label": "Gentle and subtle", "value": 0 },
+          { "id": "balanced", "label": "Balanced and noticeable", "value": 1 },
+          { "id": "strong", "label": "Strong and satisfying", "value": 2 },
+          { "id": "intense", "label": "Intense and powerful", "value": 3 }
+        ]
+      }
+    ],
+    "results": {
+      "low": {
+        "title": "Low Strength (4-6mg)",
+        "explanation": "Based on your answers, a low-strength pouch is a good starting point. This level offers a gentle nicotine experience with minimal intensity, ideal for building comfort before adjusting."
+      },
+      "medium": {
+        "title": "Medium Strength (8-12mg)",
+        "explanation": "A medium-strength pouch should match your needs well. This level provides a balanced, noticeable effect without being overwhelming — suitable for most regular users."
+      },
+      "strong": {
+        "title": "Strong (14-18mg)",
+        "explanation": "Based on your experience and preferences, a strong pouch is likely to satisfy your needs. This level delivers a pronounced effect suited to experienced nicotine users."
+      },
+      "extra": {
+        "title": "Extra Strong (20mg+)",
+        "explanation": "Your answers suggest you have significant nicotine experience and tolerance. Extra-strong pouches provide maximum intensity — recommended only for heavy, experienced users."
+      }
+    }
   }
 }
