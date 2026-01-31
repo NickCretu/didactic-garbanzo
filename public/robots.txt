@@ -1,7 +1,8 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yourusername.github.io/pouchwebsite_2/sitemap.xml
+# Sitemap
+Sitemap: https://pauch.netlify.app/sitemap.xml
 
-# Block build artifacts
-Disallow: /_astro/
+# Disallow admin/api paths if any
+Disallow: /api/

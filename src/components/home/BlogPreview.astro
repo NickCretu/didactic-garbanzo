@@ -14,7 +14,7 @@ const baseClean = base.endsWith('/') ? base.slice(0, -1) : base;
 
 // Get all blog posts sorted by date
 const posts = (await getCollection('blog'))
-  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .sort((a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime())
   .slice(0, 3);
 ---
 
@@ -33,7 +33,7 @@ const posts = (await getCollection('blog'))
           
           return (
             <article class="blog-slide group">
-              <a href={getLocalizedPath(`/blog/${post.data.slug}`, lang)} class="block bg-white rounded-2xl overflow-hidden shadow-sm">
+              <a href={getLocalizedPath(`/blog/${translation.slug}`, lang)} class="block bg-white rounded-2xl overflow-hidden shadow-sm">
                 <div class="aspect-[16/10] bg-surface overflow-hidden">
                   <img
                     src={imageSrc}
@@ -44,7 +44,7 @@ const posts = (await getCollection('blog'))
                 </div>
                 <div class="p-4">
                   <time class="text-xs text-muted">
-                    {new Date(post.data.date).toLocaleDateString(lang, { 
+                    {new Date(post.data.publishedAt).toLocaleDateString(lang, { 
                       year: 'numeric', 
                       month: 'short', 
                       day: 'numeric' 
@@ -74,7 +74,7 @@ const posts = (await getCollection('blog'))
         
         return (
           <article class="group">
-            <a href={getLocalizedPath(`/blog/${post.data.slug}`, lang)} class="block">
+            <a href={getLocalizedPath(`/blog/${translation.slug}`, lang)} class="block">
               <div class="aspect-[16/10] bg-surface rounded-2xl overflow-hidden mb-4">
                 <img
                   src={imageSrc}
@@ -84,7 +84,7 @@ const posts = (await getCollection('blog'))
                 />
               </div>
               <time class="text-caption text-muted">
-                {new Date(post.data.date).toLocaleDateString(lang, { 
+                {new Date(post.data.publishedAt).toLocaleDateString(lang, { 
                   year: 'numeric', 
                   month: 'long', 
                   day: 'numeric' 

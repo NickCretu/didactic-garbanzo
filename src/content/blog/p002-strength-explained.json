@@ -1,0 +1,104 @@
+{
+  "postId": "P002",
+  "publishedAt": "2026-01-20",
+  "hub": "strength",
+  "targetKeyword": "nicotine pouch strength explained",
+  "disclaimerType": "general",
+  "relatedPosts": ["P003", "P008"],
+  "ctaTargets": ["/products/strength", "/products/beginner"],
+  "translations": {
+    "en": {
+      "title": "Nicotine Pouch Strength Explained: 3mg vs 6mg vs 10mg vs 20mg",
+      "slug": "nicotine-pouch-strength-explained",
+      "metaTitle": "Nicotine pouch strength explained: 3 vs 6 vs 10 vs 20mg",
+      "metaDescription": "Understand nicotine pouch strength, what \"mg\" means, how to pick a starting level, and signs a pouch is too strong or too weak.",
+      "excerpt": "A complete guide to understanding nicotine pouch strengths, from low 3mg options to extra strong 20mg+, and how to find your ideal level.",
+      "content": "Understanding nicotine pouch strength is essential for a comfortable experience. This guide breaks down what the numbers mean and how to choose wisely.\n\n## What \"mg\" on the Can Actually Means\n\nThe \"mg\" on a nicotine pouch can refers to milligrams of nicotine per pouch. However, this isn't always straightforward—some brands measure per pouch, others per gram of material.\n\nA 6mg pouch contains 6 milligrams of nicotine that gets released during use. Not all of it gets absorbed—typically 30-50% reaches your bloodstream.\n\n## Why Equal mg Can Feel Different Across Brands\n\nTwo 6mg pouches from different brands can feel completely different. This happens because:\n\n- **pH levels** affect absorption speed\n- **Moisture content** changes release rate\n- **Pouch size** impacts surface area\n- **Flavor additives** like menthol can intensify sensation\n\n## Strength Tiers and Who They Fit\n\n**Low (3-4mg):** Best for nicotine-curious adults or very light smokers. Gentle, barely noticeable for experienced users.\n\n**Medium (6-8mg):** Good starting point for most former smokers. Noticeable but comfortable.\n\n**Strong (10-14mg):** For experienced users or heavy former smokers. Significant nicotine hit.\n\n**Extra Strong (16-20mg+):** For very experienced users only. Can cause discomfort if you're not ready.\n\n## How to Choose Your First Strength\n\nA simple rule: Start one tier below what you think you need. It's easier to go up than to recover from an overwhelming first experience.\n\n- Light smoker (under 10/day): Start at 3-4mg\n- Pack-a-day smoker: Start at 6-8mg\n- Heavy smoker (1.5+ packs): Start at 8-10mg\n\n## Signs Your Strength Is Too High\n\n- Nausea or dizziness\n- Rapid heartbeat\n- Need to remove the pouch early\n- Hiccups\n- Feeling jittery or anxious\n\n## Signs Your Strength Is Too Low\n\n- No satisfaction from the pouch\n- Wanting another immediately after finishing\n- Still craving cigarettes strongly\n- Going through pouches very quickly\n\n## How to Adjust Over Time\n\nMany users find they can gradually reduce strength over months or years. There's no rush—find what works and adjust when you're ready.",
+      "h2s": [
+        "What \"mg\" on the can actually means",
+        "Why equal mg can feel different across brands",
+        "Strength tiers and who they fit",
+        "How to choose your first strength",
+        "Signs your strength is too high",
+        "Signs your strength is too low",
+        "How to adjust over time"
+      ],
+      "faq": [
+        {
+          "question": "Is 10mg considered strong?",
+          "answer": "Yes, 10mg is in the strong category. It's suitable for experienced users or heavy former smokers. Most beginners should start with 6mg or lower."
+        },
+        {
+          "question": "Why does mint feel stronger at the same mg?",
+          "answer": "Menthol in mint flavors creates a cooling sensation that many perceive as \"stronger.\" It also may slightly increase absorption. This is normal—consider it when choosing strength."
+        },
+        {
+          "question": "Can I mix strengths during the day?",
+          "answer": "Yes, many users use different strengths at different times—a stronger one in the morning, lighter ones in the afternoon. This is a personal preference that works well for some."
+        }
+      ]
+    },
+    "ru": {
+      "title": "Крепость никотиновых пакетиков: 3мг vs 6мг vs 10мг vs 20мг",
+      "slug": "krepost-nikotinovyh-paketikov-3-6-10-20mg",
+      "metaTitle": "Крепость пакетиков: 3, 6, 10 или 20мг (объяснение)",
+      "metaDescription": "Что означает \"мг\" на банке, как выбрать стартовую крепость и как понять, что пакетик слишком сильный или слишком слабый.",
+      "excerpt": "Полный гид по крепости никотиновых пакетиков: от лёгких 3мг до экстра-сильных 20мг+ и как найти идеальный уровень.",
+      "content": "Понимание крепости никотиновых пакетиков важно для комфортного использования.\n\n## Что означает \"мг\" на банке\n\nМг на банке означает миллиграммы никотина в пакетике. Однако не всё так просто — разные бренды измеряют по-разному.\n\n## Почему одинаковые мг ощущаются по-разному\n\nДва пакетика по 6мг от разных брендов могут ощущаться совершенно по-разному из-за pH, влажности, размера и добавок.\n\n## Уровни крепости и кому они подходят\n\n**Лёгкие (3-4мг):** Для начинающих или очень лёгких курильщиков.\n\n**Средние (6-8мг):** Хорошая точка старта для большинства бывших курильщиков.\n\n**Сильные (10-14мг):** Для опытных пользователей.\n\n**Экстра-сильные (16-20мг+):** Только для очень опытных.\n\n## Как выбрать первую крепость\n\nПростое правило: начните на уровень ниже, чем думаете.\n\n## Признаки слишком высокой крепости\n\n- Тошнота или головокружение\n- Учащённое сердцебиение\n- Нужно вынуть пакетик раньше\n\n## Признаки слишком низкой крепости\n\n- Нет удовлетворения\n- Хочется следующий сразу\n- Сильная тяга к сигаретам\n\n## Как корректировать со временем\n\nМногие со временем снижают крепость. Не торопитесь — найдите то, что работает.",
+      "h2s": [
+        "Что означает \"мг\" на банке",
+        "Почему одинаковые мг ощущаются по-разному",
+        "Уровни крепости и кому они подходят",
+        "Как выбрать первую крепость",
+        "Признаки слишком высокой крепости",
+        "Признаки слишком низкой крепости",
+        "Как корректировать со временем"
+      ],
+      "faq": [
+        {
+          "question": "10мг это \"сильно\"?",
+          "answer": "Да, 10мг относится к сильной категории. Подходит для опытных пользователей или заядлых курильщиков. Большинству новичков лучше начать с 6мг или ниже."
+        },
+        {
+          "question": "Почему мята ощущается сильнее при тех же мг?",
+          "answer": "Ментол создаёт охлаждающий эффект, который воспринимается как \"сильнее\". Он также может немного усиливать всасывание."
+        },
+        {
+          "question": "Можно ли чередовать крепость в течение дня?",
+          "answer": "Да, многие используют разные крепости в разное время — сильнее утром, легче днём. Это работает для многих."
+        }
+      ]
+    },
+    "ro": {
+      "title": "Tăria pliculețelor cu nicotină: 3mg vs 6mg vs 10mg vs 20mg",
+      "slug": "taria-pliculetelor-cu-nicotina-explicata",
+      "metaTitle": "Tăria pliculețelor: 3 vs 6 vs 10 vs 20mg (explicat)",
+      "metaDescription": "Explicații clare despre tărie: ce înseamnă \"mg\", cum alegi nivelul de început și semnele că tăria e prea mare sau prea mică.",
+      "excerpt": "Ghid complet despre tăria pliculețelor cu nicotină: de la opțiuni ușoare de 3mg până la extra-puternice 20mg+.",
+      "content": "Înțelegerea tăriei pliculețelor cu nicotină e esențială pentru o experiență confortabilă.\n\n## Ce înseamnă \"mg\" pe cutie\n\nMg pe cutie se referă la miligrame de nicotină per pliculeț. Totuși, nu e mereu simplu — unele branduri măsoară diferit.\n\n## De ce aceeași tărie poate \"lovi\" diferit\n\nDouă pliculețe de 6mg de la branduri diferite pot fi complet diferite din cauza pH-ului, umidității, mărimii și aditivilor.\n\n## Niveluri de tărie și pentru cine sunt potrivite\n\n**Ușoare (3-4mg):** Pentru începători sau fumători foarte ușori.\n\n**Medii (6-8mg):** Punct bun de start pentru majoritatea foștilor fumători.\n\n**Puternice (10-14mg):** Pentru utilizatori experimentați.\n\n**Extra-puternice (16-20mg+):** Doar pentru foarte experimentați.\n\n## Cum alegi tăria la început\n\nRegulă simplă: începe un nivel sub ce crezi că ai nevoie.\n\n## Semne că tăria e prea mare\n\n- Greață sau amețeală\n- Bătăi rapide ale inimii\n- Trebuie să scoți pliculețul devreme\n\n## Semne că tăria e prea mică\n\n- Nu ai satisfacție\n- Vrei alt pliculeț imediat\n- Încă poftești țigări puternic\n\n## Cum ajustezi în timp\n\nMulti reduc tăria treptat în timp. Nu te grăbi — găsește ce funcționează.",
+      "h2s": [
+        "Ce înseamnă \"mg\" pe cutie",
+        "De ce aceeași tărie poate \"lovi\" diferit",
+        "Niveluri de tărie și pentru cine sunt potrivite",
+        "Cum alegi tăria la început",
+        "Semne că tăria e prea mare",
+        "Semne că tăria e prea mică",
+        "Cum ajustezi în timp"
+      ],
+      "faq": [
+        {
+          "question": "10mg este considerat \"puternic\"?",
+          "answer": "Da, 10mg e în categoria puternică. E potrivit pentru utilizatori experimentați sau foști fumători înrăiți. Majoritatea începătorilor ar trebui să înceapă cu 6mg sau mai puțin."
+        },
+        {
+          "question": "De ce menta pare mai tare la aceeași tărie?",
+          "answer": "Mentolul creează o senzație de răcoare percepută ca \"mai tare\". Poate și ușor crește absorbția."
+        },
+        {
+          "question": "Pot alterna tăriile în aceeași zi?",
+          "answer": "Da, mulți folosesc tării diferite la momente diferite — mai tare dimineața, mai ușor după-amiază. Funcționează bine pentru unii."
+        }
+      ]
+    }
+  }
+}

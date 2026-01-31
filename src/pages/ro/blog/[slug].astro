@@ -9,7 +9,7 @@ const t = useTranslations(lang);
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts.map((post) => ({
-    params: { slug: post.data.slug },
+    params: { slug: post.data.translations.ro.slug },
     props: { post: post.data },
   }));
 }
@@ -21,10 +21,44 @@ const base = import.meta.env.BASE_URL || '/';
 const baseClean = base.endsWith('/') ? base.slice(0, -1) : base;
 const imageSrc = post.image ? `${baseClean}${post.image}` : null;
 
+// Disclaimer texts (Romanian)
+const disclaimers = {
+  general: "Informații doar pentru adulți. Acest material nu reprezintă sfat medical. Dacă nu vă simțiți bine sau aveți îngrijorări, consultați un specialist.",
+  safety: "Informații doar pentru adulți. Nu este sfat medical. Opriți utilizarea și cereți sfatul unui specialist dacă apar simptome îngrijorătoare."
+};
+
+// Article schema for SEO
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": translation.title,
+  "description": translation.metaDescription,
+  "datePublished": post.publishedAt,
+  "dateModified": post.updatedAt || post.publishedAt,
+  "author": {
+    "@type": "Organization",
+    "name": "Pouch"
+  }
+};
+
+// FAQ schema if FAQs exist
+const faqSchema = translation.faq && translation.faq.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": translation.faq.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+} : null;
+
 function simpleMarkdown(text: string): string {
   return text
-    .replace(/## (.*?)$/gm, '<h2 class="text-title font-semibold mt-8 mb-4">$1</h2>')
-    .replace(/### (.*?)$/gm, '<h3 class="text-body font-semibold mt-6 mb-3">$1</h3>')
+    .replace(/## (.*?)$/gm, '<h2 class="text-xl font-semibold mt-8 mb-4 text-primary">$1</h2>')
+    .replace(/### (.*?)$/gm, '<h3 class="text-lg font-semibold mt-6 mb-3 text-primary">$1</h3>')
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
     .replace(/\n\n/g, '</p><p class="text-body text-muted mb-4">')
     .replace(/^\d\. (.*?)$/gm, '<li class="mb-2">$1</li>')
@@ -34,10 +68,14 @@ function simpleMarkdown(text: string): string {
 ---
 
 <BaseLayout
-  title={`${translation.title} - ${t.site.title}`}
-  description={translation.excerpt}
+  title={translation.metaTitle}
+  description={translation.metaDescription}
   image={post.image}
 >
+  <!-- Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} slot="head" />
+  {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />}
+  
   <article class="py-12 md:py-20">
     <div class="container">
       <div class="max-w-3xl mx-auto">
@@ -53,7 +91,7 @@ function simpleMarkdown(text: string): string {
         
         <header class="mb-8">
           <time class="text-caption text-muted">
-            {new Date(post.date).toLocaleDateString(lang, { year: 'numeric', month: 'long', day: 'numeric' })}
+            {new Date(post.publishedAt).toLocaleDateString(lang, { year: 'numeric', month: 'long', day: 'numeric' })}
           </time>
           <h1 class="text-2xl md:text-4xl font-semibold mt-2 mb-4">{translation.title}</h1>
           <p class="text-sm md:text-base text-muted">{translation.excerpt}</p>
@@ -67,6 +105,28 @@ function simpleMarkdown(text: string): string {
         
         <div class="prose prose-lg max-w-none">
           <p class="text-body text-muted mb-4"><Fragment set:html={simpleMarkdown(translation.content)} /></p>
+        </div>
+        
+        <!-- FAQ Section -->
+        {translation.faq && translation.faq.length > 0 && (
+          <div class="mt-12 pt-8 border-t border-gray-200">
+            <h2 class="text-xl font-semibold mb-6">Întrebări frecvente</h2>
+            <div class="space-y-4">
+              {translation.faq.map((item) => (
+                <div class="bg-surface rounded-xl p-5">
+                  <h3 class="font-medium text-primary mb-2">{item.question}</h3>
+                  <p class="text-muted text-sm">{item.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        
+        <!-- Disclaimer -->
+        <div class="mt-12 p-4 bg-gray-50 rounded-xl border border-gray-200">
+          <p class="text-xs text-muted">
+            {disclaimers[post.disclaimerType]}
+          </p>
         </div>
       </div>
     </div>

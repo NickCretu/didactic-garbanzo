@@ -1,0 +1,28 @@
+{
+  "hubId": "switching",
+  "translations": {
+    "en": {
+      "title": "Switching from Smoking",
+      "slug": "switching-from-smoking",
+      "metaTitle": "Switching from Smoking to Nicotine Pouches - Complete Guide",
+      "metaDescription": "Everything you need to know about switching from cigarettes to nicotine pouches: guides, comparisons, and product recommendations for former smokers.",
+      "intro": "Making the switch from cigarettes to nicotine pouches is a significant decision. Our guides help you understand the transition, choose the right products, and build new habits that work for your lifestyle."
+    },
+    "ru": {
+      "title": "Переход с курения",
+      "slug": "perehod-s-kureniya",
+      "metaTitle": "Переход с сигарет на никотиновые пакетики - Полный гид",
+      "metaDescription": "Всё, что нужно знать о переходе с сигарет на никотиновые пакетики: гиды, сравнения и рекомендации для бывших курильщиков.",
+      "intro": "Переход с сигарет на никотиновые пакетики — важное решение. Наши гиды помогут понять процесс перехода, выбрать правильные продукты и выработать новые привычки."
+    },
+    "ro": {
+      "title": "Trecerea de la fumat",
+      "slug": "trecerea-de-la-fumat",
+      "metaTitle": "Trecerea de la țigări la pliculețe cu nicotină - Ghid complet",
+      "metaDescription": "Tot ce trebuie să știi despre trecerea de la țigări la pliculețe cu nicotină: ghiduri, comparații și recomandări pentru foști fumători.",
+      "intro": "Trecerea de la țigări la pliculețe cu nicotină este o decizie importantă. Ghidurile noastre te ajută să înțelegi tranziția, să alegi produsele potrivite și să construiești obiceiuri noi."
+    }
+  },
+  "featuredPosts": ["P001", "P005", "P006", "P007", "P009"],
+  "featuredCollections": ["ex-smokers", "strength", "beginner"]
+}

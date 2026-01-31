@@ -1,0 +1,28 @@
+{
+  "hubId": "strength",
+  "translations": {
+    "en": {
+      "title": "Strength and Dosing",
+      "slug": "strength-and-dosing",
+      "metaTitle": "Nicotine Pouch Strength Guide - Dosing and Usage",
+      "metaDescription": "Complete guide to nicotine pouch strengths: understanding mg levels, choosing your first strength, timing, and daily usage patterns.",
+      "intro": "Understanding nicotine strength is key to a comfortable experience. Learn what the numbers mean, how to choose your level, and how to adjust over time."
+    },
+    "ru": {
+      "title": "Крепость и дозировка",
+      "slug": "krepost-i-dozirovka",
+      "metaTitle": "Гид по крепости никотиновых пакетиков - Дозировка и использование",
+      "metaDescription": "Полный гид по крепости никотиновых пакетиков: понимание мг, выбор первой крепости, время использования и дневные паттерны.",
+      "intro": "Понимание крепости никотина — ключ к комфортному использованию. Узнайте, что означают цифры, как выбрать свой уровень и как корректировать со временем."
+    },
+    "ro": {
+      "title": "Tărie și dozare",
+      "slug": "tarie-si-dozare",
+      "metaTitle": "Ghid de tărie a pliculețelor cu nicotină - Dozare și utilizare",
+      "metaDescription": "Ghid complet despre tăria pliculețelor: înțelegerea nivelurilor mg, alegerea primei tării, timing și tipare zilnice de utilizare.",
+      "intro": "Înțelegerea tăriei nicotinei este cheia unei experiențe confortabile. Află ce înseamnă cifrele, cum să alegi nivelul tău și cum să ajustezi în timp."
+    }
+  },
+  "featuredPosts": ["P002", "P003", "P004", "P005"],
+  "featuredCollections": ["strength", "beginner"]
+}

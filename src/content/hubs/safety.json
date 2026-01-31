@@ -1,0 +1,28 @@
+{
+  "hubId": "safety",
+  "translations": {
+    "en": {
+      "title": "Safety and FAQs",
+      "slug": "safety-and-faqs",
+      "metaTitle": "Nicotine Pouch Safety Guide and FAQs",
+      "metaDescription": "Safety information about nicotine pouches: side effects, proper usage, oral health considerations, and answers to common questions.",
+      "intro": "Using nicotine pouches safely means understanding what's normal, what to watch for, and when to seek help. Our guides provide practical, adult-focused information."
+    },
+    "ru": {
+      "title": "Безопасность и FAQ",
+      "slug": "bezopasnost-i-faq",
+      "metaTitle": "Гид по безопасности никотиновых пакетиков и FAQ",
+      "metaDescription": "Информация о безопасности никотиновых пакетиков: побочные эффекты, правильное использование, здоровье полости рта и ответы на частые вопросы.",
+      "intro": "Безопасное использование никотиновых пакетиков означает понимание того, что нормально, на что обращать внимание и когда обращаться за помощью."
+    },
+    "ro": {
+      "title": "Siguranță și întrebări frecvente",
+      "slug": "siguranta-si-intrebari-frecvente",
+      "metaTitle": "Ghid de siguranță pliculețe cu nicotină și FAQ",
+      "metaDescription": "Informații de siguranță despre pliculețe: efecte secundare, utilizare corectă, sănătate orală și răspunsuri la întrebările frecvente.",
+      "intro": "Utilizarea în siguranță a pliculețelor înseamnă să înțelegi ce e normal, la ce să fii atent și când să ceri ajutor. Ghidurile noastre oferă informații practice pentru adulți."
+    }
+  },
+  "featuredPosts": ["P008", "P011", "P004", "P005"],
+  "featuredCollections": ["beginner", "strength"]
+}

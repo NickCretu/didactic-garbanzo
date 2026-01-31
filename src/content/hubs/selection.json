@@ -1,0 +1,28 @@
+{
+  "hubId": "selection",
+  "translations": {
+    "en": {
+      "title": "Selection and Flavors",
+      "slug": "selection-and-flavors",
+      "metaTitle": "Nicotine Pouch Flavors and Selection Guide",
+      "metaDescription": "Guide to choosing nicotine pouch flavors: mint, citrus, berry comparisons, storage tips, and finding products that fit your preferences.",
+      "intro": "With so many options available, choosing the right flavor and format matters. Our guides help you find products that match your taste and lifestyle."
+    },
+    "ru": {
+      "title": "Выбор и вкусы",
+      "slug": "vybor-i-vkusy",
+      "metaTitle": "Гид по вкусам и выбору никотиновых пакетиков",
+      "metaDescription": "Гид по выбору вкусов никотиновых пакетиков: сравнение мяты, цитруса, ягод, советы по хранению и подбор под ваши предпочтения.",
+      "intro": "При таком разнообразии важно выбрать правильный вкус и формат. Наши гиды помогут найти продукты, которые подходят вашему вкусу и образу жизни."
+    },
+    "ro": {
+      "title": "Selecție și arome",
+      "slug": "selectie-si-arome",
+      "metaTitle": "Ghid de arome și selecție pliculețe cu nicotină",
+      "metaDescription": "Ghid pentru alegerea aromelor: comparații mentă, citrice, fructe, sfaturi de păstrare și găsirea produselor potrivite preferințelor tale.",
+      "intro": "Cu atâtea opțiuni disponibile, alegerea aromei și formatului potrivit contează. Ghidurile noastre te ajută să găsești produse care se potrivesc gustului și stilului tău de viață."
+    }
+  },
+  "featuredPosts": ["P010", "P012", "P006", "P009"],
+  "featuredCollections": ["flavors", "discreet", "beginner"]
+}

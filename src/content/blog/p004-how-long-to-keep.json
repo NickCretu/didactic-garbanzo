@@ -1,0 +1,101 @@
+{
+  "postId": "P004",
+  "publishedAt": "2026-01-20",
+  "hub": "strength",
+  "targetKeyword": "how long to keep a nicotine pouch in",
+  "disclaimerType": "general",
+  "relatedPosts": ["P002", "P008"],
+  "ctaTargets": ["/products/strength", "/products/beginner"],
+  "translations": {
+    "en": {
+      "title": "How Long to Keep a Nicotine Pouch In",
+      "slug": "how-long-to-keep-a-nicotine-pouch-in",
+      "metaTitle": "How long to keep a nicotine pouch in (adult guide)",
+      "metaDescription": "Learn typical timing, placement tips, and how to avoid discomfort. Includes signs it's too strong and what to do next time.",
+      "excerpt": "Everything about nicotine pouch timing: how long to keep them in, proper placement, and what to do if something feels off.",
+      "content": "Knowing how long to keep a nicotine pouch in is key to a comfortable experience. Here's what you need to know.\n\n## Why Timing Matters\n\nThe duration you keep a pouch in affects both the intensity and total nicotine absorbed. Too short and you don't get the full benefit; too long and you might experience discomfort or irritation.\n\n## Typical Ranges for Beginners vs Experienced Users\n\n**Beginners:** Start with 15-20 minutes. This lets you gauge the strength without overdoing it.\n\n**Experienced users:** Typically 30-60 minutes, depending on strength and personal preference.\n\n**Minimum effective time:** About 10-15 minutes for noticeable effect.\n\n## Placement Tips for Comfort\n\nPlace the pouch between your upper lip and gum, either left or right side. Most people find the upper lip more comfortable than the lower.\n\n- Don't chew or suck on the pouch\n- It should rest still against your gum\n- You can talk and drink normally\n- Move to the other side if one spot gets irritated\n\n## How to Tell When It's Done\n\nSigns a pouch is finished:\n- The tingling sensation fades\n- Flavor has mostly gone\n- It feels \"flat\" compared to when you started\n- Usually around 30-45 minutes for medium strength\n\n## If It Feels Too Strong (What to Do)\n\n1. Remove the pouch immediately\n2. Rinse your mouth with water\n3. Eat something light if you feel nauseous\n4. Wait at least an hour before trying again\n5. Next time, try a lower strength or shorter duration\n\n## Do and Don't Checklist\n\n**Do:**\n- Start with shorter sessions\n- Rotate placement spots\n- Stay hydrated\n- Dispose of pouches properly\n\n**Don't:**\n- Swallow the pouch\n- Use on broken skin or sores\n- Use multiple pouches at once (beginners)\n- Sleep with a pouch in",
+      "h2s": [
+        "Why timing matters",
+        "Typical ranges for beginners vs experienced users",
+        "Placement tips for comfort",
+        "How to tell when it's done",
+        "If it feels too strong (what to do)",
+        "Do and don't checklist"
+      ],
+      "faq": [
+        {
+          "question": "Can I reuse a pouch?",
+          "answer": "No, pouches are single-use. Once removed, the nicotine has largely been released. Reusing provides little effect and increases irritation risk."
+        },
+        {
+          "question": "Can I eat or drink while using it?",
+          "answer": "Yes, you can drink water, coffee, or other beverages. Eating is possible but some find it awkward. The pouch won't fall out during normal eating/drinking."
+        },
+        {
+          "question": "What if it irritates my gums?",
+          "answer": "Some initial tingling is normal. If you experience persistent irritation, try: moving to a different spot, using a lower strength, shorter sessions, or taking a break for a day."
+        }
+      ]
+    },
+    "ru": {
+      "title": "Сколько держать никотиновый пакетик",
+      "slug": "skolko-derzhat-nikotinovyj-paketik",
+      "metaTitle": "Сколько держать никотиновый пакетик (взрослый гид)",
+      "metaDescription": "Типичная длительность, правильное размещение и как избежать дискомфорта. Признаки слишком сильной крепости и что делать.",
+      "excerpt": "Всё о времени использования никотиновых пакетиков: сколько держать, как размещать и что делать при дискомфорте.",
+      "content": "Знание того, сколько держать никотиновый пакетик, важно для комфортного использования.\n\n## Почему важна длительность\n\nВремя использования влияет на интенсивность и общее количество никотина. Слишком мало — не получите полного эффекта; слишком много — дискомфорт.\n\n## Типичные интервалы для новичков и опытных\n\n**Новички:** Начните с 15-20 минут.\n**Опытные:** Обычно 30-60 минут.\n**Минимум:** Около 10-15 минут для заметного эффекта.\n\n## Как правильно разместить для комфорта\n\nПоместите пакетик между верхней губой и десной. Большинству комфортнее сверху.\n\n## Как понять, что пакетик \"закончился\"\n\nПризнаки:\n- Покалывание утихает\n- Вкус почти ушёл\n- Ощущается \"плоским\"\n\n## Если слишком сильно: что делать\n\n1. Немедленно удалите пакетик\n2. Прополощите рот водой\n3. Съешьте что-нибудь лёгкое при тошноте\n4. Подождите хотя бы час\n\n## Что стоит и не стоит делать\n\n**Стоит:** Короткие сессии, чередование мест, пить воду.\n**Не стоит:** Глотать, использовать на ранках, использовать несколько сразу.",
+      "h2s": [
+        "Почему важна длительность",
+        "Типичные интервалы для новичков и опытных",
+        "Как правильно разместить для комфорта",
+        "Как понять, что пакетик \"закончился\"",
+        "Если слишком сильно: что делать",
+        "Что стоит и не стоит делать"
+      ],
+      "faq": [
+        {
+          "question": "Можно ли использовать пакетик повторно?",
+          "answer": "Нет, пакетики одноразовые. После удаления никотин уже высвободился. Повторное использование неэффективно."
+        },
+        {
+          "question": "Можно ли есть или пить при использовании?",
+          "answer": "Да, можно пить воду, кофе и другие напитки. Есть тоже можно, но некоторым это неудобно."
+        },
+        {
+          "question": "Что делать при раздражении десен?",
+          "answer": "Лёгкое покалывание нормально. При раздражении: смените место, используйте более лёгкую крепость, сократите время или сделайте перерыв."
+        }
+      ]
+    },
+    "ro": {
+      "title": "Cât timp ții un pliculeț cu nicotină",
+      "slug": "cat-timp-tii-un-pliculet-cu-nicotina",
+      "metaTitle": "Cât timp ții un pliculeț cu nicotină (ghid)",
+      "metaDescription": "Durată tipică, poziționare, semne că e prea tare și cum eviți disconfortul. Ghid practic pentru adulți.",
+      "excerpt": "Tot despre timpul de utilizare a pliculețelor: cât să le ții, cum să le poziționezi și ce faci dacă ceva nu e în regulă.",
+      "content": "Știind cât să ții un pliculeț e esențial pentru o experiență confortabilă.\n\n## De ce contează durata\n\nDurata afectează intensitatea și nicotina totală absorbită. Prea puțin — nu beneficiezi complet; prea mult — disconfort.\n\n## Interval tipic pentru începători și avansați\n\n**Începători:** Începe cu 15-20 minute.\n**Avansați:** De obicei 30-60 minute.\n**Minim:** Aproximativ 10-15 minute pentru efect vizibil.\n\n## Poziționare corectă pentru confort\n\nPune pliculețul între buza de sus și gingie. Majorității le e mai confortabil sus.\n\n## Cum îți dai seama când \"s-a terminat\"\n\nSemne:\n- Furnicătura dispare\n- Gustul a dispărut aproape\n- Se simte \"plat\"\n\n## Dacă ți se pare prea tare: ce faci\n\n1. Scoate pliculețul imediat\n2. Clătește gura cu apă\n3. Mănâncă ceva ușor dacă ai greață\n4. Așteaptă cel puțin o oră\n\n## Listă de lucruri de făcut și de evitat\n\n**De făcut:** Sesiuni scurte, alternează locurile, hidratează-te.\n**De evitat:** Să înghiți, să folosești pe răni, să folosești mai multe odată.",
+      "h2s": [
+        "De ce contează durata",
+        "Interval tipic pentru începători și pentru avansați",
+        "Poziționare corectă pentru confort",
+        "Cum îți dai seama când \"s-a terminat\"",
+        "Dacă ți se pare prea tare: ce faci",
+        "Listă de lucruri de făcut și de evitat"
+      ],
+      "faq": [
+        {
+          "question": "Pot reutiliza un pliculeț?",
+          "answer": "Nu, pliculețele sunt de unică folosință. După scoatere, nicotina s-a eliberat deja. Reutilizarea e ineficientă."
+        },
+        {
+          "question": "Pot mânca sau bea în timp ce îl folosesc?",
+          "answer": "Da, poți bea apă, cafea și alte băuturi. Poți și mânca, dar unora li se pare incomod."
+        },
+        {
+          "question": "Ce fac dacă mă irită gingiile?",
+          "answer": "Furnicătura ușoară e normală. La iritație: schimbă locul, folosește tărie mai mică, scurtează timpul sau fă o pauză."
+        }
+      ]
+    }
+  }
+}

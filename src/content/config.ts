@@ -30,33 +30,79 @@ const productsCollection = defineCollection({
   }),
 });
 
+// FAQ item schema
+const faqItemSchema = z.object({
+  question: z.string(),
+  answer: z.string(),
+});
+
+// Blog post translation schema
+const blogTranslationSchema = z.object({
+  title: z.string(),
+  slug: z.string(),
+  metaTitle: z.string(),
+  metaDescription: z.string(),
+  excerpt: z.string(),
+  content: z.string(),
+  h2s: z.array(z.string()).optional(),
+  faq: z.array(faqItemSchema).optional(),
+});
+
 const blogCollection = defineCollection({
   type: 'data',
   schema: z.object({
-    slug: z.string(),
-    date: z.string(),
+    postId: z.string(), // Translation group ID (e.g., "P001")
+    publishedAt: z.string(),
+    updatedAt: z.string().optional(),
     image: z.string().optional(),
+    hub: z.enum(['switching', 'strength', 'selection', 'safety']),
+    targetKeyword: z.string(),
+    disclaimerType: z.enum(['general', 'safety']).default('general'),
+    relatedPosts: z.array(z.string()).optional(), // Array of postIds
+    ctaTargets: z.array(z.string()).optional(), // Collection URLs
+    translations: z.object({
+      en: blogTranslationSchema,
+      ru: blogTranslationSchema,
+      ro: blogTranslationSchema,
+    }),
+  }),
+});
+
+// Hub page schema
+const hubCollection = defineCollection({
+  type: 'data',
+  schema: z.object({
+    hubId: z.string(),
     translations: z.object({
       en: z.object({
         title: z.string(),
-        excerpt: z.string(),
-        content: z.string(),
+        slug: z.string(),
+        metaTitle: z.string(),
+        metaDescription: z.string(),
+        intro: z.string(),
       }),
       ru: z.object({
         title: z.string(),
-        excerpt: z.string(),
-        content: z.string(),
+        slug: z.string(),
+        metaTitle: z.string(),
+        metaDescription: z.string(),
+        intro: z.string(),
       }),
       ro: z.object({
         title: z.string(),
-        excerpt: z.string(),
-        content: z.string(),
+        slug: z.string(),
+        metaTitle: z.string(),
+        metaDescription: z.string(),
+        intro: z.string(),
       }),
     }),
+    featuredPosts: z.array(z.string()), // postIds
+    featuredCollections: z.array(z.string()), // collection slugs
   }),
 });
 
 export const collections = {
   products: productsCollection,
   blog: blogCollection,
+  hubs: hubCollection,
 };
