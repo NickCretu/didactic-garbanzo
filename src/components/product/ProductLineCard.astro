@@ -1,0 +1,232 @@
+---
+import { useTranslations, getLocalizedPath, getTelegramOrderLink, type Language } from '@i18n/index';
+
+interface FlavorVariant {
+  slug: string;
+  flavorCategory: string;
+  flavorName: string;
+  price: number;
+}
+
+interface ProductLine {
+  id: string;
+  brand: string;
+  strength: number;
+  strengthCategory: string;
+  pouchesPerCan: number;
+  currency: string;
+  image: string;
+  flavors: FlavorVariant[];
+  minPrice: number;
+  maxPrice: number;
+}
+
+interface Props {
+  lang: Language;
+  productLine: ProductLine;
+}
+
+const { lang, productLine } = Astro.props;
+const t = useTranslations(lang);
+
+const base = import.meta.env.BASE_URL || '/';
+const baseClean = base.endsWith('/') ? base.slice(0, -1) : base;
+
+// Use first product's image as representative
+const imageSrc = productLine.image.startsWith('/') 
+  ? `${baseClean}${productLine.image}` 
+  : productLine.image;
+const placeholderSrc = `${baseClean}/images/products/placeholder.svg`;
+
+const strengthLabels: Record<string, string> = {
+  low: t.strengths.low,
+  medium: t.strengths.medium,
+  strong: t.strengths.strong,
+  extra: t.strengths.extra,
+};
+
+const flavorLabels: Record<string, string> = {
+  mint: t.flavors.mint,
+  citrus: t.flavors.citrus,
+  berry: t.flavors.berry,
+  coffee: t.flavors.coffee,
+  tropical: t.flavors.tropical,
+};
+
+// Determine price display
+const hasPriceRange = productLine.minPrice !== productLine.maxPrice;
+const priceText = hasPriceRange 
+  ? `${lang === 'ru' ? 'от' : lang === 'ro' ? 'de la' : 'from'} ${productLine.minPrice}`
+  : `${productLine.minPrice}`;
+
+// Product line title without flavor
+const title = `${productLine.brand} ${strengthLabels[productLine.strengthCategory]}`;
+
+// Telegram bot username
+const telegramUsername = 'pouchmd';
+---
+
+<article
+  class="product-line-card group flex flex-col bg-surface rounded-2xl p-4 hover:shadow-lg transition-shadow overflow-hidden"
+  data-strength={productLine.strengthCategory}
+  data-flavors={productLine.flavors.map(f => f.flavorCategory).join(',')}
+  data-line-id={productLine.id}
+>
+  <!-- Product Image -->
+  <div class="relative aspect-square mb-4 overflow-hidden rounded-xl bg-white">
+    <img
+      src={imageSrc}
+      alt={title}
+      class="w-full h-full object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+      loading="lazy"
+      onerror={`this.src='${placeholderSrc}'`}
+    />
+    <!-- Strength Badge -->
+    <span class="absolute top-3 right-3 px-2.5 py-1 bg-white text-xs font-semibold text-primary rounded-full shadow-md border border-gray-100">
+      {productLine.strength}{t.strengths.mg}
+    </span>
+  </div>
+  
+  <!-- Product Info -->
+  <div class="flex-1 flex flex-col min-w-0">
+    <span class="text-caption text-muted mb-1">{productLine.brand}</span>
+    <h3 class="text-sm font-semibold text-primary mb-2">{title}</h3>
+    
+    <!-- Price -->
+    <p class="text-base font-semibold text-primary mb-3">
+      {priceText} {productLine.currency}
+    </p>
+    
+    <!-- Flavor Selection -->
+    <div class="mb-4">
+      <p class="text-xs text-muted mb-2">
+        {lang === 'ru' ? 'Выберите вкус:' : lang === 'ro' ? 'Alegeți aroma:' : 'Select flavor:'}
+      </p>
+      <div class="flavor-chips flex flex-wrap gap-1.5">
+        {productLine.flavors.map((flavor, index) => (
+          <button
+            type="button"
+            class="flavor-chip px-2.5 py-1 text-xs rounded-full bg-white border border-gray-200 text-muted hover:border-accent hover:text-accent transition-all"
+            data-flavor={flavor.flavorCategory}
+            data-slug={flavor.slug}
+            data-price={flavor.price}
+            data-flavor-name={flavor.flavorName}
+          >
+            {flavorLabels[flavor.flavorCategory]}
+          </button>
+        ))}
+      </div>
+    </div>
+    
+    <!-- Actions -->
+    <div class="mt-auto flex flex-col gap-2">
+      <button
+        type="button"
+        class="order-btn flex items-center justify-center gap-2 px-4 py-2.5 bg-accent text-white text-sm font-medium rounded-full hover:bg-opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+        data-brand={productLine.brand}
+        data-strength={productLine.strength}
+        data-telegram={telegramUsername}
+        disabled
+      >
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+        </svg>
+        {t.catalog.orderButton}
+      </button>
+      <a
+        href={getLocalizedPath(`/product/${productLine.flavors[0]?.slug || ''}`, lang)}
+        class="details-btn text-center px-4 py-2 text-sm font-medium text-muted hover:text-primary transition-colors"
+      >
+        {t.catalog.detailsButton}
+      </a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .flavor-chip.selected {
+    @apply border-accent bg-accent/10 text-accent font-medium;
+  }
+</style>
+
+<script>
+  function initProductLineCards() {
+    const cards = document.querySelectorAll('.product-line-card');
+    
+    cards.forEach((card) => {
+      const flavorChips = card.querySelectorAll('.flavor-chip');
+      const orderBtn = card.querySelector('.order-btn') as HTMLButtonElement;
+      const detailsBtn = card.querySelector('.details-btn') as HTMLAnchorElement;
+      const priceDisplay = card.querySelector('.text-base.font-semibold') as HTMLElement;
+      
+      let selectedFlavor: { 
+        category: string; 
+        slug: string; 
+        price: number;
+        name: string;
+      } | null = null;
+      
+      flavorChips.forEach((chip) => {
+        chip.addEventListener('click', () => {
+          // Remove selection from all chips
+          flavorChips.forEach(c => c.classList.remove('selected'));
+          
+          // Select this chip
+          chip.classList.add('selected');
+          
+          // Store selected flavor data
+          selectedFlavor = {
+            category: chip.getAttribute('data-flavor') || '',
+            slug: chip.getAttribute('data-slug') || '',
+            price: parseInt(chip.getAttribute('data-price') || '0'),
+            name: chip.getAttribute('data-flavor-name') || ''
+          };
+          
+          // Update price display
+          if (priceDisplay && selectedFlavor.price) {
+            const currency = card.querySelector('[data-line-id]')?.getAttribute('data-currency') || 'MDL';
+            priceDisplay.textContent = `${selectedFlavor.price} MDL`;
+          }
+          
+          // Enable order button
+          if (orderBtn) {
+            orderBtn.disabled = false;
+          }
+          
+          // Update details link
+          if (detailsBtn && selectedFlavor.slug) {
+            const currentHref = detailsBtn.getAttribute('href') || '';
+            const basePath = currentHref.substring(0, currentHref.lastIndexOf('/product/') + 9);
+            detailsBtn.setAttribute('href', basePath + selectedFlavor.slug);
+          }
+        });
+      });
+      
+      // Order button click handler
+      orderBtn?.addEventListener('click', () => {
+        if (!selectedFlavor) {
+          // Flash the flavor chips to indicate selection needed
+          const chipsContainer = card.querySelector('.flavor-chips');
+          chipsContainer?.classList.add('animate-pulse');
+          setTimeout(() => chipsContainer?.classList.remove('animate-pulse'), 1000);
+          return;
+        }
+        
+        const brand = orderBtn.getAttribute('data-brand');
+        const strength = orderBtn.getAttribute('data-strength');
+        const telegram = orderBtn.getAttribute('data-telegram');
+        
+        // Create Telegram deep link with prefilled message
+        const message = encodeURIComponent(
+          `Hi, I want to order:\n\nProduct: ${brand} ${selectedFlavor.name}\nStrength: ${strength}mg\nQuantity: 1\n\nDelivery area: ___`
+        );
+        
+        const telegramUrl = `https://t.me/${telegram}?text=${message}`;
+        window.open(telegramUrl, '_blank');
+      });
+    });
+  }
+  
+  initProductLineCards();
+  document.addEventListener('astro:page-load', initProductLineCards);
+</script>

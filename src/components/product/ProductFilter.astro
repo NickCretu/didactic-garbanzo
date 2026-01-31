@@ -67,10 +67,12 @@ const flavorOptions = [
 <script>
   function initFilters() {
     const filterSelects = document.querySelectorAll('.filter-select');
-    const productCards = document.querySelectorAll('.product-card');
+    // ProductLine cards (new grouped structure)
+    const productLineCards = document.querySelectorAll('.product-line-card');
     const productSlides = document.querySelectorAll('.product-slide');
     const noProductsMsg = document.getElementById('no-products-msg');
     const productsTrack = document.getElementById('products-track');
+    const productsGrid = document.getElementById('products-grid');
     
     let activeFilters = {
       strength: 'all',
@@ -79,15 +81,15 @@ const flavorOptions = [
     
     function updateProducts() {
       let visibleCount = 0;
-      let firstVisibleSlide: Element | null = null;
       
-      // Filter both desktop cards and mobile slides
-      productCards.forEach((card, index) => {
+      // Filter desktop cards
+      productLineCards.forEach((card) => {
         const cardStrength = card.getAttribute('data-strength');
-        const cardFlavor = card.getAttribute('data-flavor');
+        // ProductLines have comma-separated flavors
+        const cardFlavors = card.getAttribute('data-flavors')?.split(',') || [];
         
         const matchesStrength = activeFilters.strength === 'all' || cardStrength === activeFilters.strength;
-        const matchesFlavor = activeFilters.flavor === 'all' || cardFlavor === activeFilters.flavor;
+        const matchesFlavor = activeFilters.flavor === 'all' || cardFlavors.includes(activeFilters.flavor);
         
         const isVisible = matchesStrength && matchesFlavor;
         
@@ -95,22 +97,35 @@ const flavorOptions = [
           (card as HTMLElement).style.display = '';
           visibleCount++;
           
-          // Track first visible slide for mobile
-          if (!firstVisibleSlide && productSlides[index]) {
-            firstVisibleSlide = productSlides[index];
-          }
+          // Highlight matching flavor chip if flavor filter is active
+          const flavorChips = card.querySelectorAll('.flavor-chip');
+          flavorChips.forEach((chip) => {
+            const chipFlavor = chip.getAttribute('data-flavor');
+            if (activeFilters.flavor !== 'all' && chipFlavor === activeFilters.flavor) {
+              chip.classList.add('selected');
+            } else if (activeFilters.flavor === 'all') {
+              chip.classList.remove('selected');
+            }
+          });
         } else {
           (card as HTMLElement).style.display = 'none';
         }
-        
-        // Also hide/show the corresponding slide wrapper
-        if (productSlides[index]) {
-          (productSlides[index] as HTMLElement).style.display = isVisible ? '' : 'none';
-        }
       });
       
-      // Scroll carousel to first visible product
-      if (firstVisibleSlide && productsTrack) {
+      // Filter mobile slides
+      productSlides.forEach((slide) => {
+        const slideStrength = slide.getAttribute('data-strength');
+        const slideFlavors = slide.getAttribute('data-flavors')?.split(',') || [];
+        
+        const matchesStrength = activeFilters.strength === 'all' || slideStrength === activeFilters.strength;
+        const matchesFlavor = activeFilters.flavor === 'all' || slideFlavors.includes(activeFilters.flavor);
+        
+        const isVisible = matchesStrength && matchesFlavor;
+        (slide as HTMLElement).style.display = isVisible ? '' : 'none';
+      });
+      
+      // Scroll carousel to start
+      if (productsTrack) {
         productsTrack.scrollTo({ left: 0, behavior: 'smooth' });
       }
       

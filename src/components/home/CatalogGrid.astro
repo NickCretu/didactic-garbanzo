@@ -1,38 +1,87 @@
 ---
 import { getCollection } from 'astro:content';
-import ProductCard from '@components/product/ProductCard.astro';
+import ProductLineCard from '@components/product/ProductLineCard.astro';
 import ProductFilter from '@components/product/ProductFilter.astro';
 import { useTranslations, type Language } from '@i18n/index';
 
 interface Props {
   lang: Language;
   showFilter?: boolean;
-  limit?: number;
-  featured?: boolean;
 }
 
-const { lang, showFilter = true, limit, featured = false } = Astro.props;
+const { lang, showFilter = true } = Astro.props;
 const t = useTranslations(lang);
 
-// Get all products
-let products = await getCollection('products');
+// Flavor labels for building flavor names
+const flavorLabels: Record<string, Record<string, string>> = {
+  en: { mint: 'Mint', citrus: 'Citrus', berry: 'Berry', coffee: 'Coffee', tropical: 'Tropical' },
+  ru: { mint: 'Мята', citrus: 'Цитрус', berry: 'Ягода', coffee: 'Кофе', tropical: 'Тропик' },
+  ro: { mint: 'Mentă', citrus: 'Citrice', berry: 'Fructe', coffee: 'Cafea', tropical: 'Tropical' },
+};
 
-// Filter featured if requested
-if (featured) {
-  products = products.filter((p) => p.data.featured);
+// Get all products
+const products = await getCollection('products');
+
+// Group products by brand + strength into ProductLines
+interface FlavorVariant {
+  slug: string;
+  flavorCategory: string;
+  flavorName: string;
+  price: number;
 }
 
-// Sort by featured status and then by price
-products = products.sort((a, b) => {
-  if (a.data.featured && !b.data.featured) return -1;
-  if (!a.data.featured && b.data.featured) return 1;
-  return a.data.price - b.data.price;
+interface ProductLine {
+  id: string;
+  brand: string;
+  strength: number;
+  strengthCategory: string;
+  pouchesPerCan: number;
+  currency: string;
+  image: string;
+  flavors: FlavorVariant[];
+  minPrice: number;
+  maxPrice: number;
+}
+
+const productLinesMap = new Map<string, ProductLine>();
+
+products.forEach((product) => {
+  const { brand, strength, strengthCategory, pouchesPerCan, currency, image, slug, flavorCategory, price } = product.data;
+  const lineId = `${brand}-${strength}`.toLowerCase().replace(/\s+/g, '-');
+  
+  if (!productLinesMap.has(lineId)) {
+    productLinesMap.set(lineId, {
+      id: lineId,
+      brand,
+      strength,
+      strengthCategory,
+      pouchesPerCan,
+      currency,
+      image,
+      flavors: [],
+      minPrice: price,
+      maxPrice: price,
+    });
+  }
+  
+  const line = productLinesMap.get(lineId)!;
+  line.flavors.push({
+    slug,
+    flavorCategory,
+    flavorName: flavorLabels[lang]?.[flavorCategory] || flavorCategory,
+    price,
+  });
+  
+  // Update price range
+  line.minPrice = Math.min(line.minPrice, price);
+  line.maxPrice = Math.max(line.maxPrice, price);
 });
 
-// Apply limit if specified
-if (limit) {
-  products = products.slice(0, limit);
-}
+// Convert to array and sort by brand then strength
+const productLines = Array.from(productLinesMap.values()).sort((a, b) => {
+  if (a.brand !== b.brand) return a.brand.localeCompare(b.brand);
+  return a.strength - b.strength;
+});
 ---
 
 <section class="section" id="catalog">
@@ -49,9 +98,9 @@ if (limit) {
     <!-- Mobile: Horizontal carousel -->
     <div class="products-carousel md:hidden">
       <div class="products-track" id="products-track">
-        {products.map((product) => (
-          <div class="product-slide">
-            <ProductCard lang={lang} product={product.data} />
+        {productLines.map((line) => (
+          <div class="product-slide" data-strength={line.strengthCategory} data-flavors={line.flavors.map(f => f.flavorCategory).join(',')}>
+            <ProductLineCard lang={lang} productLine={line} />
           </div>
         ))}
       </div>
@@ -61,9 +110,9 @@ if (limit) {
     </div>
     
     <!-- Desktop: Grid layout -->
-    <div class="hidden md:grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-      {products.map((product) => (
-        <ProductCard lang={lang} product={product.data} />
+    <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="products-grid">
+      {productLines.map((line) => (
+        <ProductLineCard lang={lang} productLine={line} />
       ))}
     </div>
     
@@ -76,6 +125,110 @@ if (limit) {
     </p>
   </div>
 </section>
+
+<style>
+  .products-carousel {
+    margin: 0 -1.5rem;
+    padding: 0;
+    position: relative;
+  }
+  
+  .products-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 0.5rem 1.5rem;
+    gap: 1rem;
+  }
+  
+  .products-track::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .product-slide {
+    flex: 0 0 85%;
+    max-width: 320px;
+    scroll-snap-align: center;
+  }
+  
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 0;
+  }
+  
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #e5e5e5;
+    transition: all 0.2s;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .carousel-dot.active {
+    background: #0066CC;
+    width: 24px;
+    border-radius: 4px;
+  }
+</style>
+
+<script>
+  function initCatalog() {
+    const track = document.getElementById('products-track');
+    const dotsContainer = document.getElementById('carousel-dots');
+    const grid = document.getElementById('products-grid');
+    const noProductsMsg = document.getElementById('no-products-msg');
+    
+    // Get all product line cards (both mobile and desktop)
+    const mobileSlides = track?.querySelectorAll('.product-slide') || [];
+    const desktopCards = grid?.querySelectorAll('.product-line-card') || [];
+    
+    // Initialize carousel dots
+    if (track && dotsContainer) {
+      const visibleSlides = Array.from(mobileSlides).filter(s => (s as HTMLElement).style.display !== 'none');
+      
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < Math.min(visibleSlides.length, 10); i++) {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        dot.addEventListener('click', () => {
+          visibleSlides[i]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        });
+        dotsContainer.appendChild(dot);
+      }
+      
+      // Update dots on scroll
+      const dots = dotsContainer.querySelectorAll('.carousel-dot');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = visibleSlides.indexOf(entry.target as Element);
+            dots.forEach((dot, i) => {
+              dot.classList.toggle('active', i === index);
+            });
+          }
+        });
+      }, {
+        root: track,
+        threshold: 0.5
+      });
+      
+      visibleSlides.forEach((slide) => observer.observe(slide));
+    }
+  }
+  
+  initCatalog();
+  document.addEventListener('astro:page-load', initCatalog);
+</script>
 
 <style>
   .products-carousel {
