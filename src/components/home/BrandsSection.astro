@@ -8,21 +8,23 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-// Brand logos - we'll use SVG logos created inline for consistency
+// Brand names in uppercase for visibility
 const brands = [
-  { name: 'VELO', color: '#00A0E3' },
   { name: 'ZYN', color: '#1E3A5F' },
-  { name: 'Pablo', color: '#E31837' },
+  { name: 'VELO', color: '#00A0E3' },
+  { name: 'CUBA', color: '#8B4513' },
+  { name: 'STELLAR', color: '#6B5B95' },
+  { name: 'STREET', color: '#2C3E50' },
+  { name: 'PABLO', color: '#E31837' },
+  { name: 'NOIS', color: '#34495E' },
+  { name: 'KILLA', color: '#C0392B' },
+  { name: 'ICEBERG', color: '#3498DB' },
+  { name: 'BARON', color: '#8E44AD' },
   { name: 'LYFT', color: '#00B5AD' },
-  { name: 'Nordic Spirit', color: '#2D5A27' },
 ];
 ---
 
-<section class="py-10 md:py-14 bg-surface overflow-hidden">
-  <div class="container">
-    <p class="text-center text-caption text-muted mb-6">{t.brands.title}</p>
-  </div>
-  
+<section class="py-4 md:py-5 bg-white border-b border-gray-100 overflow-hidden">
   <!-- Scrolling brands marquee -->
   <div class="brands-marquee">
     <div class="brands-track">
@@ -43,14 +45,14 @@ const brands = [
   
   .brands-track {
     display: flex;
-    gap: 3rem;
-    animation: scroll-brands 25s linear infinite;
+    gap: 2.5rem;
+    animation: scroll-brands 30s linear infinite;
     width: max-content;
   }
   
   .brand-item {
     flex-shrink: 0;
-    opacity: 0.7;
+    opacity: 0.85;
     transition: opacity 0.3s;
   }
   
@@ -59,18 +61,20 @@ const brands = [
   }
   
   .brand-text {
-    font-size: 1.75rem;
-    font-weight: 700;
+    font-size: 1.25rem;
+    font-weight: 800;
     white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
   
   @media (min-width: 768px) {
     .brands-track {
-      gap: 5rem;
+      gap: 4rem;
     }
     
     .brand-text {
-      font-size: 2.25rem;
+      font-size: 1.5rem;
     }
   }
   
