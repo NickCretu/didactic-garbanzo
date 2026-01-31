@@ -81,15 +81,6 @@ const navItems = [
           </a>
         ))}
       </nav>
-      <!-- Tap to close area -->
-      <button id="mobile-menu-close-area" class="flex-1 w-full flex items-start justify-center pt-8" aria-label="Close menu">
-        <span class="text-sm text-muted flex items-center gap-2">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-          {lang === 'ru' ? 'Нажмите, чтобы закрыть' : lang === 'ro' ? 'Apăsați pentru a închide' : 'Tap to close'}
-        </span>
-      </button>
     </div>
   </div>
 </header>
@@ -145,7 +136,6 @@ const navItems = [
   const mobileMenu = document.getElementById('mobile-menu');
   const menuIcon = menuBtn?.querySelector('.menu-icon');
   const closeIcon = menuBtn?.querySelector('.close-icon');
-  const closeArea = document.getElementById('mobile-menu-close-area');
   
   function closeMenu() {
     mobileMenu?.classList.add('hidden');
@@ -169,7 +159,4 @@ const navItems = [
   mobileMenu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', closeMenu);
   });
-  
-  // Close menu when clicking the close area
-  closeArea?.addEventListener('click', closeMenu);
 </script>
