@@ -1,0 +1,17 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import StrengthFinder from '@components/home/StrengthFinder.astro';
+import { useTranslations } from '@i18n/index';
+
+const lang = 'ru';
+const t = useTranslations(lang);
+---
+
+<BaseLayout 
+  title="Подберите Крепость - Pauch"
+  description="Ответьте на несколько вопросов, чтобы найти идеальную крепость. Персональные рекомендации для новичков и опытных пользователей."
+>
+  <div class="py-8 md:py-12">
+    <StrengthFinder lang={lang} />
+  </div>
+</BaseLayout>

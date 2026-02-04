@@ -1,0 +1,17 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import StrengthFinder from '@components/home/StrengthFinder.astro';
+import { useTranslations } from '@i18n/index';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<BaseLayout 
+  title="Find Your Strength - Pauch"
+  description="Answer a few questions to find your ideal nicotine pouch strength. Personalized recommendations for beginners and experienced users."
+>
+  <div class="py-8 md:py-12">
+    <StrengthFinder lang={lang} />
+  </div>
+</BaseLayout>

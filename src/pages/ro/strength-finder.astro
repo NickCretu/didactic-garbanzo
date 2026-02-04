@@ -1,0 +1,17 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import StrengthFinder from '@components/home/StrengthFinder.astro';
+import { useTranslations } from '@i18n/index';
+
+const lang = 'ro';
+const t = useTranslations(lang);
+---
+
+<BaseLayout 
+  title="Găsește Tăria Potrivită - Pauch"
+  description="Răspunde la câteva întrebări pentru a găsi tăria ideală. Recomandări personalizate pentru începători și utilizatori experimentați."
+>
+  <div class="py-8 md:py-12">
+    <StrengthFinder lang={lang} />
+  </div>
+</BaseLayout>
