@@ -64,12 +64,13 @@ const faqSchema = translation.faq && translation.faq.length > 0 ? {
 
 function simpleMarkdown(text: string): string {
   return text
-    .replace(/## (.*?)$/gm, '<h2 class="text-xl font-semibold mt-8 mb-4 text-primary">$1</h2>')
-    .replace(/### (.*?)$/gm, '<h3 class="text-lg font-semibold mt-6 mb-3 text-primary">$1</h3>')
+    .replace(/^#\s*$/gm, '')
+    .replace(/## (.*?)$/gm, '<h2>$1</h2>')
+    .replace(/### (.*?)$/gm, '<h3>$1</h3>')
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\n\n/g, '</p><p class="text-body text-muted mb-4">')
-    .replace(/^\d\. (.*?)$/gm, '<li class="mb-2">$1</li>')
-    .replace(/^- (.*?)$/gm, '<li class="mb-2">$1</li>')
+    .replace(/\n\n/g, '</p><p>')
+    .replace(/^\d+\. (.*?)$/gm, '<li>$1</li>')
+    .replace(/^- (.*?)$/gm, '<li>$1</li>')
     .replace(/\n/g, '<br/>');
 }
 ---
@@ -84,12 +85,12 @@ function simpleMarkdown(text: string): string {
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} slot="head" />
   {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />}
   
-  <article class="py-12 md:py-20">
+  <article class="blog-article">
     <div class="container">
-      <div class="max-w-3xl mx-auto">
+      <div class="max-w-[720px] mx-auto">
         <a 
           href={getLocalizedPath('/blog/', lang)}
-          class="inline-flex items-center gap-2 text-muted hover:text-primary mb-8 transition-colors"
+          class="inline-flex items-center gap-1.5 text-sm text-muted hover:text-primary transition-colors"
         >
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -97,44 +98,40 @@ function simpleMarkdown(text: string): string {
           {t.blog.backToBlog}
         </a>
         
-        <header class="mb-8">
-          <time class="text-caption text-muted">
+        <header class="blog-header">
+          <time class="blog-meta">
             {new Date(post.publishedAt).toLocaleDateString(lang, { year: 'numeric', month: 'long', day: 'numeric' })}
           </time>
-          <h1 class="text-2xl md:text-4xl font-semibold mt-2 mb-4">{translation.title}</h1>
-          <p class="text-sm md:text-base text-muted">{translation.excerpt}</p>
+          <h1 class="blog-title">{translation.title}</h1>
+          <p class="blog-excerpt">{translation.excerpt}</p>
         </header>
         
         {imageSrc && (
-          <div class="aspect-[16/9] bg-surface rounded-2xl overflow-hidden mb-12">
+          <div class="blog-featured-image">
             <img src={imageSrc} alt={translation.title} class="w-full h-full object-cover" onerror="this.parentElement.style.display='none'" />
           </div>
         )}
         
-        <div class="prose prose-lg max-w-none">
-          <p class="text-body text-muted mb-4"><Fragment set:html={simpleMarkdown(translation.content)} /></p>
+        <div class="blog-content">
+          <Fragment set:html={simpleMarkdown(translation.content)} />
         </div>
         
-        <!-- FAQ Section -->
         {translation.faq && translation.faq.length > 0 && (
-          <div class="mt-12 pt-8 border-t border-gray-200">
-            <h2 class="text-xl font-semibold mb-6">Întrebări frecvente</h2>
-            <div class="space-y-4">
+          <div class="blog-faq">
+            <h2 class="blog-faq-title">Întrebări frecvente</h2>
+            <div class="blog-faq-list">
               {translation.faq.map((item) => (
-                <div class="bg-surface rounded-xl p-5">
-                  <h3 class="font-medium text-primary mb-2">{item.question}</h3>
-                  <p class="text-muted text-sm">{item.answer}</p>
+                <div class="blog-faq-item">
+                  <h3 class="blog-faq-question">{item.question}</h3>
+                  <p class="blog-faq-answer">{item.answer}</p>
                 </div>
               ))}
             </div>
           </div>
         )}
         
-        <!-- Disclaimer -->
-        <div class="mt-12 p-4 bg-gray-50 rounded-xl border border-gray-200">
-          <p class="text-xs text-muted">
-            {disclaimers[post.disclaimerType]}
-          </p>
+        <div class="blog-disclaimer">
+          <p>{disclaimers[post.disclaimerType]}</p>
         </div>
       </div>
     </div>
@@ -142,10 +139,91 @@ function simpleMarkdown(text: string): string {
 </BaseLayout>
 
 <style>
-  .prose h2 { @apply text-title font-semibold mt-8 mb-4; }
-  .prose h3 { @apply text-body font-semibold mt-6 mb-3; }
-  .prose p { @apply text-body text-muted mb-4; }
-  .prose ul, .prose ol { @apply list-disc pl-6 mb-4 text-body text-muted; }
-  .prose li { @apply mb-2; }
-  .prose strong { @apply font-semibold text-primary; }
+  .blog-article { padding: 1.5rem 0 5rem; }
+  @media (min-width: 768px) { .blog-article { padding: 2.5rem 0 3rem; } }
+  
+  .blog-header { margin-top: 0.75rem; margin-bottom: 1.25rem; }
+  @media (min-width: 768px) { .blog-header { margin-top: 1rem; margin-bottom: 1.5rem; } }
+  
+  .blog-meta { font-size: 0.8125rem; color: #86868B; display: block; }
+  
+  .blog-title {
+    font-size: clamp(1.5rem, 5.5vw, 2.25rem);
+    font-weight: 600;
+    line-height: 1.15;
+    color: #000;
+    margin: 0.5rem 0 0.625rem;
+  }
+  @media (min-width: 768px) { .blog-title { margin: 0.625rem 0 0.75rem; } }
+  
+  .blog-excerpt { font-size: 0.9375rem; line-height: 1.5; color: #86868B; margin: 0; }
+  @media (min-width: 768px) { .blog-excerpt { font-size: 1rem; } }
+  
+  .blog-featured-image {
+    aspect-ratio: 16 / 9;
+    background: #F5F5F7;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+  @media (min-width: 768px) { .blog-featured-image { border-radius: 1rem; margin-bottom: 2rem; } }
+  
+  .blog-content {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: #1a1a1a;
+    hyphens: auto;
+    overflow-wrap: break-word;
+  }
+  @media (min-width: 768px) { .blog-content { font-size: 1.0625rem; line-height: 1.7; } }
+  
+  .blog-content p { margin-bottom: 0.875rem; }
+  @media (min-width: 768px) { .blog-content p { margin-bottom: 1rem; } }
+  
+  .blog-content h2 {
+    font-size: clamp(1.25rem, 4.5vw, 1.5rem);
+    font-weight: 600;
+    line-height: 1.2;
+    color: #000;
+    margin-top: 1.75rem;
+    margin-bottom: 0.625rem;
+  }
+  @media (min-width: 768px) { .blog-content h2 { margin-top: 2rem; margin-bottom: 0.75rem; } }
+  
+  .blog-content h3 {
+    font-size: clamp(1.0625rem, 3.8vw, 1.25rem);
+    font-weight: 600;
+    line-height: 1.25;
+    color: #000;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  @media (min-width: 768px) { .blog-content h3 { margin-top: 1.75rem; margin-bottom: 0.5rem; } }
+  
+  .blog-content ul, .blog-content ol { margin: 0.75rem 0 1rem; padding-left: 1.25rem; }
+  .blog-content ul { list-style-type: disc; }
+  .blog-content ol { list-style-type: decimal; }
+  .blog-content li { margin-bottom: 0.375rem; padding-left: 0.25rem; }
+  @media (min-width: 768px) { .blog-content li { margin-bottom: 0.5rem; } }
+  
+  .blog-content strong { font-weight: 600; color: #000; }
+  .blog-content a { color: #0066CC; text-decoration: underline; text-decoration-color: rgba(0, 102, 204, 0.3); text-underline-offset: 2px; }
+  .blog-content a:hover { text-decoration-color: currentColor; }
+  
+  .blog-content a.anchor, .blog-content a.heading-anchor,
+  .blog-content h2 a[href^="#"], .blog-content h3 a[href^="#"] { display: none !important; }
+  
+  .blog-faq { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #e5e5e5; }
+  @media (min-width: 768px) { .blog-faq { margin-top: 2.5rem; padding-top: 2rem; } }
+  
+  .blog-faq-title { font-size: 1.25rem; font-weight: 600; color: #000; margin-bottom: 1rem; }
+  .blog-faq-list { display: flex; flex-direction: column; gap: 0.75rem; }
+  .blog-faq-item { background: #F5F5F7; border-radius: 0.75rem; padding: 1rem; }
+  @media (min-width: 768px) { .blog-faq-item { padding: 1.25rem; } }
+  
+  .blog-faq-question { font-size: 0.9375rem; font-weight: 500; color: #000; margin-bottom: 0.375rem; }
+  .blog-faq-answer { font-size: 0.875rem; color: #86868B; line-height: 1.5; }
+  
+  .blog-disclaimer { margin-top: 2rem; padding: 0.875rem 1rem; background: #fafafa; border: 1px solid #e5e5e5; border-radius: 0.75rem; }
+  .blog-disclaimer p { font-size: 0.75rem; color: #86868B; margin: 0; line-height: 1.5; }
 </style>

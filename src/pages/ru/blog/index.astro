@@ -35,25 +35,25 @@ allPosts.forEach(post => {
   title="Блог - Гиды по никотиновым пакетикам"
   description="Полные гиды о никотиновых пакетиках: переход с курения, выбор крепости, сравнения вкусов, информация о безопасности и советы экспертов."
 >
-  <section class="py-12 md:py-20">
+  <section class="py-6 md:py-12 lg:py-16">
     <div class="container">
       <!-- Header -->
-      <div class="text-center mb-12">
-        <h1 class="text-3xl md:text-4xl font-bold mb-4">Гиды по никотиновым пакетикам</h1>
-        <p class="text-muted max-w-2xl mx-auto">
+      <div class="text-center mb-6 md:mb-10">
+        <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 md:mb-3">Гиды по никотиновым пакетикам</h1>
+        <p class="text-sm md:text-base text-muted max-w-2xl mx-auto">
           Экспертные гиды и информация о никотиновых пакетиках. Узнайте о переходе с курения,
           выборе правильной крепости, сравнениях вкусов и безопасном использовании.
         </p>
       </div>
       
       <!-- Hub Navigation -->
-      <div class="flex flex-wrap justify-center gap-3 mb-12">
+      <div class="flex flex-wrap justify-center gap-2 mb-6 md:mb-10">
         {allHubs.map(hub => {
           const hubT = hub.data.translations[lang];
           return (
             <a 
               href={`#${hub.data.hubId}`}
-              class="px-4 py-2 bg-surface rounded-full text-sm font-medium hover:bg-accent hover:text-white transition-colors"
+              class="px-3 py-1.5 md:px-4 md:py-2 bg-surface rounded-full text-xs md:text-sm font-medium hover:bg-accent hover:text-white transition-colors"
             >
               {hubT.title}
             </a>
@@ -67,14 +67,14 @@ allPosts.forEach(post => {
         const hubPosts = postsByHub[hub.data.hubId] || [];
         
         return (
-          <section id={hub.data.hubId} class="mb-16">
-            <div class="flex items-center justify-between mb-6">
-              <h2 class="text-2xl font-semibold">{hubT.title}</h2>
-              <span class="text-sm text-muted">{hubPosts.length} статей</span>
+          <section id={hub.data.hubId} class="mb-10 md:mb-14">
+            <div class="flex items-center justify-between mb-3 md:mb-5">
+              <h2 class="text-xl md:text-2xl font-semibold">{hubT.title}</h2>
+              <span class="text-xs md:text-sm text-muted">{hubPosts.length} статей</span>
             </div>
-            <p class="text-muted mb-8 max-w-3xl">{hubT.intro}</p>
+            <p class="text-sm md:text-base text-muted mb-5 md:mb-6 max-w-3xl">{hubT.intro}</p>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {hubPosts.map(post => {
                 const postT = post.data.translations[lang];
                 const imageSrc = post.data.image 
@@ -84,7 +84,7 @@ allPosts.forEach(post => {
                 return (
                   <article class="group">
                     <a href={getLocalizedPath(`/blog/${postT.slug}`, lang)} class="block">
-                      <div class="aspect-[16/10] bg-surface rounded-xl overflow-hidden mb-3">
+                      <div class="aspect-[16/10] bg-surface rounded-lg md:rounded-xl overflow-hidden mb-2.5 md:mb-3">
                         <img
                           src={imageSrc}
                           alt={postT.title}
@@ -96,14 +96,14 @@ allPosts.forEach(post => {
                       <time class="text-xs text-muted">
                         {new Date(post.data.publishedAt).toLocaleDateString(lang, { 
                           year: 'numeric', 
-                          month: 'long', 
+                          month: 'short', 
                           day: 'numeric' 
                         })}
                       </time>
-                      <h3 class="text-lg font-semibold mt-1 mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                      <h3 class="text-base md:text-lg font-semibold mt-0.5 mb-1 md:mb-1.5 group-hover:text-accent transition-colors line-clamp-2">
                         {postT.title}
                       </h3>
-                      <p class="text-sm text-muted line-clamp-2">
+                      <p class="text-xs md:text-sm text-muted line-clamp-2">
                         {postT.excerpt}
                       </p>
                     </a>
