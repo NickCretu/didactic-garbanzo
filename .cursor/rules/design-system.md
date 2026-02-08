@@ -36,7 +36,7 @@ Font family: Inter, system-ui, -apple-system, sans-serif.
 | H2        | 20px        | 28px         | 600    | 1.3         |
 | H3        | 17px        | 20px         | 600    | 1.35        |
 | Body      | 15px        | 16px         | 400    | 1.7         |
-| Small     | 13px        | 14px         | 400    | 1.5         |
+| Small     | 15px        | 15px         | 400    | 1.6         |
 | Caption   | 12px        | 13px         | 400    | 1.5         |
 
 Rules:

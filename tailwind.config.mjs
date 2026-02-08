@@ -22,7 +22,7 @@ export default {
         'h2': ['clamp(1.25rem, 3.5vw, 1.75rem)', { lineHeight: '1.3', fontWeight: '600' }],
         'h3': ['clamp(1.0625rem, 2.5vw, 1.25rem)', { lineHeight: '1.35', fontWeight: '600' }],
         'body': ['1rem', { lineHeight: '1.7', fontWeight: '400' }],
-        'small': ['0.875rem', { lineHeight: '1.5', fontWeight: '400' }],
+        'small': ['0.9375rem', { lineHeight: '1.6', fontWeight: '400' }],
         'caption': ['0.8125rem', { lineHeight: '1.5', fontWeight: '400' }],
         'xs': ['0.75rem', { lineHeight: '1.5', fontWeight: '400' }],
         // Legacy aliases (used in legal pages, AgeGate, StrengthFinder)

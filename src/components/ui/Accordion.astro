@@ -45,7 +45,7 @@ function linkify(text: string): string {
         aria-labelledby={`accordion-trigger-${index}`}
         role="region"
       >
-        <div class="px-4 pb-4 text-small text-muted leading-relaxed" set:html={linkify(item.answer)}>
+        <div class="px-4 pt-4 pb-4 text-small text-muted leading-relaxed" set:html={linkify(item.answer)}>
         </div>
       </div>
     </div>
