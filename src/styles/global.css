@@ -64,18 +64,20 @@
     @apply transition-colors duration-200;
   }
   
-  /* Mobile-optimized heading sizes */
-  h1, .text-display {
+  /* Mobile-optimized heading sizes for homepage sections.
+     These use utility classes (.text-display, .text-headline, .text-title)
+     so they don't stomp on scoped blog-content styles. */
+  .text-display {
     font-size: clamp(1.75rem, 6vw, 4rem);
     line-height: 1.1;
   }
   
-  h2, .text-headline {
+  .text-headline {
     font-size: clamp(1.5rem, 5vw, 2.5rem);
     line-height: 1.15;
   }
   
-  h3, .text-title {
+  .text-title {
     font-size: clamp(1.125rem, 3.5vw, 1.5rem);
     line-height: 1.25;
   }
