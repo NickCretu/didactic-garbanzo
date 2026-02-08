@@ -39,6 +39,14 @@
     @apply bg-background text-primary font-sans;
     overflow-x: hidden;
     position: relative;
+    /* Bottom padding to prevent Telegram button overlap */
+    padding-bottom: 5rem;
+  }
+  
+  @media (min-width: 768px) {
+    body {
+      padding-bottom: 0;
+    }
   }
 
   /* Focus styles for accessibility */
@@ -55,35 +63,74 @@
   a, button {
     @apply transition-colors duration-200;
   }
+  
+  /* Mobile-optimized heading sizes */
+  h1, .text-display {
+    font-size: clamp(1.75rem, 6vw, 4rem);
+    line-height: 1.1;
+  }
+  
+  h2, .text-headline {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    line-height: 1.15;
+  }
+  
+  h3, .text-title {
+    font-size: clamp(1.125rem, 3.5vw, 1.5rem);
+    line-height: 1.25;
+  }
 }
 
 @layer components {
   .container {
-    @apply max-w-container mx-auto px-6 md:px-8 lg:px-12;
+    @apply max-w-container mx-auto px-4 md:px-8 lg:px-12;
   }
 
+  /* Mobile-first section padding: compact on mobile, spacious on desktop */
   .section {
-    @apply py-10 md:py-16;
+    @apply py-8 md:py-14 lg:py-16;
+  }
+  
+  /* Tighter section heading margins on mobile */
+  .section-heading {
+    @apply mb-6 md:mb-10;
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-accent text-white font-medium rounded-full hover:bg-opacity-90 transition-all;
+    @apply inline-flex items-center justify-center px-5 py-2.5 md:px-6 md:py-3 bg-accent text-white font-medium rounded-full hover:bg-opacity-90 transition-all text-sm md:text-base;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-surface text-primary font-medium rounded-full hover:bg-gray-200 transition-all;
+    @apply inline-flex items-center justify-center px-5 py-2.5 md:px-6 md:py-3 bg-surface text-primary font-medium rounded-full hover:bg-gray-200 transition-all text-sm md:text-base;
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center px-6 py-3 border border-primary text-primary font-medium rounded-full hover:bg-primary hover:text-white transition-all;
+    @apply inline-flex items-center justify-center px-5 py-2.5 md:px-6 md:py-3 border border-primary text-primary font-medium rounded-full hover:bg-primary hover:text-white transition-all text-sm md:text-base;
   }
 
   .card {
-    @apply bg-white rounded-2xl shadow-card p-6;
+    @apply bg-white rounded-2xl shadow-card p-4 md:p-6;
   }
 
   .product-card {
-    @apply bg-surface rounded-2xl p-4 hover:shadow-product transition-shadow;
+    @apply bg-surface rounded-2xl p-3 md:p-4 hover:shadow-product transition-shadow;
+  }
+  
+  /* Compact feature card for mobile */
+  .feature-card {
+    @apply bg-white rounded-xl md:rounded-2xl p-4 md:p-6 text-center shadow-card;
+  }
+  
+  .feature-card-icon {
+    @apply inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-surface rounded-xl md:rounded-2xl mb-3 md:mb-5 text-accent;
+  }
+  
+  .feature-card-title {
+    @apply text-base md:text-lg font-semibold mb-1.5 md:mb-3;
+  }
+  
+  .feature-card-desc {
+    @apply text-sm md:text-base text-muted leading-snug;
   }
 }
 

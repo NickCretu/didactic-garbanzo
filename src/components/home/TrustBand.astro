@@ -33,8 +33,14 @@ const trustItems = [
 <style>
   .trust-band {
     position: sticky;
-    top: 64px; /* Below header */
+    top: 56px; /* Below header on mobile */
     z-index: 40;
+  }
+  
+  @media (min-width: 768px) {
+    .trust-band {
+      top: 64px; /* Below header on desktop */
+    }
   }
   
   /* Single row on all screen sizes */

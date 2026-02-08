@@ -20,7 +20,7 @@ const posts = (await getCollection('blog'))
 
 <section class="section" id="blog">
   <div class="container">
-    <h2 class="text-headline text-center mb-8 md:mb-12">{t.blog.latestPosts}</h2>
+    <h2 class="text-headline text-center mb-5 md:mb-10">{t.blog.latestPosts}</h2>
     
     <!-- Mobile: Horizontal scroll -->
     <div class="blog-carousel md:hidden">
@@ -113,7 +113,7 @@ const posts = (await getCollection('blog'))
   }
   
   .blog-carousel {
-    margin: 0 -1.5rem;
+    margin: 0 -1rem;
   }
   
   .blog-track {
@@ -123,8 +123,8 @@ const posts = (await getCollection('blog'))
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    padding: 0.5rem 1.5rem;
-    gap: 1rem;
+    padding: 0.5rem 1rem;
+    gap: 0.75rem;
   }
   
   .blog-track::-webkit-scrollbar {
@@ -132,8 +132,8 @@ const posts = (await getCollection('blog'))
   }
   
   .blog-slide {
-    flex: 0 0 85%;
-    max-width: 300px;
+    flex: 0 0 80%;
+    max-width: 280px;
     scroll-snap-align: center;
   }
 </style>

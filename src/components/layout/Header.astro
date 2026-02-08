@@ -26,7 +26,7 @@ const navItems = [
 ---
 
 <header class="sticky top-0 z-[10000] bg-white/80 backdrop-blur-lg border-b border-gray-100">
-  <nav class="container flex items-center justify-between h-16 md:h-18">
+  <nav class="container flex items-center justify-between h-14 md:h-16">
     <!-- Logo -->
     <a href={getLocalizedPath('/', lang)} class="flex items-center gap-2 text-lg sm:text-xl font-semibold text-primary">
       <img src={`${baseClean}/logo-new.svg`} alt="Pauch" class="h-7 sm:h-8 w-auto" />
@@ -85,10 +85,16 @@ const navItems = [
   .mobile-menu-overlay {
     position: fixed;
     inset: 0;
-    top: 64px;
+    top: 56px;
     z-index: 9999;
     background: #ffffff !important;
     backdrop-filter: none;
+  }
+  
+  @media (min-width: 768px) {
+    .mobile-menu-overlay {
+      top: 64px;
+    }
   }
   
   .mobile-menu-overlay.hidden {

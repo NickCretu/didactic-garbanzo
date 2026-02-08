@@ -30,19 +30,19 @@ const flavorOptions = [
 ];
 ---
 
-<div class="product-filter flex items-center justify-center gap-2 mb-6" role="group" aria-label="Product filters">
+<div class="product-filter flex items-center justify-center gap-2 mb-4 md:mb-6" role="group" aria-label="Product filters">
   <!-- Strength Filter Dropdown -->
   <div class="relative">
     <select 
       id="strength-filter" 
-      class="filter-select appearance-none bg-surface border-0 rounded-full px-3 py-2.5 pr-8 text-xs font-medium text-primary cursor-pointer hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-accent min-h-[44px]"
+      class="filter-select appearance-none bg-surface border-0 rounded-full px-2.5 py-2 md:px-3 md:py-2.5 pr-7 md:pr-8 text-xs font-medium text-primary cursor-pointer hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-accent min-h-[40px] md:min-h-[44px]"
       data-filter="strength"
     >
       {strengthOptions.map((option) => (
         <option value={option.value}>{option.label}</option>
       ))}
     </select>
-    <svg class="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg class="absolute right-2 md:right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 md:w-4 md:h-4 text-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
     </svg>
   </div>
@@ -51,14 +51,14 @@ const flavorOptions = [
   <div class="relative">
     <select 
       id="flavor-filter" 
-      class="filter-select appearance-none bg-surface border-0 rounded-full px-3 py-2.5 pr-8 text-xs font-medium text-primary cursor-pointer hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-accent min-h-[44px]"
+      class="filter-select appearance-none bg-surface border-0 rounded-full px-2.5 py-2 md:px-3 md:py-2.5 pr-7 md:pr-8 text-xs font-medium text-primary cursor-pointer hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-accent min-h-[40px] md:min-h-[44px]"
       data-filter="flavor"
     >
       {flavorOptions.map((option) => (
         <option value={option.value}>{option.label}</option>
       ))}
     </select>
-    <svg class="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg class="absolute right-2 md:right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 md:w-4 md:h-4 text-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
     </svg>
   </div>

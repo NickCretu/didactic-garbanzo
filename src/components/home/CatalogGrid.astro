@@ -86,8 +86,8 @@ const productLines = Array.from(productLinesMap.values()).sort((a, b) => {
 
 <section class="section" id="catalog">
   <div class="container">
-    <h2 class="text-headline text-center mb-4">{t.catalog.title}</h2>
-    <p class="text-body text-muted text-center mb-8 max-w-2xl mx-auto">
+    <h2 class="text-headline text-center mb-2 md:mb-3">{t.catalog.title}</h2>
+    <p class="text-sm md:text-base text-muted text-center mb-4 md:mb-6 max-w-2xl mx-auto">
       {lang === 'en' && 'Browse our selection of premium nicotine pouches from top brands.'}
       {lang === 'ru' && 'Просмотрите нашу подборку премиальных никотиновых подушечек от ведущих брендов.'}
       {lang === 'ro' && 'Răsfoiți selecția noastră de pliculețe premium de la branduri de top.'}
@@ -128,7 +128,7 @@ const productLines = Array.from(productLinesMap.values()).sort((a, b) => {
 
 <style>
   .products-carousel {
-    margin: 0 -1.5rem;
+    margin: 0 -1rem;
     padding: 0;
     position: relative;
   }
@@ -140,8 +140,8 @@ const productLines = Array.from(productLinesMap.values()).sort((a, b) => {
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    padding: 0.5rem 1.5rem;
-    gap: 1rem;
+    padding: 0.25rem 1rem;
+    gap: 0.75rem;
   }
   
   .products-track::-webkit-scrollbar {
@@ -149,21 +149,21 @@ const productLines = Array.from(productLinesMap.values()).sort((a, b) => {
   }
   
   .product-slide {
-    flex: 0 0 85%;
-    max-width: 320px;
+    flex: 0 0 72%;
+    max-width: 260px;
     scroll-snap-align: center;
   }
   
   .carousel-dots {
     display: flex;
     justify-content: center;
-    gap: 0.5rem;
-    padding: 1rem 0;
+    gap: 0.375rem;
+    padding: 0.75rem 0;
   }
   
   .carousel-dot {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     background: #e5e5e5;
     transition: all 0.2s;
@@ -174,8 +174,8 @@ const productLines = Array.from(productLinesMap.values()).sort((a, b) => {
   
   .carousel-dot.active {
     background: #0066CC;
-    width: 24px;
-    border-radius: 4px;
+    width: 20px;
+    border-radius: 3px;
   }
 </style>
 
@@ -231,52 +231,32 @@ const productLines = Array.from(productLinesMap.values()).sort((a, b) => {
 </script>
 
 <style>
-  .products-carousel {
-    margin: 0 -1.5rem;
+  /* Second style block - using same compact values */
+  .products-carousel-alt {
+    margin: 0 -1rem;
     padding: 0;
     position: relative;
   }
   
-  .products-track {
+  .products-track-alt {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    padding: 0.5rem 1.5rem;
-    gap: 1rem;
+    padding: 0.25rem 1rem;
+    gap: 0.75rem;
   }
   
-  .products-track::-webkit-scrollbar {
+  .products-track-alt::-webkit-scrollbar {
     display: none;
   }
   
-  .product-slide {
-    flex: 0 0 75%;
-    max-width: 280px;
+  .product-slide-alt {
+    flex: 0 0 72%;
+    max-width: 260px;
     scroll-snap-align: center;
-  }
-  
-  .carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 1rem 0;
-  }
-  
-  .carousel-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #e5e5e5;
-    transition: all 0.2s;
-  }
-  
-  .carousel-dot.active {
-    background: #0066CC;
-    width: 24px;
-    border-radius: 4px;
   }
 </style>
 

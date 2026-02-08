@@ -46,33 +46,33 @@ const strengthLevels = [
 
 <section class="section" id="strength-guide">
   <div class="container">
-    <div class="text-center mb-12">
-      <h2 class="text-headline mb-4">{t.strengthGuide.title}</h2>
-      <p class="text-body text-muted max-w-2xl mx-auto">{t.strengthGuide.subtitle}</p>
+    <div class="text-center mb-5 md:mb-10">
+      <h2 class="text-headline mb-2 md:mb-3">{t.strengthGuide.title}</h2>
+      <p class="text-sm md:text-base text-muted max-w-2xl mx-auto">{t.strengthGuide.subtitle}</p>
     </div>
     
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5 md:gap-5">
       {strengthLevels.map((level) => (
-        <div class="bg-white rounded-2xl p-6 md:p-8 text-center shadow-card hover:shadow-lg transition-shadow">
+        <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 text-center shadow-card hover:shadow-lg transition-shadow">
           <!-- Intensity dots -->
-          <div class={`inline-flex items-center justify-center w-16 h-16 ${level.lightColor} rounded-2xl mb-5`}>
-            <div class="flex gap-1">
+          <div class={`inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 ${level.lightColor} rounded-xl md:rounded-2xl mb-3 md:mb-4`}>
+            <div class="flex gap-0.5 md:gap-1">
               {Array(4).fill(0).map((_, i) => (
-                <div class={`w-2.5 h-2.5 rounded-full ${i < level.dots ? level.color : 'bg-gray-200'}`}></div>
+                <div class={`w-2 h-2 md:w-2.5 md:h-2.5 rounded-full ${i < level.dots ? level.color : 'bg-gray-200'}`}></div>
               ))}
             </div>
           </div>
           
-          <h3 class="text-title font-semibold mb-2">{level.title}</h3>
-          <p class="text-caption text-muted leading-relaxed">{level.description}</p>
+          <h3 class="text-sm md:text-base font-semibold mb-1 md:mb-2">{level.title}</h3>
+          <p class="text-xs md:text-sm text-muted leading-snug">{level.description}</p>
         </div>
       ))}
     </div>
     
     <!-- Gradient scale bar -->
-    <div class="max-w-md mx-auto mt-10">
-      <div class="h-2 rounded-full bg-gradient-to-r from-emerald-500 via-amber-500 via-orange-500 to-red-500"></div>
-      <div class="flex justify-between mt-2">
+    <div class="max-w-xs md:max-w-md mx-auto mt-6 md:mt-8">
+      <div class="h-1.5 md:h-2 rounded-full bg-gradient-to-r from-emerald-500 via-amber-500 via-orange-500 to-red-500"></div>
+      <div class="flex justify-between mt-1.5">
         <span class="text-xs text-muted">Mild</span>
         <span class="text-xs text-muted">Intense</span>
       </div>

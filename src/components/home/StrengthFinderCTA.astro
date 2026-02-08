@@ -26,29 +26,29 @@ const t = content[lang];
 const finderUrl = getLocalizedPath('/strength-finder', lang);
 ---
 
-<section class="py-5 md:py-6">
+<section class="py-3 md:py-5">
   <div class="container">
     <a 
       href={finderUrl}
-      class="strength-cta-card block bg-gradient-to-r from-accent/5 via-accent/10 to-accent/5 border border-accent/20 rounded-xl px-5 py-4 md:px-6 md:py-5 hover:border-accent/40 hover:shadow-md transition-all group"
+      class="strength-cta-card block bg-gradient-to-r from-accent/5 via-accent/10 to-accent/5 border border-accent/20 rounded-lg md:rounded-xl px-4 py-3 md:px-5 md:py-4 hover:border-accent/40 hover:shadow-md transition-all group"
     >
-      <div class="flex items-center justify-between gap-4">
+      <div class="flex items-center justify-between gap-3">
         <!-- Content -->
-        <div class="flex items-center gap-3 md:gap-4">
-          <div class="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-accent/15 rounded-xl flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-            <svg class="w-5 h-5 md:w-6 md:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="flex items-center gap-2.5 md:gap-3">
+          <div class="flex-shrink-0 w-9 h-9 md:w-11 md:h-11 bg-accent/15 rounded-lg md:rounded-xl flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+            <svg class="w-4 h-4 md:w-5 md:h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
             </svg>
           </div>
-          <div>
-            <p class="text-sm text-muted mb-0.5">{t.question}</p>
-            <p class="text-base md:text-lg font-semibold text-primary group-hover:text-accent transition-colors">{t.cta}</p>
+          <div class="min-w-0">
+            <p class="text-xs md:text-sm text-muted">{t.question}</p>
+            <p class="text-sm md:text-base font-semibold text-primary group-hover:text-accent transition-colors truncate">{t.cta}</p>
           </div>
         </div>
         
         <!-- Arrow -->
-        <div class="flex-shrink-0 w-8 h-8 md:w-10 md:h-10 bg-accent rounded-full flex items-center justify-center group-hover:scale-105 transition-transform">
-          <svg class="w-4 h-4 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="flex-shrink-0 w-7 h-7 md:w-9 md:h-9 bg-accent rounded-full flex items-center justify-center group-hover:scale-105 transition-transform">
+          <svg class="w-3.5 h-3.5 md:w-4 md:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>
         </div>
