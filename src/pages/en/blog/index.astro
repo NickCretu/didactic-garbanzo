@@ -39,8 +39,8 @@ allPosts.forEach(post => {
     <div class="container">
       <!-- Header -->
       <div class="text-center mb-6 md:mb-10">
-        <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 md:mb-3">Nicotine Pouch Guides</h1>
-        <p class="text-sm md:text-base text-muted max-w-2xl mx-auto">
+        <h1 class="text-h1 mb-2">Nicotine Pouch Guides</h1>
+        <p class="text-small text-muted max-w-xl mx-auto">
           Expert guides and information about nicotine pouches. Learn about switching from smoking, 
           choosing the right strength, flavor comparisons, and safe usage practices.
         </p>
@@ -69,7 +69,7 @@ allPosts.forEach(post => {
         return (
           <section id={hub.data.hubId} class="mb-10 md:mb-14">
             <div class="flex items-center justify-between mb-3 md:mb-5">
-              <h2 class="text-xl md:text-2xl font-semibold">{hubT.title}</h2>
+              <h2 class="text-h2">{hubT.title}</h2>
               <span class="text-xs md:text-sm text-muted">{hubPosts.length} articles</span>
             </div>
             <p class="text-sm md:text-base text-muted mb-5 md:mb-6 max-w-3xl">{hubT.intro}</p>

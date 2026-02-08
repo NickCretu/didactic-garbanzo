@@ -27,13 +27,13 @@ const navLinks = [
 ];
 ---
 
-<footer class="bg-surface border-t border-gray-200">
-  <div class="container py-8 md:py-12">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
+<footer class="bg-surface border-t border-border">
+  <div class="container py-10 md:py-16">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
       <!-- Brand -->
       <div class="col-span-2 md:col-span-1">
-        <a href={getLocalizedPath('/', lang)} class="flex items-center gap-2 text-xl font-semibold text-primary mb-4">
-          <img src={`${baseClean}/logo-new.svg`} alt="Pauch" class="h-8 w-auto" />
+        <a href={getLocalizedPath('/', lang)} class="flex items-center gap-2 text-body font-semibold text-primary mb-4">
+          <img src={`${baseClean}/logo-new.svg`} alt="Pauch" class="h-8 w-auto" style="clip-path: inset(15% 0); transform: scale(1.18);" />
           <span>Pauch</span>
         </a>
         <p class="text-caption text-muted mb-4">
@@ -46,7 +46,7 @@ const navLinks = [
           rel="noopener noreferrer"
           class="inline-flex items-center gap-2 px-4 py-2 bg-[#0088cc] text-white text-caption font-medium rounded-full hover:bg-[#0077b5] transition-colors"
         >
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
             <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
           </svg>
           {t.footer.telegram}
@@ -58,12 +58,12 @@ const navLinks = [
         <h4 class="text-caption font-semibold text-primary uppercase tracking-wider mb-4">
           {t.nav.home}
         </h4>
-        <ul class="space-y-2">
+        <ul class="space-y-2.5">
           {navLinks.map((link) => (
             <li>
               <a
                 href={link.href}
-                class="text-caption text-muted hover:text-primary transition-colors"
+                class="text-small text-muted hover:text-primary transition-colors"
               >
                 {link.label}
               </a>
@@ -77,12 +77,12 @@ const navLinks = [
         <h4 class="text-caption font-semibold text-primary uppercase tracking-wider mb-4">
           Legal
         </h4>
-        <ul class="space-y-2">
+        <ul class="space-y-2.5">
           {legalLinks.map((link) => (
             <li>
               <a
                 href={link.href}
-                class="text-caption text-muted hover:text-primary transition-colors"
+                class="text-small text-muted hover:text-primary transition-colors"
               >
                 {link.label}
               </a>
@@ -96,13 +96,13 @@ const navLinks = [
         <h4 class="text-caption font-semibold text-primary uppercase tracking-wider mb-4">
           Contact
         </h4>
-        <ul class="space-y-2">
+        <ul class="space-y-2.5">
           <li>
             <a
               href={getTelegramOrderLink(lang)}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-caption text-muted hover:text-primary transition-colors"
+              class="text-small text-muted hover:text-primary transition-colors"
             >
               Telegram
             </a>
@@ -112,7 +112,7 @@ const navLinks = [
     </div>
     
     <!-- Bottom Bar -->
-    <div class="mt-8 pt-6 md:mt-10 md:pt-8 border-t border-gray-200">
+    <div class="mt-10 pt-6 border-t border-border">
       <p class="text-caption text-muted text-center">
         &copy; {currentYear} Pauch. {t.footer.rights}.
       </p>

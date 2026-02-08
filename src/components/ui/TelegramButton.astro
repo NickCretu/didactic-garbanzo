@@ -22,7 +22,7 @@ const telegramLink = getTelegramOrderLink(lang);
 </a>
 
 <style>
-  /* Mobile: smaller, positioned to avoid overlap */
+  /* Mobile: 48px button, 16px from edges */
   .telegram-float {
     bottom: 1rem;
     right: 1rem;
@@ -32,11 +32,11 @@ const telegramLink = getTelegramOrderLink(lang);
   }
   
   .telegram-icon {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.375rem;
+    height: 1.375rem;
   }
   
-  /* Tablet and up: larger and more prominent */
+  /* Desktop: 56px button, 24px from edges */
   @media (min-width: 768px) {
     .telegram-float {
       bottom: 1.5rem;
@@ -46,8 +46,8 @@ const telegramLink = getTelegramOrderLink(lang);
     }
     
     .telegram-icon {
-      width: 1.75rem;
-      height: 1.75rem;
+      width: 1.625rem;
+      height: 1.625rem;
     }
   }
   

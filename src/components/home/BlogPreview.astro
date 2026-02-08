@@ -20,7 +20,7 @@ const posts = (await getCollection('blog'))
 
 <section class="section" id="blog">
   <div class="container">
-    <h2 class="text-headline text-center mb-5 md:mb-10">{t.blog.latestPosts}</h2>
+    <h2 class="text-h2 text-center mb-6 md:mb-8">{t.blog.latestPosts}</h2>
     
     <!-- Mobile: Horizontal scroll -->
     <div class="blog-carousel md:hidden">
@@ -33,7 +33,7 @@ const posts = (await getCollection('blog'))
           
           return (
             <article class="blog-slide group">
-              <a href={getLocalizedPath(`/blog/${translation.slug}`, lang)} class="block bg-white rounded-2xl overflow-hidden shadow-sm">
+              <a href={getLocalizedPath(`/blog/${translation.slug}`, lang)} class="block bg-white rounded-xl overflow-hidden shadow-sm">
                 <div class="aspect-[16/10] bg-surface overflow-hidden">
                   <img
                     src={imageSrc}
@@ -43,17 +43,17 @@ const posts = (await getCollection('blog'))
                   />
                 </div>
                 <div class="p-4">
-                  <time class="text-xs text-muted">
+                  <time class="text-caption text-muted">
                     {new Date(post.data.publishedAt).toLocaleDateString(lang, { 
                       year: 'numeric', 
                       month: 'short', 
                       day: 'numeric' 
                     })}
                   </time>
-                  <h3 class="text-base font-semibold mt-1 mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                  <h3 class="text-body font-semibold mt-1 mb-1.5 group-hover:text-accent transition-colors line-clamp-2">
                     {translation.title}
                   </h3>
-                  <p class="text-sm text-muted line-clamp-2">
+                  <p class="text-small text-muted line-clamp-2">
                     {translation.excerpt}
                   </p>
                 </div>
@@ -65,7 +65,7 @@ const posts = (await getCollection('blog'))
     </div>
     
     <!-- Desktop: Grid -->
-    <div class="hidden md:grid md:grid-cols-3 gap-8">
+    <div class="hidden md:grid md:grid-cols-3 gap-6">
       {posts.map((post) => {
         const translation = post.data.translations[lang];
         const imageSrc = post.data.image 
@@ -75,7 +75,7 @@ const posts = (await getCollection('blog'))
         return (
           <article class="group">
             <a href={getLocalizedPath(`/blog/${translation.slug}`, lang)} class="block">
-              <div class="aspect-[16/10] bg-surface rounded-2xl overflow-hidden mb-4">
+              <div class="aspect-[16/10] bg-surface rounded-xl overflow-hidden mb-3">
                 <img
                   src={imageSrc}
                   alt={translation.title}
@@ -90,10 +90,10 @@ const posts = (await getCollection('blog'))
                   day: 'numeric' 
                 })}
               </time>
-              <h3 class="text-title font-semibold mt-2 mb-2 group-hover:text-accent transition-colors">
+              <h3 class="text-h3 mt-1.5 mb-1.5 group-hover:text-accent transition-colors">
                 {translation.title}
               </h3>
-              <p class="text-body text-muted line-clamp-2">
+              <p class="text-small text-muted line-clamp-2">
                 {translation.excerpt}
               </p>
             </a>
@@ -113,7 +113,7 @@ const posts = (await getCollection('blog'))
   }
   
   .blog-carousel {
-    margin: 0 -1rem;
+    margin: 0 -1.25rem;
   }
   
   .blog-track {
@@ -123,7 +123,7 @@ const posts = (await getCollection('blog'))
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.25rem;
     gap: 0.75rem;
   }
   
