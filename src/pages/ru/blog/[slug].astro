@@ -189,7 +189,8 @@ function simpleMarkdown(text: string): string {
   </article>
 </BaseLayout>
 
-<style>
+<style is:global>
+  /* Global because set:html content lacks Astro scope attrs */
   .blog-article { padding-top: 1.5rem; padding-bottom: 5rem; }
   @media (min-width: 768px) { .blog-article { padding-top: 2.5rem; padding-bottom: 4rem; } }
 
