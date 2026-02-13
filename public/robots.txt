@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://pauch.netlify.app/sitemap.xml
+Sitemap: https://pauch.netlify.app/sitemap-index.xml
 
 # Disallow admin/api paths if any
 Disallow: /api/
