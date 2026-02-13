@@ -62,12 +62,7 @@ const websiteSchema = {
   "@type": "WebSite",
   "name": "Pauch",
   "url": siteUrl,
-  "inLanguage": lang,
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": `${siteUrl}/${lang}/catalog?q={search_term_string}`,
-    "query-input": "required name=search_term_string"
-  }
+  "inLanguage": lang
 };
 
 const combinedSchema = schema 
@@ -123,6 +118,7 @@ const combinedSchema = schema
     
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(combinedSchema)} />
+    <slot name="head" />
   </head>
   <body class="min-h-screen flex flex-col">
     <AgeGate lang={lang} />
