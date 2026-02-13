@@ -7,6 +7,7 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+const homeCatalogPath = `${getLocalizedPath('/', lang)}#catalog`;
 
 // Strength tier colors matching StrengthGuide
 const strengthColors = {
@@ -18,10 +19,10 @@ const strengthColors = {
 
 // Collection URLs for strength tiers
 const strengthUrls = {
-  low: getLocalizedPath('/catalog?strength=low', lang),
-  medium: getLocalizedPath('/catalog?strength=medium', lang),
-  strong: getLocalizedPath('/catalog?strength=strong', lang),
-  extra: getLocalizedPath('/catalog?strength=extra', lang),
+  low: homeCatalogPath,
+  medium: homeCatalogPath,
+  strong: homeCatalogPath,
+  extra: homeCatalogPath,
 };
 
 const strengthGuideUrl = '#strength-guide';
