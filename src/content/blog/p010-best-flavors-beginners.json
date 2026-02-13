@@ -4,8 +4,15 @@
   "hub": "selection",
   "targetKeyword": "best nicotine pouch flavors for beginners",
   "disclaimerType": "general",
-  "relatedPosts": ["P008", "P003", "P004"],
-  "ctaTargets": ["/products/flavors", "/products/beginner"],
+  "relatedPosts": [
+    "P008",
+    "P003",
+    "P004"
+  ],
+  "ctaTargets": [
+    "/products/flavors",
+    "/products/beginner"
+  ],
   "translations": {
     "en": {
       "title": "Best Nicotine Pouch Flavors for Beginners: Mint vs Citrus vs Berry",
@@ -109,5 +116,6 @@
         }
       ]
     }
-  }
+  },
+  "image": "/images/blog/beginners-guide.jpg"
 }

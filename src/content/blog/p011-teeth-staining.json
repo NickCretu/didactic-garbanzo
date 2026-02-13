@@ -4,8 +4,15 @@
   "hub": "safety",
   "targetKeyword": "do nicotine pouches stain teeth",
   "disclaimerType": "safety",
-  "relatedPosts": ["P008", "P010", "P004"],
-  "ctaTargets": ["/products/discreet", "/products/beginner"],
+  "relatedPosts": [
+    "P008",
+    "P010",
+    "P004"
+  ],
+  "ctaTargets": [
+    "/products/discreet",
+    "/products/beginner"
+  ],
   "translations": {
     "en": {
       "title": "Do Nicotine Pouches Stain Teeth? What Actually Causes Discoloration",
@@ -106,5 +113,6 @@
         }
       ]
     }
-  }
+  },
+  "image": "/images/blog/health-comparison.jpg"
 }

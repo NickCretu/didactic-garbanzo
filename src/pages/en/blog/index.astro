@@ -79,7 +79,7 @@ allPosts.forEach(post => {
                 const postT = post.data.translations[lang];
                 const imageSrc = post.data.image 
                   ? `${baseClean}${post.data.image}`
-                  : `${baseClean}/images/blog/placeholder.jpg`;
+                  : `${baseClean}/images/og-default.jpg`;
                 
                 return (
                   <article class="group">

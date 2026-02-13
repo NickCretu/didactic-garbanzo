@@ -4,8 +4,15 @@
   "hub": "selection",
   "targetKeyword": "how to store nicotine pouches",
   "disclaimerType": "general",
-  "relatedPosts": ["P004", "P008", "P010"],
-  "ctaTargets": ["/products", "/products/flavors"],
+  "relatedPosts": [
+    "P004",
+    "P008",
+    "P010"
+  ],
+  "ctaTargets": [
+    "/products",
+    "/products/flavors"
+  ],
   "translations": {
     "en": {
       "title": "How to Store Nicotine Pouches to Keep Them Fresh",
@@ -112,5 +119,6 @@
         }
       ]
     }
-  }
+  },
+  "image": "/images/blog/beginners-guide.jpg"
 }

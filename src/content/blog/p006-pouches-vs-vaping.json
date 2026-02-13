@@ -4,8 +4,16 @@
   "hub": "switching",
   "targetKeyword": "nicotine pouches vs vaping",
   "disclaimerType": "general",
-  "relatedPosts": ["P001", "P007", "P005"],
-  "ctaTargets": ["/products/discreet", "/products/ex-smokers", "/products/strength"],
+  "relatedPosts": [
+    "P001",
+    "P007",
+    "P005"
+  ],
+  "ctaTargets": [
+    "/products/discreet",
+    "/products/ex-smokers",
+    "/products/strength"
+  ],
   "translations": {
     "en": {
       "title": "Nicotine Pouches vs Vaping: Which Fits Your Routine?",
@@ -118,5 +126,6 @@
         }
       ]
     }
-  }
+  },
+  "image": "/images/blog/health-comparison.jpg"
 }

@@ -4,8 +4,15 @@
   "hub": "safety",
   "targetKeyword": "nicotine pouch side effects",
   "disclaimerType": "safety",
-  "relatedPosts": ["P003", "P004", "P010"],
-  "ctaTargets": ["/products/strength", "/products/beginner"],
+  "relatedPosts": [
+    "P003",
+    "P004",
+    "P010"
+  ],
+  "ctaTargets": [
+    "/products/strength",
+    "/products/beginner"
+  ],
   "translations": {
     "en": {
       "title": "Nicotine Pouch Side Effects: What's Normal vs What's Not",
@@ -121,5 +128,6 @@
         }
       ]
     }
-  }
+  },
+  "image": "/images/blog/health-comparison.jpg"
 }

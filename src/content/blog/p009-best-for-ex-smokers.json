@@ -4,8 +4,16 @@
   "hub": "switching",
   "targetKeyword": "best nicotine pouches for former smokers",
   "disclaimerType": "general",
-  "relatedPosts": ["P001", "P002", "P005"],
-  "ctaTargets": ["/products/ex-smokers", "/products/strength", "/products/discreet"],
+  "relatedPosts": [
+    "P001",
+    "P002",
+    "P005"
+  ],
+  "ctaTargets": [
+    "/products/ex-smokers",
+    "/products/strength",
+    "/products/discreet"
+  ],
   "translations": {
     "en": {
       "title": "Best Nicotine Pouches for Former Smokers: How to Choose (Without Guessing)",
@@ -115,5 +123,6 @@
         }
       ]
     }
-  }
+  },
+  "image": "/images/blog/velo-vs-zyn.jpg"
 }

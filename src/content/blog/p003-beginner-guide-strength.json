@@ -4,8 +4,15 @@
   "hub": "strength",
   "targetKeyword": "best nicotine pouch strength for beginners",
   "disclaimerType": "general",
-  "relatedPosts": ["P002", "P008", "P004"],
-  "ctaTargets": ["/products/beginner", "/products/strength"],
+  "relatedPosts": [
+    "P002",
+    "P008",
+    "P004"
+  ],
+  "ctaTargets": [
+    "/products/beginner",
+    "/products/strength"
+  ],
   "translations": {
     "en": {
       "title": "Beginner Guide: Choosing Your First Nicotine Pouch Strength",
@@ -118,5 +125,6 @@
         }
       ]
     }
-  }
+  },
+  "image": "/images/blog/beginners-guide.jpg"
 }

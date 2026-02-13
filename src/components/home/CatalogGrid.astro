@@ -183,12 +183,8 @@ const productLines = Array.from(productLinesMap.values()).sort((a, b) => {
   function initCatalog() {
     const track = document.getElementById('products-track');
     const dotsContainer = document.getElementById('carousel-dots');
-    const grid = document.getElementById('products-grid');
-    const noProductsMsg = document.getElementById('no-products-msg');
     
-    // Get all product line cards (both mobile and desktop)
     const mobileSlides = track?.querySelectorAll('.product-slide') || [];
-    const desktopCards = grid?.querySelectorAll('.product-line-card') || [];
     
     // Initialize carousel dots
     if (track && dotsContainer) {
@@ -228,80 +224,4 @@ const productLines = Array.from(productLinesMap.values()).sort((a, b) => {
   
   initCatalog();
   document.addEventListener('astro:page-load', initCatalog);
-</script>
-
-<style>
-  /* Second style block - using same compact values */
-  .products-carousel-alt {
-    margin: 0 -1rem;
-    padding: 0;
-    position: relative;
-  }
-  
-  .products-track-alt {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding: 0.25rem 1rem;
-    gap: 0.75rem;
-  }
-  
-  .products-track-alt::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .product-slide-alt {
-    flex: 0 0 72%;
-    max-width: 260px;
-    scroll-snap-align: center;
-  }
-</style>
-
-<script>
-  function initCarousel() {
-    const track = document.getElementById('products-track');
-    const dotsContainer = document.getElementById('carousel-dots');
-    
-    if (!track || !dotsContainer) return;
-    
-    const slides = track.querySelectorAll('.product-slide');
-    const totalSlides = slides.length;
-    
-    // Create dots
-    dotsContainer.innerHTML = '';
-    for (let i = 0; i < Math.min(totalSlides, 10); i++) {
-      const dot = document.createElement('button');
-      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
-      dot.addEventListener('click', () => {
-        slides[i]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-      });
-      dotsContainer.appendChild(dot);
-    }
-    
-    // Update dots on scroll
-    const dots = dotsContainer.querySelectorAll('.carousel-dot');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const index = Array.from(slides).indexOf(entry.target as Element);
-          dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === index);
-          });
-        }
-      });
-    }, {
-      root: track,
-      threshold: 0.5
-    });
-    
-    slides.forEach((slide) => observer.observe(slide));
-  }
-  
-  initCarousel();
-  document.addEventListener('astro:page-load', initCarousel);
 </script>

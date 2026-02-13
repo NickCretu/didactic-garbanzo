@@ -4,8 +4,15 @@
   "hub": "strength",
   "targetKeyword": "nicotine pouch strength explained",
   "disclaimerType": "general",
-  "relatedPosts": ["P003", "P008", "P010"],
-  "ctaTargets": ["/products/strength", "/products/beginner"],
+  "relatedPosts": [
+    "P003",
+    "P008",
+    "P010"
+  ],
+  "ctaTargets": [
+    "/products/strength",
+    "/products/beginner"
+  ],
   "translations": {
     "en": {
       "title": "Nicotine Pouch Strength Explained: 3mg vs 6mg vs 10mg vs 20mg",
@@ -121,5 +128,6 @@
         }
       ]
     }
-  }
+  },
+  "image": "/images/blog/velo-vs-zyn.jpg"
 }

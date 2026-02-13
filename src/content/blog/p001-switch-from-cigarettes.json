@@ -4,8 +4,16 @@
   "hub": "switching",
   "targetKeyword": "switch from cigarettes to nicotine pouches",
   "disclaimerType": "general",
-  "relatedPosts": ["P005", "P002", "P009"],
-  "ctaTargets": ["/products/strength", "/products/ex-smokers", "/products/beginner"],
+  "relatedPosts": [
+    "P005",
+    "P002",
+    "P009"
+  ],
+  "ctaTargets": [
+    "/products/strength",
+    "/products/ex-smokers",
+    "/products/beginner"
+  ],
   "translations": {
     "en": {
       "title": "How to Switch from Cigarettes to Nicotine Pouches: A Step-by-Step Plan",
@@ -115,5 +123,6 @@
         }
       ]
     }
-  }
+  },
+  "image": "/images/blog/beginners-guide.jpg"
 }
