@@ -29,6 +29,8 @@ const translation = product.translations[lang];
 
 const base = import.meta.env.BASE_URL || '/';
 const baseClean = base.endsWith('/') ? base.slice(0, -1) : base;
+const homePath = `${baseClean}/${lang}/`;
+const catalogPath = `${homePath}#catalog`;
 
 // Prepend base to image path
 const imageSrc = product.image.startsWith('/') 
@@ -51,8 +53,10 @@ const flavorLabels: Record<string, string> = {
   tropical: t.flavors.tropical,
 };
 
-// Fixed Telegram order link (per PRD)
-const telegramLink = 'https://t.me/m/8ebhN3f-MDMy';
+const telegramLink = getTelegramOrderLink(lang, {
+  name: translation.name,
+  strength: product.strength,
+});
 
 // Generate product schema (no price per PRD)
 const productSchema = {
@@ -99,7 +103,7 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 2,
       "name": t.nav.catalog,
-      "item": getLocalizedPath('/catalog', lang),
+      "item": catalogPath,
     },
     {
       "@type": "ListItem",
@@ -126,7 +130,7 @@ const breadcrumbSchema = {
         </li>
         <li>/</li>
         <li>
-          <a href={getLocalizedPath('/catalog', lang)} class="hover:text-primary transition-colors">
+          <a href={catalogPath} class="hover:text-primary transition-colors">
             {t.nav.catalog}
           </a>
         </li>
@@ -189,7 +193,7 @@ const breadcrumbSchema = {
             </svg>
             {t.product.orderNow}
           </Button>
-          <Button href={getLocalizedPath('/catalog', lang)} variant="secondary" size="lg">
+          <Button href={catalogPath} variant="secondary" size="lg">
             {t.product.backToCatalog}
           </Button>
         </div>

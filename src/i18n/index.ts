@@ -77,28 +77,15 @@ export function getBrowserLanguage(): Language {
 }
 
 // Telegram helper
-export const TELEGRAM_USERNAME = 'YOUR_TELEGRAM_USERNAME';
+export const TELEGRAM_DEEP_LINK = 'https://t.me/m/8ebhN3f-MDMy';
+// Legacy export kept for backwards compatibility.
+export const TELEGRAM_USERNAME = 'pauch';
 
 export function getTelegramOrderLink(
-  lang: Language,
-  product?: { name: string; strength: number }
+  _lang: Language,
+  _product?: { name: string; strength: number }
 ): string {
-  const t = translations[lang];
-  let message = '';
-  
-  if (product) {
-    message = t.telegram.prefill
-      .replace('{product}', product.name)
-      .replace('{strength}', product.strength.toString());
-  } else {
-    message = lang === 'en' 
-      ? 'Hi, I want to place an order.'
-      : lang === 'ru'
-      ? 'Привет, хочу сделать заказ.'
-      : 'Salut, vreau să plasez o comandă.';
-  }
-  
-  return `https://t.me/${TELEGRAM_USERNAME}?text=${encodeURIComponent(message)}`;
+  return TELEGRAM_DEEP_LINK;
 }
 
 // Get alternate language URLs for hreflang (without base, for SEO purposes)
